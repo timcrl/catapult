@@ -15,11 +15,12 @@ public class Projectile {
 	
 	public Projectile (APoint p ,double dX, double dY, double angle ,Color c) {
 		this.x= p.x;
-		this.y= p.y;
+		this.y= p.y; 
 		this.dx= dX;
 		this.dy= dY;
 		this.a= angle;
 		this.couleur = c;
+		
 
 		
 	}
