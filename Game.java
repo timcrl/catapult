@@ -9,6 +9,7 @@ public class Game{
 		timer = new Timer(interval, this);
 
 		new Fenêtre(20, timer) ;
+		
 
 	}
 }
