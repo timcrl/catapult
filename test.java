@@ -12,5 +12,6 @@ public class test{
 		c1.velocity = new double []{70,0};//initial velocity
 		mesCercle.add(c1);
 		fenetre.lancement();
+		
 	}
 }

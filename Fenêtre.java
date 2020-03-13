@@ -27,11 +27,6 @@ public class Fenêtre extends JFrame implements MouseListener, ActionListener {
 		this.setVisible(true);
 	}
 	
-	public static void main (String [] args) {
-		new Fenêtre(20) ;
-	}
-	
-	
 	public long getTime() {
 		
 		return temps;
