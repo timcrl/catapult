@@ -21,6 +21,8 @@ public class Projectile {
 		this.a= angle;
 		this.couleur = c;
 		
+		
+		
 
 		
 	}
