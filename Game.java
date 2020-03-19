@@ -6,7 +6,7 @@ public class Game{
 
 	public static void main(String [] args){
 
-		Fenêtre jeu = new Fenêtre(20) ;
+		Fenêtre jeu = new Fenêtre() ;
 		
 
 	}
