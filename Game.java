@@ -6,9 +6,7 @@ public class Game{
 
 	public static void main(String [] args){
 
-		timer = new Timer(interval, this);
-
-		new Fenêtre(20, timer) ;
+		Fenêtre jeu = new Fenêtre(20) ;
 		
 
 	}

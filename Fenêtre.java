@@ -1,46 +1,35 @@
 import java.awt.event.*;
 import java.awt.*;
 import javax.swing.*;
-import javax.swing.Timer;
 
 public class Fenêtre extends JFrame implements MouseListener, ActionListener {
 
-	private JPanel pTerrain ;
-
+	private Panneau world = new Panneau();
 	
 	private long temps ; //variable temps à réutiliser dans toutes les classes pour avoir la même
 	private int interval; //vitesse à laquelle le temps s'écoule
 	private Timer timer;
 	private Projectile proj;
-	private APoint p ;
+	
 
 
-	public Fenêtre (int interval, Timer t) {
+	public Fenêtre (int interval) {
 		super("Catapult's World") ;
-		this.setSize(800, 800);
-
+		this.setSize(1000, 1000);
+	    this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+	    this.setLocationRelativeTo(null);
+		this.addMouseListener(this);	
+/*
 		this.interval=interval;
-		this.timer = t;
+		this.timer = new Timer(interval, this);;
 		temps = 0;
-		pTerrain = new Terrain () ;
-		pTerrain.setLayout ( null ) ;
-		
-		p = new APoint (50,50);
-		proj = new Projectile(p ,10, 10, 30 ,Color.Black,timer);
+	
+		*/
 
 
-		this.setContentPane(pTerrain);
+		this.setContentPane(world);
 		this.setVisible(true);
 	}
-
-	public long getTime() {
-
-		return temps;
-	}
-
-
-
-
 
 	@Override
 	public void mouseClicked(MouseEvent arg0) {
