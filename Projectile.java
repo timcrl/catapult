@@ -5,7 +5,7 @@ import javax.swing.*;
 import javax.swing.Timer;
 
 
-public class Projectile {
+public class Projectile extends Object{
 	
 	protected double x;
 	protected double y;
@@ -15,12 +15,12 @@ public class Projectile {
 	protected double a ;
 	protected final double GRAVITY = 9.8 ;
 	protected long t;
-	private int rayon = 15 ;
+	private double rayon = 15.0 ;
 	
 	
 	
 	public Projectile (APoint p ,double dX, double dY, double angle ,Color c, long temps) {
-		
+		super();
 		this.x= p.x; //position initiale en x
 		this.y= p.y; //position initiale en y
 		this.dx= dX; //vitesse initiale en x
@@ -37,7 +37,18 @@ public class Projectile {
 		
         g.setColor(this.couleur);
         // Pour dessiner un cercle
-        g.fillOval((int)(this.x),(int)(this.y),2*rayon,2*rayon);
+        g.fillOval((int)(this.x),(int)(this.y),(int)(2*rayon),(int)(2*rayon));
+		
+	}
+	public double getRayon() {
+		return this.rayon;
+	}
+	
+	public double getDistance (double x1, double y1) {
+		double xDist = x1-this.x;
+		double yDist = y1-this.y;
+		
+		return Math.sqrt((Math.pow(xDist, 2)+Math.pow(yDist, 2)));
 		
 	}
 	
@@ -57,7 +68,7 @@ public class Projectile {
     	if (backX) {
     		deltaX = -deltaX;
     	}
-    	System.out.println(deltaX);
+    	//System.out.println(deltaX);
   
     	if(this.x > fenêtre.getWidth()) {
 			this.x = this.x+ deltaX ;
@@ -68,7 +79,19 @@ public class Projectile {
  		}else {
  			this.x = this.x + deltaX ;
  		}
-    	System.out.println("cercle deplace");
+    	//System.out.println("cercle deplace");
+	}
+
+	@Override
+	public APoint barycenter() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public double[] force() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

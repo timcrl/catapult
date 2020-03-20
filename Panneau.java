@@ -2,12 +2,16 @@ import java.awt.event.*;
 import java.awt.*;
 import javax.swing.*;
 
-public class Panneau extends JPanel implements ActionListener {
+public class Panneau extends JPanel implements ActionListener, MouseMotionListener {
    
 	private Terrain ter = new Terrain();
 	private final double GRAVITY = 9.8 ;
 	private Projectile proj;
+	private Cercle c1;
 	private APoint p = new APoint (50,600);
+	private double limite_sol=0.15;
+	private double dist ;
+	private double dist2 ;
 	
 	//ce timer reprend exactement le même que dans fenêtre donc modif dans fenêtre si besoin
 	private long temps;
@@ -20,7 +24,8 @@ public class Panneau extends JPanel implements ActionListener {
 		temps = 0;
 		monChrono=timer;
 		proj = new Projectile(p,10.0, 10.0, 30.0 ,Color.black,temps );
-
+		c1 = new Cercle(new APoint(600,600),15.0,Color.red);
+		addMouseMotionListener(this);
 	}
 	
 	public Projectile getProj() {
@@ -42,15 +47,31 @@ public class Panneau extends JPanel implements ActionListener {
 		/*===================== Affichage objets*/
 					
 		proj.dessiner(g);
+		c1.dessine(g);
 		
-		//affichage des matériaux et leurs textures
-		for(int i=0; i<ter.itemCoords.length; i++){
-			for(int j=0; j<ter.itemCoords[0].length; j++){
-					Image img1 = Toolkit.getDefaultToolkit().getImage(Matériaux.refTextures[ter.itemCoords[i][j]]);
-					g.drawImage(img1, i*25, j*25, this);
-			}
-		} 
-	
+		/*=================================*/
+		//affichage des matériaux et leurs textures en parcourant la liste
+		
+		for (Matériaux element : ter.listMateriaux) {
+			g.drawImage(element.img, (int)element.x,(int)element.y, this);
+
+		}
+		
+		//============CALCUL COLLISION=========== (juste changement de couleur pour l'instant)
+		dist = proj.getDistance(c1.centre.x, c1.centre.y);
+		System.out.println(dist + " la distance entre les 2 cercles ");
+		
+		if(dist <= c1.rayon + proj.getRayon()) {
+			proj.couleur = c1.maCouleur ;
+		}
+		
+		dist2 = proj.getDistance(ter.listMateriaux.get(2).centreX, ter.listMateriaux.get(2).centreY);
+		System.out.println(dist2 + " la distance entre le projectile et l'objet ");
+		
+		if(dist2 <= 25.0 + proj.getRayon()) {
+			proj.couleur = Color.green ;
+		}
+		//==========================
 	  }
   
 	  public void gravityAction(){
@@ -68,13 +89,14 @@ public class Panneau extends JPanel implements ActionListener {
 	  }
   
 	  //méthode à compléter pour la détection de collision
+	  //=================CODE OBSOLETE mais peut donner des idées pour la collision
 	  
 	  public boolean touch (boolean facing){  // facing left : true, facing right : false
 		  
 			int column = (int)((proj.x+35)/50)%20;
 			int line = (int)((proj.y+35)/50)%20;
 			double d = (proj.x+35)/50.0;
-			
+			/*
 			//détection à gauche
 			if(facing && d-(int)d<=0.50){
 				 if(Terrain.itemCoords[column-1][line]!=0){
@@ -87,8 +109,24 @@ public class Panneau extends JPanel implements ActionListener {
 					 return true;
 				 }
 			}	
+			*/
 			return false;
+			
 	  }
+	//==========================
+
+	@Override
+	public void mouseDragged(MouseEvent e) {
+		// TODO Auto-generated method stub
+		c1 = new Cercle(new APoint(e.getX(),e.getY()),15,Color.red);
+		
+	}
+
+	@Override
+	public void mouseMoved(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
 	
 		
 	}

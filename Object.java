@@ -1,7 +1,7 @@
 import java.awt.Color;
 import java.awt.Graphics;
 
-public class Object {
+public abstract class Object {
   
   protected final double GRAVITY = 9.8 ;
   
@@ -11,22 +11,11 @@ public class Object {
   
   }
   
-  public void dessiner ( Graphics g , int w, int h ) {
-		
-	}
+  public abstract void dessiner ( Graphics g);
   
-  public double [] barycenter (){
-	  double [] center = new double[2] ;
-	  
-	  return center;
+  public abstract APoint barycenter ();
   
-  }
-  
-  public double [] force (){
-	  double [] f = new double[2];
-	  
-	  return f;
-  }
+  public abstract double [] force ();
 	
 		
 		

@@ -2,11 +2,11 @@
 import java.awt.Color;
 import java.awt.Graphics;
 
-public class Cercle{
+public class Cercle {
 
 	// Les attributs
 	public APoint centre;
-	public int rayon;
+	public double rayon;
 	public Color maCouleur;
 	public double [] velocity;
 	
@@ -17,7 +17,7 @@ public class Cercle{
 	 * Le constructeur
 	 * @param le centre, le rayon et la couleur
 	 */ 
-	public Cercle(APoint c, int r,Color maCouleur){
+	public Cercle(APoint c, double r,Color maCouleur){
 		centre = new APoint(c.x,c.y);
 		rayon = r;
 		this.maCouleur = maCouleur;
@@ -32,7 +32,7 @@ public class Cercle{
         // Appel à la méthode de l'ancêtre
         g.setColor(maCouleur);
         // Pour dessiner un cercle
-        g.fillOval((int)(centre.x)-rayon,(int)(centre.y)-rayon,2*rayon,2*rayon);
+        g.fillOval((int)(centre.x)-(int)rayon,(int)(centre.y)-(int)rayon,(int)(2*rayon),(int)(2*rayon));
 	}
 	
 

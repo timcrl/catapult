@@ -19,6 +19,7 @@ public class Fenêtre extends JFrame implements MouseListener, ActionListener {
 		this.setSize(1000, 1000);
 	    this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	    this.setLocationRelativeTo(null);
+	    this.setResizable(true);
 		addMouseListener(this);	
 
 		
@@ -38,6 +39,7 @@ public class Fenêtre extends JFrame implements MouseListener, ActionListener {
 			timer.start();
 		}*/
 		String s = "| Position de la souris : " + e.getX() +" x et " + e.getY() + " y ";
+		System.out.println(s);
 		repaint();
 	}
 
