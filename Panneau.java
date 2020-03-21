@@ -22,7 +22,6 @@ public class Panneau extends JPanel implements ActionListener, MouseMotionListen
 	
 	public Panneau(Timer timer){
 		
-		temps = 0;
 		monChrono=timer;
 		proj = new Projectile(p,20.0, 20.0, 30.0 ,Color.black );
 		c1 = new Cercle(new APoint(600,600),15.0,Color.red);
@@ -101,14 +100,30 @@ public class Panneau extends JPanel implements ActionListener, MouseMotionListen
 		
 	}
   
-	public void gravityAction(){
-	
+	public void gravityAction(long time){
+		this.temps = time;
+		
+		for (Matériaux element : ter.listMateriaux) {
+			
+			if(element.y + 40.0 <= (double)(this.getHeight()*(1-limite_sol))) {
+				
+				for (Matériaux m : ter.listMateriaux) {
+					if(element != m && element.getDistance(m.x, m.y) > 100.0 && m.getDistance(element.x, element.y) > 100.0) {
+						element.y += this.GRAVITY ; 
+						System.out.println(temps + "en s");
+						repaint();
+					}
+				}
+
+			}
+		}
+
 		  try {
-			Thread.sleep(1);
+			Thread.sleep(100);
 		  } catch (InterruptedException e) {
 			e.printStackTrace();
 		  }
-			repaint();
+			
 	}
 	  
 	public void actionPerformed(ActionEvent e){
@@ -132,6 +147,8 @@ public class Panneau extends JPanel implements ActionListener, MouseMotionListen
 			System.out.println("The mouse has collided");
 			proj.couleur = new Color(50, 50, 50);
 		}
+	
+
 	}
 	
 		

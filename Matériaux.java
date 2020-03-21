@@ -70,5 +70,13 @@ public class Matériaux extends Object { //incorporer les résistances dans les 
 		return null;
 	}
 	
+	public double getDistance (double x1, double y1) {
+		double xDist = x1-this.x;
+		double yDist = y1-this.y;
+		
+		return Math.sqrt((Math.pow(xDist, 2)+Math.pow(yDist, 2)));
+		
+	}
+	
 
 }

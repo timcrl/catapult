@@ -91,6 +91,7 @@ public class Fenêtre extends JFrame implements MouseListener, ActionListener {
 		//méthode pour travailler avec collision
 		world.getProj().deplaceX(this); 
 		world.getProj().deplaceY(this);
+		world.gravityAction(realtime);
 		System.out.println(realtime + "s");
 		
 		try {
