@@ -9,9 +9,6 @@ public class Cercle {
 	public double rayon;
 	public Color maCouleur;
 	public double [] velocity;
-	
-	
-
 
 	/**
 	 * Le constructeur
@@ -22,8 +19,7 @@ public class Cercle {
 		rayon = r;
 		this.maCouleur = maCouleur;
 	}
-	
-	
+
 	/**
 	 * Pour dessiner la figure courante
 	 * @param l'objet graphique où dessiner

@@ -1,4 +1,3 @@
-import java.awt.Color;
 import java.awt.Graphics;
 
 public abstract class Object {
@@ -16,8 +15,6 @@ public abstract class Object {
   public abstract APoint barycenter ();
   
   public abstract double [] force ();
-	
-		
-		
-		
+
+  
 }

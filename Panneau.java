@@ -9,9 +9,10 @@ public class Panneau extends JPanel implements ActionListener, MouseMotionListen
 	private Projectile proj;
 	private Cercle c1;
 	private APoint p = new APoint (50,600);
-	private double limite_sol=0.15;
+	private double limite_sol=0.2;
 	private double dist ;
 	private double dist2 ;
+	private double angle = 30.0;
 	
 	//ce timer reprend exactement le même que dans fenêtre donc modif dans fenêtre si besoin
 	private long temps;
@@ -23,7 +24,7 @@ public class Panneau extends JPanel implements ActionListener, MouseMotionListen
 		
 		temps = 0;
 		monChrono=timer;
-		proj = new Projectile(p,10.0, 10.0, 30.0 ,Color.black,temps );
+		proj = new Projectile(p,20.0, 20.0, 30.0 ,Color.black );
 		c1 = new Cercle(new APoint(600,600),15.0,Color.red);
 		addMouseMotionListener(this);
 	}
@@ -38,17 +39,18 @@ public class Panneau extends JPanel implements ActionListener, MouseMotionListen
 		//g.fillRect(0,0,getWidth(),getHeight());
 		
 		Image fond = Toolkit.getDefaultToolkit().getImage("./images/image_fond_nuage.png");
-					g.drawImage(fond, 0, 0, this);
+					g.drawImage(fond, 0, 0, this.getWidth(), this.getHeight(), this);
+		//Image bottom = Toolkit.getDefaultToolkit().getImage("./images/terre2.png");
+		//g.drawImage(bottom, 0, 750, this.getWidth(),this.getHeight(), this);
 		
 		g.setColor(Color.green);
-		g.fillRect(0,getHeight()-150,getWidth(),150);
-		
+		g.fillRect(0,(int)((1-limite_sol)*this.getHeight()),this.getWidth(),(int)((limite_sol)*this.getHeight()));
 	
 		/*===================== Affichage objets*/
 					
 		proj.dessiner(g);
 		c1.dessine(g);
-		
+
 		/*=================================*/
 		//affichage des matériaux et leurs textures en parcourant la liste
 		
@@ -57,24 +59,49 @@ public class Panneau extends JPanel implements ActionListener, MouseMotionListen
 
 		}
 		
-		//============CALCUL COLLISION=========== (juste changement de couleur pour l'instant)
+		//============CALCUL COLLISION=========== 
+		this.collisionDetect();
+	
+		//==========================
+		
+		}
+	//============CALCUL COLLISION=========== (juste changement de couleur pour l'instant et disparition case)
+	public void collisionDetect() {
+		
 		dist = proj.getDistance(c1.centre.x, c1.centre.y);
 		System.out.println(dist + " la distance entre les 2 cercles ");
 		
+		//juste pour checker et s'amuser avec le drag
 		if(dist <= c1.rayon + proj.getRayon()) {
 			proj.couleur = c1.maCouleur ;
 		}
 		
-		dist2 = proj.getDistance(ter.listMateriaux.get(2).centreX, ter.listMateriaux.get(2).centreY);
-		System.out.println(dist2 + " la distance entre le projectile et l'objet ");
+		//parcourt toute la liste de matériaux et les fait disparaître à la rencontre du projectile
 		
-		if(dist2 <= 25.0 + proj.getRayon()) {
-			proj.couleur = Color.green ;
+		for (Matériaux element : ter.listMateriaux) {
+			dist2 = proj.getDistance(element.centreX, element.centreY);
+			
+			if(dist2 <= 25.0 + proj.getRayon()) {
+				element.img = null;
+				proj.couleur = Color.green ;
+				System.out.println(dist2 + " la distance entre le projectile et l'objet ");
+			}	
 		}
-		//==========================
-	  }
+	
+		
+		
+		//========Limite de la fenêtre
+		if(proj.x - proj.getRayon() <= 0 || proj.x + proj.getRayon() >= this.getWidth() ) {
+			proj.dx = - proj.dx ;
+		}
+		if(proj.y - proj.getRayon() <= 0 || proj.y + proj.getRayon() >= (this.getHeight()-this.limite_sol*this.getHeight()) ) {
+			proj.dy = - proj.dy ;
+		}
+		
+		
+	}
   
-	  public void gravityAction(){
+	public void gravityAction(){
 	
 		  try {
 			Thread.sleep(1);
@@ -82,50 +109,29 @@ public class Panneau extends JPanel implements ActionListener, MouseMotionListen
 			e.printStackTrace();
 		  }
 			repaint();
-	  }
+	}
 	  
-	  public void actionPerformed(ActionEvent e){
-	
-	  }
-  
-	  //méthode à compléter pour la détection de collision
-	  //=================CODE OBSOLETE mais peut donner des idées pour la collision
-	  
-	  public boolean touch (boolean facing){  // facing left : true, facing right : false
-		  
-			int column = (int)((proj.x+35)/50)%20;
-			int line = (int)((proj.y+35)/50)%20;
-			double d = (proj.x+35)/50.0;
-			/*
-			//détection à gauche
-			if(facing && d-(int)d<=0.50){
-				 if(Terrain.itemCoords[column-1][line]!=0){
-					 return true;
-				 }
-			}
-			//détection à droite
-			if(!facing && d-(int)d>=0.50){
-				 if(Terrain.itemCoords[column+1][line]!=0){
-					 return true;
-				 }
-			}	
-			*/
-			return false;
-			
-	  }
-	//==========================
+	public void actionPerformed(ActionEvent e){
+		
+	}
 
+	//==========================
+	//méthode pour bouger le cercle rouge
 	@Override
 	public void mouseDragged(MouseEvent e) {
 		// TODO Auto-generated method stub
 		c1 = new Cercle(new APoint(e.getX(),e.getY()),15,Color.red);
 		
 	}
-
+	
+	//méthode détectant le contact projectile avec la souris et changeant la couleur
 	@Override
 	public void mouseMoved(MouseEvent e) {
 		// TODO Auto-generated method stub
-		
+		if(proj.getDistance(e.getX(), e.getY()) <= 15.0) {
+			System.out.println("The mouse has collided");
+			proj.couleur = new Color(50, 50, 50);
+		}
 	}
 	
 		

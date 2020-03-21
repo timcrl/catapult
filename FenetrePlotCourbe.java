@@ -41,10 +41,7 @@ public class FenetrePlotCourbe extends JFrame implements ActionListener{
         
 		
 	}
-	
 
-	
-	
 	/**
 	 * Pour faire des dessins simples
 	 * @param l'objet graphics
@@ -82,12 +79,9 @@ public class FenetrePlotCourbe extends JFrame implements ActionListener{
 					mesCercle.get(i).centre.y-=0.1;
 					mesCercle.get(i).velocity[1]=-mesCercle.get(i).velocity[1];
 					
-				}
-				
+				}	
 			}
 		repaint();
-
-		
 	}
     
     /**

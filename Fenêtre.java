@@ -30,6 +30,9 @@ public class Fenêtre extends JFrame implements MouseListener, ActionListener {
 		this.setContentPane(world);
 		this.setVisible(true);
 	}
+	public long getTemps() {
+		return temps;
+	}
 
 
 	@Override
@@ -76,17 +79,26 @@ public class Fenêtre extends JFrame implements MouseListener, ActionListener {
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		temps += interval;
+		
+		this.temps += interval;
 		this.setTitle("Catapult's World :" + temps / 1000);
+		int realtime = (int) (temps/1000) ;
 		
 		//début de code pour essayer la collision
-		boolean facing = true;
-		boolean touch = world.touch(facing);
 		
-		if(!touch) {
-			world.getProj().deplaceX(this);
-		}
-		repaint();
+		//world.getProj().action(realtime); //à travailler pour équations horaires
+		
+		//méthode pour travailler avec collision
+		world.getProj().deplaceX(this); 
+		world.getProj().deplaceY(this);
+		System.out.println(realtime + "s");
+		
+		try {
+			Thread.sleep(1);
+		  } catch (InterruptedException t) {
+			t.printStackTrace();
+		  }
+			repaint();
 
 	}
 
