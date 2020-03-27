@@ -18,7 +18,6 @@ public class Terrain {
 		listMateriaux.add(m2);
 		listMateriaux.add(m3);
 		listMateriaux.add(m4);
-
 	}
 
 }

@@ -28,7 +28,6 @@ public class Projectile extends Object{
 		this.a= angle;
 		this.couleur = c;
 
-
 	}
 
 	public void setPosition(double x, double y){

@@ -13,7 +13,6 @@ public class Matériaux extends Object { //incorporer les résistances dans les 
 	protected double y;
 	protected double centreX;
 	protected double centreY;
-	
 	protected boolean stable = false ;
 	
 	public Matériaux (double x1, double y1, double resist, int refTexture) {
