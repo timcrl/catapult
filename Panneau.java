@@ -137,6 +137,7 @@ public class Panneau extends JPanel implements ActionListener, MouseMotionListen
 	//début de gravité==================pas au point !!!!!!!
 	public void gravityAction(long deltaT){
 		this.temps = deltaT;
+<<<<<<< Upstream, based on branch 'master' of https://github.com/timwinner/catapult.git
 		boolean sol = false;
 		
 		/*for (Matériaux element : ter.listMateriaux) {
@@ -152,9 +153,9 @@ public class Panneau extends JPanel implements ActionListener, MouseMotionListen
 						repaint();
 					}
 				}
+=======
+>>>>>>> 64a4b78 Mise à jour de la boucle de jeu
 
-			}		
-		}*/
 		for (Matériaux element : ter.listMateriaux) {
 			for (int i = 0; i < ter.listMateriaux.size(); i++) {
 			
@@ -182,23 +183,6 @@ public class Panneau extends JPanel implements ActionListener, MouseMotionListen
 			}
 			repaint();
 		}
-			
-		
-		
-		/*
-		for (Matériaux element : ter.listMateriaux) {
-			for (Matériaux m : ter.listMateriaux) {
-				if(element.bottomY != (double)(this.getHeight()*(1-limite_sol)) && element.bottomY != (m.y-1.0)) {
-					element.y += this.GRAVITY;
-					if(this.GRAVITY >= (m.y-1.0)-element.bottomY) {
-						element.y = (m.y-1.0);
-					}
-				}
-				repaint();				
-			}
-			
-		}*/
-		
 
 		  try {
 			Thread.sleep(70);

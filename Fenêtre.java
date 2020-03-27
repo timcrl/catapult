@@ -87,8 +87,7 @@ public class Fenêtre extends JFrame implements MouseListener, Runnable {
 
 	@Override
 	public void mouseReleased(MouseEvent e) {
-		/*String s = "| Position de la souris : " + e.getX() +" x et " + e.getY() + " y ";
-		System.out.println(s);
+/*
 		if(e.getX()<= (int)(world.getProj().x+15) && e.getX()>= (int)(world.getProj().x-15) ) {
 			if(e.getY()<= (int)(world.getProj().y+15) && e.getY()>=(int)(world.getProj().y-15)) {
 				world.getProj().deplaceX(this);
@@ -126,25 +125,7 @@ public class Fenêtre extends JFrame implements MouseListener, Runnable {
 			repaint();
 =======
 	public void run() {
-		
-		/*long next_game_tick = System.currentTimeMillis();
-        int loops;
- 
-        while (true) {
-            loops = 0;
-            while (System.currentTimeMillis() > next_game_tick && loops < MAX_FRAMESKIP) {
- 
-                world.getProj().deplaceX(this);
-                world.getProj().deplaceY(this);
-                world.gravityAction(sleepDuration);
- 
-                next_game_tick += SKIP_TICKS;
-                loops++;
-            //}
- 
-            /*interpolation = (System.currentTimeMillis() + SKIP_TICKS - next_game_tick
-                    / (double) SKIP_TICKS);
-            */
+
             while(true) {
             	//world.getProj().deplaceX(this);
             	//world.getProj().deplaceY(this);
