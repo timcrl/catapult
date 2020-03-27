@@ -6,19 +6,19 @@ import javax.swing.Timer;
 
 
 public class Projectile extends Object{
-	
+
 	protected double x;
 	protected double y;
 	protected double dx ;
-	protected double dy ; 
+	protected double dy ;
 	protected Color couleur;
 	protected double a ;
 	protected final double GRAVITY = 9.8 ;
 	protected long t;
 	private double rayon = 15.0 ;
-	
-	
-	
+
+
+
 	public Projectile (APoint p ,double dX, double dY, double angle ,Color c) {
 		super();
 		this.x= p.x; //position initiale en x
@@ -28,31 +28,42 @@ public class Projectile extends Object{
 		this.a= angle;
 		this.couleur = c;
 
-		
+
 	}
-	
+
+	public void setPosition(double x, double y){
+		this.x = x;
+		this.y = y;
+	}
+
+	public void setSpeed(double speed,double angle){
+		this.dx = speed*Math.cos(angle);
+		this.dy = speed*Math.sin(angle);
+
+	}
+
 	public void dessiner ( Graphics g) {
-		
+
         g.setColor(this.couleur);
         // Pour dessiner un cercle
         g.fillOval((int)(this.x),(int)(this.y),(int)(2*rayon),(int)(2*rayon));
-		
+
 	}
-	
+
 	public double getRayon() {
 		return this.rayon;
 	}
-	
+
 	//Pythagorean method to compute the distance and collision
-	
+
 	public double getDistance (double x1, double y1) {
 		double xDist = x1-this.x;
 		double yDist = y1-this.y;
-		
+
 		return Math.sqrt((Math.pow(xDist, 2)+Math.pow(yDist, 2)));
-		
+
 	}
-	
+
 	//équations horaires du déplacement du projectile
 	public void action (long temps) {
 		this.t = temps;
@@ -62,20 +73,20 @@ public class Projectile extends Object{
 				*(Math.pow(this.dx, 2)*(Math.tan(this.a))*this.dx)));
 		*/
 		this.y = (double)((-(GRAVITY/2)*(Math.pow(t, 2)))+(this.dx)*((Math.sin(a))*t));
-	
+
 	}
 
 	//==========================
 	//méthodes pour essayer de travailler avec la collision sans équations horaires
 	public void deplaceX (Fenêtre fenêtre) {
-		
+
 		boolean backX = false;
-		
+
     	if (backX) {
     		dx = -dx;
     	}
     	//System.out.println(deltaX);
-  
+
     	if(this.x > fenêtre.getWidth()) {
 			this.x = this.x+ dx ;
 			backX = true;
@@ -88,14 +99,14 @@ public class Projectile extends Object{
     	//System.out.println("cercle deplace");
 	}
 	public void deplaceY (Fenêtre fenêtre) {
-		
+
 		boolean backY = false;
-		
+
     	if (backY) {
     		dy= -dy;
     	}
     	//System.out.println(deltaX);
-  
+
     	if(this.y > fenêtre.getHeight()) {
 			this.y = this.y+ dy ;
 			backY = true;
@@ -120,6 +131,6 @@ public class Projectile extends Object{
 		// TODO Auto-generated method stub
 		return null;
 	}
-	
+
 
 }
