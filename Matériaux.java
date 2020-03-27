@@ -14,6 +14,8 @@ public class Matériaux extends Object { //incorporer les résistances dans les 
 	protected double centreX;
 	protected double centreY;
 	
+	protected boolean stable = false ;
+	
 	public Matériaux (double x1, double y1, double resist, int refTexture) {
 		super();
 		this.x = x1 ;
@@ -75,6 +77,13 @@ public class Matériaux extends Object { //incorporer les résistances dans les 
 		double yDist = y1-this.y;
 		
 		return Math.sqrt((Math.pow(xDist, 2)+Math.pow(yDist, 2)));
+		
+	}
+	public double getDistanceY (double y1) {
+		
+		double yDist = y1 - this.y;
+		
+		return yDist;
 		
 	}
 	
