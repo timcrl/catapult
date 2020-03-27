@@ -74,10 +74,9 @@ public class Fenêtre extends JFrame implements MouseListener, Runnable {
 	public void run() {
 
             while(true) {
-            	//world.getProj().deplaceX(this);
-            	//world.getProj().deplaceY(this);
+            	world.getProj().deplaceX(this);
+            	world.getProj().deplaceY(this);
             	world.gravityAction(sleepDuration); 
-            	world.collisionDetect();
                 
             	repaint();
             

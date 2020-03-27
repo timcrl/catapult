@@ -128,7 +128,7 @@ public class Panneau extends JPanel implements ActionListener, MouseMotionListen
 		}
 
 		  try {
-			Thread.sleep(70);
+			Thread.sleep(50);
 		  } catch (InterruptedException e) {
 			e.printStackTrace();
 		  }
