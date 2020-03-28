@@ -9,6 +9,7 @@ public class Panneau extends JPanel implements ActionListener, MouseMotionListen
 	private Terrain ter = new Terrain();
 	private final double GRAVITY = 2.0 ;
 	private Projectile proj;
+	private Ennemy perso1 ;
 	private Cercle c1;
 	private APoint p = new APoint (50,50);
 	private static double limite_sol=0.2;
@@ -22,6 +23,8 @@ public class Panneau extends JPanel implements ActionListener, MouseMotionListen
 		
 		proj = new Projectile(p,5.0, 5.0, 30.0 ,Color.black );
 		c1 = new Cercle(new APoint(600,600),15.0,Color.red);
+		perso1 = new Ennemy (50.0,50.0,1);
+		
 		addMouseMotionListener(this);
 	}
 
@@ -47,6 +50,8 @@ public class Panneau extends JPanel implements ActionListener, MouseMotionListen
 
 		proj.dessiner(g);
 		c1.dessine(g);
+		g.drawImage(perso1.img, (int)perso1.x, (int)perso1.y,this);
+		perso1.gravityAction();
 
 		//=================================
 		//affichage des matériaux et leurs textures en parcourant la liste

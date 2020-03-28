@@ -8,9 +8,6 @@ public class Matériaux extends Object { //incorporer les résistances dans les 
 	public static String[] refTextures= getTextures();
 	protected double resistance ;
 	protected String texture ;
-	protected Image img ;
-	protected double x;
-	protected double y;
 	protected double centreX;
 	protected double centreY;
 	protected boolean stable = false ;
@@ -50,10 +47,6 @@ public class Matériaux extends Object { //incorporer les résistances dans les 
 		return refTextures;
 	}
 	
-	public void dessiner ( Graphics g ) {
-		
-	}
-	
 	public void action () {
 		
 	}
@@ -66,24 +59,9 @@ public class Matériaux extends Object { //incorporer les résistances dans les 
 	}
 
 	@Override
-	public double[] force() {
+	public double force() {
 		// TODO Auto-generated method stub
-		return null;
-	}
-	
-	public double getDistance (double x1, double y1) {
-		double xDist = x1-this.x;
-		double yDist = y1-this.y;
-		
-		return Math.sqrt((Math.pow(xDist, 2)+Math.pow(yDist, 2)));
-		
-	}
-	public double getDistanceY (double y1) {
-		
-		double yDist = y1 - this.y;
-		
-		return yDist;
-		
+		return (Double) null;
 	}
 	
 	//début de gravité==================pas au point !!!!!!!
@@ -114,10 +92,8 @@ public class Matériaux extends Object { //incorporer les résistances dans les 
 					}
 				}
 			}
-			
-			
 		}
-
+		
 		try {
 				Thread.sleep(17);
 			  } catch (InterruptedException e) {

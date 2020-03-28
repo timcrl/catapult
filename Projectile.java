@@ -7,8 +7,6 @@ import javax.swing.Timer;
 
 public class Projectile extends Object{
 
-	protected double x;
-	protected double y;
 	protected double dx ;
 	protected double dy ;
 	protected Color couleur;
@@ -54,14 +52,6 @@ public class Projectile extends Object{
 	}
 
 	//Pythagorean method to compute the distance and collision
-
-	public double getDistance (double x1, double y1) {
-		double xDist = x1-this.x;
-		double yDist = y1-this.y;
-
-		return Math.sqrt((Math.pow(xDist, 2)+Math.pow(yDist, 2)));
-
-	}
 
 	//équations horaires du déplacement du projectile
 	public void action (long temps) {
@@ -132,9 +122,9 @@ public class Projectile extends Object{
 	}
 
 	@Override
-	public double[] force() {
+	public double force() {
 		// TODO Auto-generated method stub
-		return null;
+		return (Double) null;
 	}
 
 
