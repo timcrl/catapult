@@ -3,7 +3,9 @@ import java.util.LinkedList;
 public class Terrain {
 	
 	private final double GRAVITY = 9.8 ;
-	LinkedList <Matériaux> listMateriaux= new LinkedList<Matériaux>();
+	LinkedList <Matériaux> listMateriaux = new LinkedList<Matériaux>();
+	static LinkedList <Matériaux> listStable = new LinkedList<Matériaux>();
+	
 	
 	public Terrain() {
 		
@@ -18,6 +20,10 @@ public class Terrain {
 		listMateriaux.add(m2);
 		listMateriaux.add(m3);
 		listMateriaux.add(m4);
+	}
+	
+	public static LinkedList<Matériaux> getListStable(){
+		return listStable;
 	}
 
 }

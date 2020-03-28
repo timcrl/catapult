@@ -33,6 +33,10 @@ public class Fenêtre extends JFrame implements MouseListener, Runnable {
 		this.setVisible(true);
 	}
 	
+	public Panneau getPanel () {
+		return this.world ;
+	}
+	
 	@Override
 	public void mouseClicked(MouseEvent e) {
 
@@ -76,7 +80,8 @@ public class Fenêtre extends JFrame implements MouseListener, Runnable {
             while(true) {
             	world.getProj().deplaceX(this);
             	world.getProj().deplaceY(this);
-            	world.gravityAction(sleepDuration); 
+            	//world.gravityAction(sleepDuration);
+            	
                 
             	repaint();
             

@@ -86,5 +86,46 @@ public class Matériaux extends Object { //incorporer les résistances dans les 
 		
 	}
 	
+	//début de gravité==================pas au point !!!!!!!
+	public void gravityAction(){
+		
+		
+		if(!this.stable) {
+			if (this.y + 50.0 < 670.0 ) {
+				this.y += this.GRAVITY ;
+			} 
+			else if(this.getDistanceY(this.y + this.GRAVITY) >= (670.0 - (this.y + 50.0))){
+				this.y = 620.0 ;
+				this.stable = true ;
+				Terrain.listStable.add(this);
+			}
+			for (Matériaux m : Terrain.getListStable()) {
+				System.out.println(this + " it's me");
+				if(this != m) {
+					//System.out.println(this + " it's me");
+					if(this.y + 50.0 < m.y) {
+						this.y += this.GRAVITY;
+					}
+					if(this.getDistance(m.x,m.y) <= 50.0 ){
+						this.y = m.y-50.0;
+						this.stable = true;
+						Terrain.listStable.add(this);
+
+					}
+				}
+			}
+			
+			
+		}
+
+		try {
+				Thread.sleep(17);
+			  } catch (InterruptedException e) {
+				e.printStackTrace();
+			  }
+		
+	}
+		
+	
 
 }

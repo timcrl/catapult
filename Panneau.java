@@ -2,6 +2,7 @@ import java.awt.event.*;
 import java.util.Iterator;
 import java.awt.*;
 import javax.swing.*;
+import javax.swing.text.html.parser.Element;
 
 public class Panneau extends JPanel implements ActionListener, MouseMotionListener {
 
@@ -10,7 +11,7 @@ public class Panneau extends JPanel implements ActionListener, MouseMotionListen
 	private Projectile proj;
 	private Cercle c1;
 	private APoint p = new APoint (50,50);
-	private double limite_sol=0.2;
+	private static double limite_sol=0.2;
 	private double dist ;
 	private double dist2 ;
 	private double angle = 30.0;
@@ -19,7 +20,7 @@ public class Panneau extends JPanel implements ActionListener, MouseMotionListen
 	
 	public Panneau(){
 		
-		proj = new Projectile(p,15.0, 15.0, 30.0 ,Color.black );
+		proj = new Projectile(p,5.0, 5.0, 30.0 ,Color.black );
 		c1 = new Cercle(new APoint(600,600),15.0,Color.red);
 		addMouseMotionListener(this);
 	}
@@ -27,6 +28,10 @@ public class Panneau extends JPanel implements ActionListener, MouseMotionListen
 	public Projectile getProj() {
 		return proj;
 	}
+	public static double getGround() {
+		return limite_sol;
+	}
+
 
 	public void paintComponent(Graphics g){
 
@@ -48,7 +53,13 @@ public class Panneau extends JPanel implements ActionListener, MouseMotionListen
 
 		for (Matériaux element : ter.listMateriaux) {
 			g.drawImage(element.img, (int)element.x,(int)element.y, this);
-
+		
+			
+			//=============gravity
+			element.gravityAction();
+			System.out.println(element.y + " my position ");
+			System.out.println((double)(this.getHeight()*(1-limite_sol)));
+			
 		}
 
 		//============CALCUL COLLISION===========
@@ -58,6 +69,8 @@ public class Panneau extends JPanel implements ActionListener, MouseMotionListen
 		Toolkit.getDefaultToolkit().sync(); 
 		
 		}
+	
+	
 	
 	//============CALCUL COLLISION=========== (juste changement de couleur pour l'instant et disparition case)
 	public void collisionDetect() {
@@ -96,44 +109,48 @@ public class Panneau extends JPanel implements ActionListener, MouseMotionListen
 	}
 
 	//début de gravité==================pas au point !!!!!!!
+	/*
 	public void gravityAction(long deltaT){
 		this.temps = deltaT;
 
 		for (Matériaux element : ter.listMateriaux) {
-			for (int i = 0; i < ter.listMateriaux.size(); i++) {
 			
 				if(element.stable == false) {
 					if(element.y + 50.0 < (double)(this.getHeight()*(1-limite_sol))){
 						element.y += this.GRAVITY;	
 					}
-					if(element.y + 50.0 == (double)(this.getHeight()*(1-limite_sol))) {
+					if(element.y + 50.0 == (double)(this.getHeight()*(1-limite_sol))){
 						element.stable = true;
+						element.y = (double)(this.getHeight()*(1-limite_sol))-50.0;
+						ter.listStable.add(element);
 					}
-					if(element.y + 50.0 < (ter.listMateriaux.get(i).y) && ter.listMateriaux.get(i).stable == true) {
-						element.y += this.GRAVITY;
+					
+					for (Matériaux m : ter.listStable) {
+						if(element.x == m.x && element != m) {
+							if(element.y + 50.0 < m.y) {
+								element.y += this.GRAVITY;
+							}
+							if(element.getDistanceY(element.y + this.GRAVITY) >= (m.getDistanceY(element.y + 50.0))){
+								element.y = m.y-50.0;
+								element.stable = true;
+								ter.listStable.add(element);
+							}
+						}
 					}
-					if(element.y + 50.0 == (ter.listMateriaux.get(i).y) && ter.listMateriaux.get(i).stable == true) {
-						element.y = (ter.listMateriaux.get(i).y-50.0);
-						element.stable = true ;
-					}
-				}
-				
-		
-				
-				System.out.println(ter.listMateriaux.get(i).y + " my position ");
-				//&& element.y + 50.0 < (ter.listMateriaux.get(i).y-1.0)
-				
+				System.out.println(element.y + " my position ");
+				System.out.println((double)(this.getHeight()*(1-limite_sol)));	
 			}
 			repaint();
 		}
 
 		  try {
-			Thread.sleep(50);
+			Thread.sleep(17);
 		  } catch (InterruptedException e) {
 			e.printStackTrace();
 		  }
 
-	}
+	}*/
+	
 
 	public void actionPerformed(ActionEvent e){
 
