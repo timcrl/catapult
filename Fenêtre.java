@@ -14,7 +14,8 @@ public class Fenêtre extends JFrame implements MouseListener, Runnable {
  	private int temps;
 	Thread thread ;
 
-	
+	private int scoreNb ;
+	private JLabel score ;
 	private Panneau world = new Panneau();
 
 	public Fenêtre () {
@@ -23,7 +24,12 @@ public class Fenêtre extends JFrame implements MouseListener, Runnable {
 	    this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	    this.setLocationRelativeTo(null);
 	    this.setResizable(true);
-		addMouseListener(this);
+		
+		score =  new JLabel() ;
+		score.setText("SCORE : ");
+		score.setFont(new Font("Serif", Font.BOLD, 20));
+		score.setBounds(20, 750 , 150 , 80);
+		world.add(score);
 
 		thread = new Thread(this);
 		thread.start();
@@ -31,6 +37,7 @@ public class Fenêtre extends JFrame implements MouseListener, Runnable {
 	
 		this.setContentPane(world);
 		this.setVisible(true);
+		addMouseListener(this);
 	}
 	
 	public Panneau getPanel () {
@@ -82,6 +89,8 @@ public class Fenêtre extends JFrame implements MouseListener, Runnable {
             	world.getProj().deplaceY(this);
             	//world.gravityAction(sleepDuration);
             	
+            	
+            	score.setText("SCORE : " + scoreNb);
                 
             	repaint();
             

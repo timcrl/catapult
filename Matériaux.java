@@ -8,9 +8,6 @@ public class Matériaux extends Object { //incorporer les résistances dans les 
 	public static String[] refTextures= getTextures();
 	protected double resistance ;
 	protected String texture ;
-	protected double centreX;
-	protected double centreY;
-	protected boolean stable = false ;
 	
 	public Matériaux (double x1, double y1, double resist, int refTexture) {
 		super();
@@ -47,32 +44,27 @@ public class Matériaux extends Object { //incorporer les résistances dans les 
 		return refTextures;
 	}
 	
-	public void action () {
-		
-	}
-	
 	//méthodes ajoutées par héritance à voir plus tard si utiles ou non
 	@Override
 	public APoint barycenter() {
 		APoint p = new APoint(this.x+25.0,this.y+25.0);
 		return p;
 	}
-
-	@Override
-	public double force() {
-		// TODO Auto-generated method stub
-		return (Double) null;
-	}
 	
 	//début de gravité==================pas au point !!!!!!!
-	public void gravityAction(){
+	//
+	public void gravityAction(int deltaTime){
 		
+		this.time += deltaTime ;
+		int realTime = (int)(time/60);
+		
+		this.dy += this.GRAVITY * realTime ;
 		
 		if(!this.stable) {
 			if (this.y + 50.0 < 670.0 ) {
-				this.y += this.GRAVITY ;
+				this.y += this.dy*realTime ;
 			} 
-			else if(this.getDistanceY(this.y + this.GRAVITY) >= (670.0 - (this.y + 50.0))){
+			else if(this.getDistanceY(this.y + (this.dy*realTime)) >= (670.0 - (this.y + 50.0))){
 				this.y = 620.0 ;
 				this.stable = true ;
 				Terrain.listStable.add(this);
@@ -82,7 +74,7 @@ public class Matériaux extends Object { //incorporer les résistances dans les 
 				if(this != m) {
 					//System.out.println(this + " it's me");
 					if(this.y + 50.0 < m.y) {
-						this.y += this.GRAVITY;
+						this.y += this.dy*realTime;
 					}
 					if(this.getDistance(m.x,m.y) <= 50.0 ){
 						this.y = m.y-50.0;

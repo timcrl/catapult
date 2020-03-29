@@ -8,10 +8,10 @@ public class Panneau extends JPanel implements ActionListener, MouseMotionListen
 
 	private Terrain ter = new Terrain();
 	private final double GRAVITY = 2.0 ;
-	private Projectile proj;
-	private Ennemy perso1 ;
+	private static Projectile proj;
 	private Cercle c1;
 	private APoint p = new APoint (50,50);
+	
 	private static double limite_sol=0.2;
 	private double dist ;
 	private double dist2 ;
@@ -23,12 +23,12 @@ public class Panneau extends JPanel implements ActionListener, MouseMotionListen
 		
 		proj = new Projectile(p,5.0, 5.0, 30.0 ,Color.black );
 		c1 = new Cercle(new APoint(600,600),15.0,Color.red);
-		perso1 = new Ennemy (50.0,50.0,1);
 		
+		this.setLayout(null);
 		addMouseMotionListener(this);
 	}
 
-	public Projectile getProj() {
+	public static Projectile getProj() {
 		return proj;
 	}
 	public static double getGround() {
@@ -50,8 +50,12 @@ public class Panneau extends JPanel implements ActionListener, MouseMotionListen
 
 		proj.dessiner(g);
 		c1.dessine(g);
-		g.drawImage(perso1.img, (int)perso1.x, (int)perso1.y,this);
-		perso1.gravityAction();
+		
+		for (Ennemy perso1 : ter.listEnnemies) {
+			g.drawImage(perso1.img, (int)perso1.x, (int)perso1.y,this); //affichage alien
+			perso1.gravityAction(17);
+
+		}
 
 		//=================================
 		//affichage des matériaux et leurs textures en parcourant la liste
@@ -61,7 +65,7 @@ public class Panneau extends JPanel implements ActionListener, MouseMotionListen
 		
 			
 			//=============gravity
-			element.gravityAction();
+			element.gravityAction(17);
 			System.out.println(element.y + " my position ");
 			System.out.println((double)(this.getHeight()*(1-limite_sol)));
 			
@@ -94,9 +98,12 @@ public class Panneau extends JPanel implements ActionListener, MouseMotionListen
 			dist2 = proj.getDistance(element.centreX, element.centreY);
 
 			if(dist2 <= 25.0 + proj.getRayon()) {
-				element.img = null;
+				element.stable = false;
+				Terrain.listStable.remove(element);
+				ter.listMateriaux.remove(element);
 				proj.couleur = Color.green ;
 				System.out.println(dist2 + " la distance entre le projectile et l'objet ");
+				repaint();
 			}
 		}
 
@@ -106,7 +113,7 @@ public class Panneau extends JPanel implements ActionListener, MouseMotionListen
 		if(proj.x - proj.getRayon() <= 0 || proj.x + proj.getRayon() >= this.getWidth() ) {
 			proj.dx = - proj.dx ;
 		}
-		if(proj.y - proj.getRayon() <= 0 || proj.y + proj.getRayon() >= (this.getHeight()-this.limite_sol*this.getHeight()) ) {
+		if(proj.y - proj.getRayon() <= 0 || proj.y + proj.getRayon() >= (this.getHeight()-Panneau.limite_sol*this.getHeight()) ) {
 			proj.dy = - proj.dy ;
 		}
 

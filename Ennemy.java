@@ -1,3 +1,4 @@
+import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.Toolkit;
@@ -5,7 +6,6 @@ import java.awt.Toolkit;
 public class Ennemy extends Object {
 
 	protected int life ;
-	protected boolean stable;
 	protected boolean dead = false;
 	
 	
@@ -14,6 +14,9 @@ public class Ennemy extends Object {
 		this.life = life;
 		this.x = x1;
 		this.y = y1 ;
+		this.centreX = this.x+25.0; 
+		this.centreY = this.y +25.0;
+		
 		this.img = Toolkit.getDefaultToolkit().getImage("./images/alien1.png");
 		
 	}
@@ -30,6 +33,17 @@ public class Ennemy extends Object {
 				this.stable = true ;
 			}
 		}
+
+	}
+	
+	public void death() {
+		
+	
+			if( Panneau.getProj().getDistance(this.centreX, this.centreY) <= 25.0 + Panneau.getProj().getRayon()) {
+				
+				//Terrain.getListEnnemies().remove(this);
+
+			}
 		
 	}
 

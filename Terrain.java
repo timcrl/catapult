@@ -2,8 +2,8 @@ import java.util.LinkedList;
 
 public class Terrain {
 	
-	private final double GRAVITY = 9.8 ;
 	LinkedList <Matériaux> listMateriaux = new LinkedList<Matériaux>();
+	LinkedList <Ennemy> listEnnemies = new LinkedList<Ennemy>();
 	static LinkedList <Matériaux> listStable = new LinkedList<Matériaux>();
 	
 	
@@ -20,10 +20,29 @@ public class Terrain {
 		listMateriaux.add(m2);
 		listMateriaux.add(m3);
 		listMateriaux.add(m4);
+		
+		Ennemy perso1 = new Ennemy (50.0,50.0,1);
+		Ennemy perso2 = new Ennemy (90.0,50.0,1);
+		
+		listEnnemies.add(perso1);
+		listEnnemies.add(perso2);
 	}
 	
 	public static LinkedList<Matériaux> getListStable(){
 		return listStable;
+	}
+	public LinkedList <Ennemy> getListEnnemies(){
+		return listEnnemies;
+	}
+	public boolean victory() {
+		boolean vic = false ;
+		
+		if(listEnnemies.isEmpty()) {
+			vic = true;
+			System.out.println("You have won !");
+		}
+		
+		return vic;
 	}
 
 }

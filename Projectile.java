@@ -7,8 +7,6 @@ import javax.swing.Timer;
 
 public class Projectile extends Object{
 
-	protected double dx ;
-	protected double dy ;
 	protected Color couleur;
 	protected double a ;
 	protected final double GRAVITY = 9.8 ;
