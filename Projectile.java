@@ -9,7 +9,7 @@ public class Projectile extends Object{
 
 	protected Color couleur;
 	protected double a ;
-	protected final double GRAVITY = 9.8 ;
+	protected final double GRAVITY = 0.6; // original value 9.8
 	protected long t;
 	private double rayon = 15.0 ;
 
@@ -110,6 +110,22 @@ public class Projectile extends Object{
 		this.dy -= GRAVITY;
 		this.x += dx;
 		this.y -= dy;
+	}
+
+	// To stop the ball when it hits an edge and bounce on the bottom
+	public void bounce(Fenêtre fen){
+			if (this.y > fen.getHeight()){
+
+			}
+			if (this.y - this.rayon < 0){
+
+			}
+			if (this.x - this.rayon < 0){
+
+			}
+			if (this.x + this.rayon > fen.getWidth) {
+
+			}
 	}
 	//===========================
 
