@@ -11,19 +11,21 @@ public class Panneau extends JPanel implements ActionListener, MouseMotionListen
 	private static Projectile proj;
 	private Cercle c1;
 	private APoint p = new APoint (50,50);
-	
+
 	private static double limite_sol=0.2;
 	private double dist ;
 	private double dist2 ;
 	private double angle = 30.0;
-	private long temps;	
-	
-	
+	private long temps;
+
+
 	public Panneau(){
-		
+
 		proj = new Projectile(p,5.0, 5.0, 30.0 ,Color.black );
+		proj.setPosition(100, 100);
+		proj.setSpeed(3, 45);
 		c1 = new Cercle(new APoint(600,600),15.0,Color.red);
-		
+
 		this.setLayout(null);
 		addMouseMotionListener(this);
 	}
@@ -50,7 +52,7 @@ public class Panneau extends JPanel implements ActionListener, MouseMotionListen
 
 		proj.dessiner(g);
 		c1.dessine(g);
-		
+
 		for (Ennemy perso1 : ter.listEnnemies) {
 			g.drawImage(perso1.img, (int)perso1.x, (int)perso1.y,this); //affichage alien
 			perso1.gravityAction(17);
@@ -62,25 +64,25 @@ public class Panneau extends JPanel implements ActionListener, MouseMotionListen
 
 		for (Matériaux element : ter.listMateriaux) {
 			g.drawImage(element.img, (int)element.x,(int)element.y, this);
-		
-			
+
+
 			//=============gravity
 			element.gravityAction(17);
 			System.out.println(element.y + " my position ");
 			System.out.println((double)(this.getHeight()*(1-limite_sol)));
-			
+
 		}
 
 		//============CALCUL COLLISION===========
 		this.collisionDetect();
-		
+
 		//===============
-		Toolkit.getDefaultToolkit().sync(); 
-		
+		Toolkit.getDefaultToolkit().sync();
+
 		}
-	
-	
-	
+
+
+
 	//============CALCUL COLLISION=========== (juste changement de couleur pour l'instant et disparition case)
 	public void collisionDetect() {
 
@@ -126,17 +128,17 @@ public class Panneau extends JPanel implements ActionListener, MouseMotionListen
 		this.temps = deltaT;
 
 		for (Matériaux element : ter.listMateriaux) {
-			
+
 				if(element.stable == false) {
 					if(element.y + 50.0 < (double)(this.getHeight()*(1-limite_sol))){
-						element.y += this.GRAVITY;	
+						element.y += this.GRAVITY;
 					}
 					if(element.y + 50.0 == (double)(this.getHeight()*(1-limite_sol))){
 						element.stable = true;
 						element.y = (double)(this.getHeight()*(1-limite_sol))-50.0;
 						ter.listStable.add(element);
 					}
-					
+
 					for (Matériaux m : ter.listStable) {
 						if(element.x == m.x && element != m) {
 							if(element.y + 50.0 < m.y) {
@@ -150,7 +152,7 @@ public class Panneau extends JPanel implements ActionListener, MouseMotionListen
 						}
 					}
 				System.out.println(element.y + " my position ");
-				System.out.println((double)(this.getHeight()*(1-limite_sol)));	
+				System.out.println((double)(this.getHeight()*(1-limite_sol)));
 			}
 			repaint();
 		}
@@ -162,7 +164,7 @@ public class Panneau extends JPanel implements ActionListener, MouseMotionListen
 		  }
 
 	}*/
-	
+
 
 	public void actionPerformed(ActionEvent e){
 
