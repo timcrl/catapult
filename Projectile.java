@@ -9,7 +9,7 @@ public class Projectile extends Object{
 
 	protected Color couleur;
 	protected double a ;
-	protected final double GRAVITY = 0.6; // original value 9.8
+	protected final double GRAVITY = 0.3; // original value 9.8
 	protected long t;
 	private double rayon = 15.0 ;
 
@@ -123,7 +123,7 @@ public class Projectile extends Object{
 			if (this.x - this.rayon < 0){
 
 			}
-			if (this.x + this.rayon > fen.getWidth) {
+			if (this.x + this.rayon > fen.getWidth()) {
 
 			}
 	}

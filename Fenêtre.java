@@ -10,8 +10,10 @@ public class Fenêtre extends JFrame implements MouseListener, Runnable {
     final int SKIP_TICKS = 1000 / TICKS_PER_SECOND;
     final int MAX_FRAMESKIP = 5;*/
     final int FRAMERATE = 60;
- 	private int sleepDuration = 3; // originally 17
+ 	private int sleepDuration = 17; // originally 17
  	private int temps;
+	private int width = 1000;
+	private int height = 1000;
 	Thread thread ;
 
 	private int scoreNb ;
@@ -21,7 +23,7 @@ public class Fenêtre extends JFrame implements MouseListener, Runnable {
 	public Fenêtre () {
 		// Definition des propriétés de la fenêtre
 		super("Catapult's World") ;
-		this.setSize(1000, 1000);
+		this.setSize(this.width, this.height);
 	    this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	    this.setLocationRelativeTo(null);
 	    this.setResizable(true);
@@ -46,6 +48,13 @@ public class Fenêtre extends JFrame implements MouseListener, Runnable {
 		addMouseListener(this);
 	}
 
+	public int getWidth(){
+		return this.width;
+	}
+
+	public int getHeight(){
+		return this.height;
+	}
 
 	public Panneau getPanel () {
 		return this.world ;
