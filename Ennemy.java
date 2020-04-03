@@ -12,7 +12,7 @@ public class Ennemy extends Object {
 	protected boolean dead = false;
 	
 	
-	public Ennemy(double x1, double y1, int life, int texturAlien) {
+	public Ennemy(double x1, double y1, int life, int textureAlien) {
 		super();
 		this.life = life;
 		this.x = x1;
@@ -20,16 +20,16 @@ public class Ennemy extends Object {
 		this.centreX = this.x+25.0; 
 		this.centreY = this.y +25.0;
 		
-		//trouve la texture correspondante
+		//find corresponding texture for the alien
 		for (int i = 0; i < refAlien.length; i++) {
-			if(i == texturAlien) {
+			if(i == textureAlien) {
 				this.textureAlien = refAlien[i];
 			}
 		}
-		this.img = Toolkit.getDefaultToolkit().getImage(this.textureAlien); //intégration directe de l'image dans le matériaux plus simple
+		this.img = Toolkit.getDefaultToolkit().getImage(this.textureAlien); // direct integration of the image to the alien
 		
 	}
-	//donne une texture à chaque alien
+	//give a texture to each alien
 	private  static String[] getAlien(){
 		refAlien = new String[8];
 		
@@ -48,10 +48,10 @@ public class Ennemy extends Object {
 		
 		
 		if(!this.stable) {
-			if (this.y + 50.0 < 670.0 ) {
+			if (this.y + 50.0 < Panneau.getGround()+10.0 ) {
 				this.y += this.GRAVITY ;
 			} 
-			else if(this.getDistanceY(this.y + this.GRAVITY) >= (670.0 - (this.y + 50.0))){
+			else if(this.getDistanceY(this.y + this.GRAVITY) >= ((Panneau.getGround()+10.0) - (this.y + 50.0))){
 				this.y = 620.0 ;
 				this.stable = true ;
 			}
@@ -59,7 +59,7 @@ public class Ennemy extends Object {
 
 	}
 	
-	// calcul distance pour définir la mort de l'alien ou non
+	// Distance computation to determine the death of the alien
 	public void death() {
 		
 		double dist ;

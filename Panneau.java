@@ -11,9 +11,8 @@ public class Panneau extends JPanel implements ActionListener, MouseMotionListen
 	private static Projectile proj;
 	private Cercle c1;
 	private APoint p = new APoint (50,50);
-
-	private static double limite_sol=0.2; // Pas cpmpris
-	private double dist ; // Pas compris , quelle distance?
+	
+	private double dist ; //for collision here but will be useless soon
 	private double angle = 30.0;
 	private long temps;
 
@@ -23,6 +22,7 @@ public class Panneau extends JPanel implements ActionListener, MouseMotionListen
 		proj = new Projectile(p,5.0, 5.0, 30.0 ,Color.black );
 		proj.setPosition(300, 400);
 		proj.setSpeed(10, 45);
+
 		c1 = new Cercle(new APoint(600,600),15.0,Color.red);
 
 		this.setLayout(null);
@@ -33,7 +33,7 @@ public class Panneau extends JPanel implements ActionListener, MouseMotionListen
 		return proj;
 	}
 	public static double getGround() {
-		return limite_sol;
+		return 660;
 	}
 
 
@@ -45,13 +45,14 @@ public class Panneau extends JPanel implements ActionListener, MouseMotionListen
 		//g.drawImage(bottom, 0, 750, this.getWidth(),this.getHeight(), this);
 
 		g.setColor(Color.green);
-		g.fillRect(0,(int)((1-limite_sol)*this.getHeight()),this.getWidth(),(int)((limite_sol)*this.getHeight()));
+		g.fillRect(0,(int)Panneau.getGround(),this.getWidth(),this.getHeight());
 
-		/*===================== Affichage objets*/
+		/*===================== Objects Display*/
 
 		proj.dessiner(g);
 		c1.dessine(g);
 
+		
 		for (int i = 0; i < Terrain.listEnnemies.size(); i++) {
 			Ennemy perso1 = Terrain.listEnnemies.get(i); //local variable to avoid to much code
 			g.drawImage(perso1.img, (int)perso1.x, (int)perso1.y,this); //affichage alien
@@ -62,6 +63,8 @@ public class Panneau extends JPanel implements ActionListener, MouseMotionListen
 
 		//=================================
 		//affichage des matériaux et leurs textures en parcourant la liste
+	
+		//=============Material Blocks Display====================
 
 		for (int i = 0; i < Terrain.listMateriaux.size(); i++) {
 
@@ -78,6 +81,9 @@ public class Panneau extends JPanel implements ActionListener, MouseMotionListen
 
 		//============CALCUL COLLISION===========
 		//this.collisionDetect(); // Replaced by bounce in the projectile class
+		
+		//============ Collision Computation Call===========
+		//this.collisionDetect();
 		//===============
 		Toolkit.getDefaultToolkit().sync();
 
@@ -86,7 +92,8 @@ public class Panneau extends JPanel implements ActionListener, MouseMotionListen
 
 
 	//============CALCUL COLLISION=========== (juste changement de couleur pour l'instant et disparition case)
-	public void collisionDetect() { // Bouncer from Seb, Disabled by Tim (no offence xD)
+	 // Bouncer from Seb, Disabled by Tim (no offence xD)
+	public void collisionDetect() {
 
 		dist = proj.getDistance(c1.centre.x, c1.centre.y);
 		//System.out.println(dist + " la distance entre les 2 cercles ");
@@ -110,8 +117,7 @@ public class Panneau extends JPanel implements ActionListener, MouseMotionListen
 
 	}
 
-	//==========================
-	//méthode pour bouger le cercle rouge
+	//To drag the red cercle
 	@Override
 	public void mouseDragged(MouseEvent e) {
 		// TODO Auto-generated method stub
@@ -119,7 +125,7 @@ public class Panneau extends JPanel implements ActionListener, MouseMotionListen
 
 	}
 
-	//méthode détectant le contact projectile avec la souris et changeant la couleur
+	//Detect collision between the mouse and the projectile
 	@Override
 	public void mouseMoved(MouseEvent e) {
 		// TODO Auto-generated method stub

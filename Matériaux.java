@@ -19,17 +19,17 @@ public class Matériaux extends Object { //incorporer les résistances dans les 
 		this.centreX = this.barycenter().x;
 		this.centreY = this.barycenter().y;
 			
-		//trouve la texture correspondante
+		//Find corresponding texture
 		for (int i = 0; i < refTextures.length; i++) {
 			if(i == refTexture) {
 				this.texture = refTextures[i];
 			}
 		}
-		this.img = Toolkit.getDefaultToolkit().getImage(this.texture); //intégration directe de l'image dans le matériaux plus simple
+		this.img = Toolkit.getDefaultToolkit().getImage(this.texture); // direct integration of the image to the material
 		
 	}
 	
-	/* méthode attribuant une texture à une valeur
+	/* Give a texture to each value
 	pour info les textures c'est du 50 par 50 pixels pour vous aider avec les coordonnées !!!
 	*/
 	private  static String[] getTextures(){
@@ -44,14 +44,13 @@ public class Matériaux extends Object { //incorporer les résistances dans les 
 		return refTextures;
 	}
 	
-	//méthodes ajoutées par héritance à voir plus tard si utiles ou non
 	@Override
 	public APoint barycenter() {
 		APoint p = new APoint(this.x+25.0,this.y+25.0);	
 		return p;
 	}
 	
-	//début de gravité==================pas au point !!!!!!!
+	//start of gravity================== not finished !
 	//
 	public void gravityAction(int deltaTime){
 		
@@ -61,11 +60,11 @@ public class Matériaux extends Object { //incorporer les résistances dans les 
 		this.dy += this.GRAVITY * realTime ;
 		
 		if(!this.stable) {
-			if (this.y + 50.0 < 670.0 ) {
+			if (this.y + 50.0 < Panneau.getGround()+10.0 ) {
 				this.y += this.dy*realTime ;
 			} 
-			else if(this.getDistanceY(this.y + (this.dy*realTime)) >= (670.0 - (this.y + 50.0))){
-				this.y = 620.0 ;
+			else if(this.getDistanceY(this.y + (this.dy*realTime)) >= ((Panneau.getGround()+10.0) - (this.y + 50.0))){
+				this.y = (Panneau.getGround()+10.0)-50.0 ;
 				this.stable = true ;
 				Terrain.listStable.add(this);
 			}
@@ -96,7 +95,7 @@ public class Matériaux extends Object { //incorporer les résistances dans les 
 		}
 	}
 	
-	//calcul collision projectile et blocs
+	//Computation of the collision projectile-blocks
 	
 	public void destruction() {
 		double dist ;

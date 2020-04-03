@@ -8,6 +8,5 @@ public class Game{
 
 		Fenêtre jeu = new Fenêtre() ;
 		
-
 	}
 }

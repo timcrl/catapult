@@ -6,7 +6,7 @@ import javax.swing.Timer;
 
 
 public class Projectile extends Object{
-
+	
 	protected Color couleur;
 	protected double a ;
 	protected final double GRAVITY = 0.3; // original value 9.8
@@ -114,29 +114,60 @@ public class Projectile extends Object{
 
 	// To stop the ball when it hits an edge and bounce on the bottom
 	public void bounce(Panneau pan){
-			if (this.y > pan.getHeight()){ // Ground
-				this.dy = -(this.dy*0.8); // bounce with 80% of initial speed
-				System.out.println("collision of proj with GROUND with x="+this.x+" and y="+this.y);  //Debug print
-				System.out.println(pan.getWidth()+" x "+pan.getHeight());
+		
+	
+		int h = (int)Panneau.getGround() ;
+		int w = 1000 ;
+
+		
+		if (this.y > h){ // Ground
+			this.dy = -(this.dy*0.8); // bounce with 80% of initial speed
+			System.out.println("collision of proj with GROUND with x="+this.x+" and y="+this.y);  //Debug print
+			System.out.println(w +" x "+h);
+			if(this.y > h + this.rayon) { //Avoid the projectile to go anywhere, ends its displacement
+				this.y = 680;
+				this.dx = 0.2* this.dx ;
 			}
-			if (this.y - this.rayon < 0){ // Roof
-				this.dy = 0;
-				this.y = this.rayon;
-				System.out.println("collision of proj with ROOF with x="+this.x+" and y="+this.y);
-				System.out.println(pan.getWidth()+" x "+pan.getHeight());
-			}
-			if (this.x - this.rayon < 0){
-					this.x = this.rayon;
-					this.dx = 0;
-					System.out.println("collision of proj with LEFT EDGE with x="+this.x+" and y="+this.y);
-					System.out.println(pan.getWidth()+" x "+pan.getHeight());
-			}
-			if (this.x + this.rayon > pan.getWidth()) {
-				this.x = pan.getHeight() - this.rayon;
+		}
+		if (this.y - this.rayon < 0){ // Roof
+			this.dy = 0;
+			this.y = this.rayon;
+			System.out.println("collision of proj with ROOF with x="+this.x+" and y="+this.y);
+			System.out.println(pan.getWidth()+" x "+pan.getHeight());
+		}
+		if (this.x - this.rayon < 0){
+				this.x = this.rayon;
 				this.dx = 0;
-				System.out.println("collision of proj with RIGHT EDGE with x="+this.x+" and y="+this.y);
+				System.out.println("collision of proj with LEFT EDGE with x="+this.x+" and y="+this.y);
 				System.out.println(pan.getWidth()+" x "+pan.getHeight());
-			}
+		}
+		if (this.x + this.rayon > pan.getWidth()) {
+			this.x = pan.getHeight() - this.rayon;
+			this.dx = 0;
+			System.out.println("collision of proj with RIGHT EDGE with x="+this.x+" and y="+this.y);
+			System.out.println(pan.getWidth()+" x "+pan.getHeight());
+		}
+
+		if (this.y - this.rayon < 0){ // Roof
+			this.dy = 0;
+			this.y = this.rayon;
+			System.out.println("collision of proj with ROOF with x="+this.x+" and y="+this.y);
+			System.out.println(w +" x "+h);
+		}
+		if (this.x - this.rayon < 0){
+
+				this.x = this.rayon;
+				this.dx = -this.dx*0.7;
+				System.out.println("collision of proj with LEFT EDGE with x="+this.x+" and y="+this.y);
+				System.out.println(w +" x "+h);
+		}
+		if (this.x + this.rayon > w) {
+			this.x = pan.getHeight() - this.rayon;
+			this.dx = -this.dx*0.7;
+			System.out.println("collision of proj with RIGHT EDGE with x="+this.x+" and y="+this.y);
+			System.out.println(w +" x "+h);
+		}
+		
 	}
 	//===========================
 

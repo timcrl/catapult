@@ -21,7 +21,7 @@ public class Fenêtre extends JFrame implements MouseListener, Runnable {
 	private Panneau world = new Panneau();
 
 	public Fenêtre () {
-		// Definition des propriétés de la fenêtre
+		// Definition of the windows properties
 		super("Catapult's World") ;
 		this.setSize(this.width, this.height);
 	    this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -29,19 +29,19 @@ public class Fenêtre extends JFrame implements MouseListener, Runnable {
 	    this.setResizable(true);
 
 
-			// Affichage du score
+			// Score Display
 		score =  new JLabel() ;
 		score.setText("SCORE : ");
 		score.setFont(new Font("Serif", Font.BOLD, 20));
 		score.setBounds(20, 750 , 150 , 80);
 		world.add(score);
 
-		// Pas compris
-		thread = new Thread(this);
-		thread.start();
-		temps=0;
+		// Use of thread instead of Timer , with Runnable interface to run only one instance (one loop) for the whole game
+		thread = new Thread(this); // we use it so as to do several operations at the same time 
+		thread.start(); //indicates that our loop is ready to be launched 
+		temps=0; //Initialization of time
 
-		// Ajout du panneau "world" à la fenêtre
+		// Addition of the panel "world" to fenêtre
 		this.setContentPane(world);
 		this.setVisible(true);
 
@@ -61,7 +61,7 @@ public class Fenêtre extends JFrame implements MouseListener, Runnable {
 	}
 
 
-	// Affiche la position de la souris lors du click (c'est tout?)
+	// Display position of the mouse when clicking (future use to throw the projectile)
 	@Override
 	public void mouseClicked(MouseEvent e) {
 
@@ -111,13 +111,21 @@ public class Fenêtre extends JFrame implements MouseListener, Runnable {
 							world.getProj().move();// Moves the projectile
 
 						//	world.getProj().setPosition(100, 100);// Test to see drawing
+            	world.getProj().bounce(world); // Detects edges of terrain
+				world.getProj().move();// Moves the projectile
 
+			//	world.getProj().setPosition(100, 100);// Test to see drawing
 
-            	score.setText("SCORE : " + scoreNb); // Mise à jour du label score
+            	score.setText("SCORE : " + scoreNb); //Update label score
 
-            	repaint(); // Redessine les éléments
+            	repaint(); // Redraw elements
+            	
+            	//Stop the code when there is no more ennemy and will display a window of victory
+            	if(Terrain.victory()) {
+            		//break;
+            	}
 
-				// Eviter ralentissement en adaptant la boucle de jeu
+				//Avoid Slow down using the game loop
             	try {
             		Thread.sleep(sleepDuration);
             	} catch (InterruptedException e) {

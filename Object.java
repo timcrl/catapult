@@ -81,10 +81,10 @@ public class Object {
 		*/
 
 		if(!this.stable) {
-			if (this.y + 50.0 < 670.0 ) {
+			if (this.y + 50.0 < Panneau.getGround()+10.0 ) {
 				this.y += this.dy*realTime ;
 			}
-			else if(this.getDistanceY(this.y + (this.dy*realTime)) >= (670.0 - (this.y + 50.0))){
+			else if(this.getDistanceY(this.y + (this.dy*realTime)) >= ((Panneau.getGround()+10.0) - (this.y + 50.0))){
 				this.y = 620.0 ;
 				this.stable = true ;
 			}
