@@ -49,7 +49,7 @@ public class Matériaux extends Object { //incorporer les résistances dans les 
 		APoint p = new APoint(this.x+25.0,this.y+25.0);	
 		return p;
 	}
-	
+
 	//start of gravity================== not finished !
 	//
 	public void gravityAction(int deltaTime){

@@ -36,7 +36,6 @@ public class Panneau extends JPanel implements ActionListener, MouseMotionListen
 		return 660;
 	}
 
-
 	public void paintComponent(Graphics g){
 
 		Image fond = Toolkit.getDefaultToolkit().getImage("./images/image_fond_nuage.png");

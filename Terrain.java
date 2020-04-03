@@ -43,7 +43,7 @@ public class Terrain {
 			vic = true;
 			System.out.println("You have won !");
 		}
-		
+	
 		return vic;
 	}
 

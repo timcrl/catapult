@@ -79,7 +79,6 @@ public class Object {
 		acceleration = force(time, position) / mass;
 		velocity += timestep * (acceleration + oldAcceleration) / 2;
 		*/
-
 		if(!this.stable) {
 			if (this.y + 50.0 < Panneau.getGround()+10.0 ) {
 				this.y += this.dy*realTime ;

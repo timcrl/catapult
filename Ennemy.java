@@ -38,7 +38,6 @@ public class Ennemy extends Object {
 		refAlien[3]="./images/alien3.png";
 		refAlien[4]="./images/alien4.png";
 		refAlien[5]="./images/alien5.png";
-		
 		refAlien[6]="./images/alien_boss.png";
 		
 		return refAlien;

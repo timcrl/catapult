@@ -114,7 +114,7 @@ public class Fenêtre extends JFrame implements MouseListener, Runnable {
             	world.getProj().bounce(world); // Detects edges of terrain
 				world.getProj().move();// Moves the projectile
 
-			//	world.getProj().setPosition(100, 100);// Test to see drawing
+				//	world.getProj().setPosition(100, 100);// Test to see drawing
 
             	score.setText("SCORE : " + scoreNb); //Update label score
 

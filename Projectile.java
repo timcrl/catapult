@@ -105,7 +105,6 @@ public class Projectile extends Object{
  		}
     	//System.out.println("cercle deplace");
 	}
-
 	public void move(){
 		this.dy -= GRAVITY;
 		this.x += dx;
