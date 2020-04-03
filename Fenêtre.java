@@ -10,7 +10,7 @@ public class Fenêtre extends JFrame implements MouseListener, Runnable {
     final int SKIP_TICKS = 1000 / TICKS_PER_SECOND;
     final int MAX_FRAMESKIP = 5;*/
     final int FRAMERATE = 60;
- 	private int sleepDuration = 17; // originally 17
+ 	private int sleepDuration = 17; // originally 17 (it's 1/60 = 17 ms )
  	private int temps;
 	private int width = 1000;
 	private int height = 1000;
@@ -116,7 +116,7 @@ public class Fenêtre extends JFrame implements MouseListener, Runnable {
 
             	repaint(); // Redessine les éléments
 
-							// Pas compris
+				// Eviter ralentissement en adaptant la boucle de jeu
             	try {
             		Thread.sleep(sleepDuration);
             	} catch (InterruptedException e) {

@@ -69,29 +69,31 @@ public class Matériaux extends Object { //incorporer les résistances dans les 
 				this.stable = true ;
 				Terrain.listStable.add(this);
 			}
-			for (Matériaux m : Terrain.getListStable()) {
+			//change of iteration, using i because we can modify the list while iterating it
+			
+			for (int i = 0; i < Terrain.getListStable().size(); i++) {
 				System.out.println(this + " it's me");
-				if(this != m) {
-					//System.out.println(this + " it's me");
-					if(this.y + 50.0 < m.y) {
+				if(this != Terrain.getListStable().get(i)) {
+					if(this.y + 50.0 < Terrain.getListStable().get(i).y) {
 						this.y += this.dy*realTime;
 					}
-					if(this.getDistance(m.x,m.y) <= 50.0 ){
-						this.y = m.y-50.0;
+					if(this.getDistance(Terrain.getListStable().get(i).x,Terrain.getListStable().get(i).y) <= 50.0 ){
+						this.y = Terrain.getListStable().get(i).y-50.0;
 						this.stable = true;
 						Terrain.listStable.add(this);
 
 					}
 				}
 			}
-		}
 		
+			
 		try {
 				Thread.sleep(17);
 			  } catch (InterruptedException e) {
 				e.printStackTrace();
 			  }
 		
+		}
 	}
 		
 	

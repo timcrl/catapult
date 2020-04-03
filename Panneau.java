@@ -95,17 +95,19 @@ public class Panneau extends JPanel implements ActionListener, MouseMotionListen
 		}
 
 		//parcourt toute la liste de matériaux et les fait disparaître à la rencontre du projectile
-
-		for (Matériaux element : ter.listMateriaux) {
-			dist2 = proj.getDistance(element.centreX, element.centreY);
+		//for loop with i to modify the list
+		for (int i = 0; i < ter.listMateriaux.size(); i++) {
+			
+			dist2 = proj.getDistance(ter.listMateriaux.get(i).centreX, ter.listMateriaux.get(i).centreY);
 
 			if(dist2 <= 25.0 + proj.getRayon()) {
-				element.stable = false;
-				Terrain.listStable.remove(element);
-				ter.listMateriaux.remove(element);
+				ter.listMateriaux.get(i).stable = false;
+				Terrain.listStable.remove(ter.listMateriaux.get(i));
+				ter.listMateriaux.remove(ter.listMateriaux.get(i));
+				
 				proj.couleur = Color.green ;
 				System.out.println(dist2 + " la distance entre le projectile et l'objet ");
-				repaint();
+				//repaint(); No need to be repaint it is in the paint method 
 			}
 		}
 
@@ -121,50 +123,6 @@ public class Panneau extends JPanel implements ActionListener, MouseMotionListen
 
 
 	}
-
-	//début de gravité==================pas au point !!!!!!!
-	/*
-	public void gravityAction(long deltaT){
-		this.temps = deltaT;
-
-		for (Matériaux element : ter.listMateriaux) {
-
-				if(element.stable == false) {
-					if(element.y + 50.0 < (double)(this.getHeight()*(1-limite_sol))){
-						element.y += this.GRAVITY;
-					}
-					if(element.y + 50.0 == (double)(this.getHeight()*(1-limite_sol))){
-						element.stable = true;
-						element.y = (double)(this.getHeight()*(1-limite_sol))-50.0;
-						ter.listStable.add(element);
-					}
-
-					for (Matériaux m : ter.listStable) {
-						if(element.x == m.x && element != m) {
-							if(element.y + 50.0 < m.y) {
-								element.y += this.GRAVITY;
-							}
-							if(element.getDistanceY(element.y + this.GRAVITY) >= (m.getDistanceY(element.y + 50.0))){
-								element.y = m.y-50.0;
-								element.stable = true;
-								ter.listStable.add(element);
-							}
-						}
-					}
-				System.out.println(element.y + " my position ");
-				System.out.println((double)(this.getHeight()*(1-limite_sol)));
-			}
-			repaint();
-		}
-
-		  try {
-			Thread.sleep(17);
-		  } catch (InterruptedException e) {
-			e.printStackTrace();
-		  }
-
-	}*/
-
 
 	public void actionPerformed(ActionEvent e){
 

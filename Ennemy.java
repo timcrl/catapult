@@ -5,11 +5,14 @@ import java.awt.Toolkit;
 
 public class Ennemy extends Object {
 
+	public static String[] refAlien = getAlien();
+	protected String textureAlien ;
+	
 	protected int life ;
 	protected boolean dead = false;
 	
 	
-	public Ennemy(double x1, double y1, int life) {
+	public Ennemy(double x1, double y1, int life, int texturAlien) {
 		super();
 		this.life = life;
 		this.x = x1;
@@ -17,8 +20,28 @@ public class Ennemy extends Object {
 		this.centreX = this.x+25.0; 
 		this.centreY = this.y +25.0;
 		
-		this.img = Toolkit.getDefaultToolkit().getImage("./images/alien1.png");
+		//trouve la texture correspondante
+		for (int i = 0; i < refAlien.length; i++) {
+			if(i == texturAlien) {
+				this.textureAlien = refAlien[i];
+			}
+		}
+		this.img = Toolkit.getDefaultToolkit().getImage(this.textureAlien); //intégration directe de l'image dans le matériaux plus simple
 		
+	}
+
+	private  static String[] getAlien(){
+		refAlien = new String[8];
+		
+		refAlien[1]="./images/alien1.png";
+		refAlien[2]="./images/alien2.png";
+		refAlien[3]="./images/alien3.png";
+		refAlien[4]="./images/alien4.png";
+		refAlien[5]="./images/alien5.png";
+		
+		refAlien[6]="./images/alien_boss.png";
+		
+		return refAlien;
 	}
 	
 	public void gravityAction(){

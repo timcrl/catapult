@@ -21,8 +21,8 @@ public class Terrain {
 		listMateriaux.add(m3);
 		listMateriaux.add(m4);
 		
-		Ennemy perso1 = new Ennemy (50.0,50.0,1);
-		Ennemy perso2 = new Ennemy (90.0,50.0,1);
+		Ennemy perso1 = new Ennemy (50.0,50.0,1,3);
+		Ennemy perso2 = new Ennemy (90.0,50.0,1,6);
 		
 		listEnnemies.add(perso1);
 		listEnnemies.add(perso2);
