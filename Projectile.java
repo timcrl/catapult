@@ -113,18 +113,29 @@ public class Projectile extends Object{
 	}
 
 	// To stop the ball when it hits an edge and bounce on the bottom
-	public void bounce(Fenêtre fen){
-			if (this.y > fen.getHeight()){
-
+	public void bounce(Panneau pan){
+			if (this.y > pan.getHeight()){ // Ground
+				this.dy = -(this.dy*0.8); // bounce with 80% of initial speed
+				System.out.println("collision of proj with GROUND with x="+this.x+" and y="+this.y);  //Debug print
+				System.out.println(pan.getWidth()+" x "+pan.getHeight());
 			}
-			if (this.y - this.rayon < 0){
-
+			if (this.y - this.rayon < 0){ // Roof
+				this.dy = 0;
+				this.y = this.rayon;
+				System.out.println("collision of proj with ROOF with x="+this.x+" and y="+this.y);
+				System.out.println(pan.getWidth()+" x "+pan.getHeight());
 			}
 			if (this.x - this.rayon < 0){
-
+					this.x = this.rayon;
+					this.dx = 0;
+					System.out.println("collision of proj with LEFT EDGE with x="+this.x+" and y="+this.y);
+					System.out.println(pan.getWidth()+" x "+pan.getHeight());
 			}
-			if (this.x + this.rayon > fen.getWidth()) {
-
+			if (this.x + this.rayon > pan.getWidth()) {
+				this.x = pan.getHeight() - this.rayon;
+				this.dx = 0;
+				System.out.println("collision of proj with RIGHT EDGE with x="+this.x+" and y="+this.y);
+				System.out.println(pan.getWidth()+" x "+pan.getHeight());
 			}
 	}
 	//===========================

@@ -12,8 +12,8 @@ public class Panneau extends JPanel implements ActionListener, MouseMotionListen
 	private Cercle c1;
 	private APoint p = new APoint (50,50);
 
-	private static double limite_sol=0.2;
-	private double dist ;
+	private static double limite_sol=0.2; // Pas cpmpris
+	private double dist ; // Pas compris , quelle distance?
 	private double angle = 30.0;
 	private long temps;
 
@@ -21,7 +21,7 @@ public class Panneau extends JPanel implements ActionListener, MouseMotionListen
 	public Panneau(){
 
 		proj = new Projectile(p,5.0, 5.0, 30.0 ,Color.black );
-		proj.setPosition(100, 400);
+		proj.setPosition(300, 400);
 		proj.setSpeed(10, 45);
 		c1 = new Cercle(new APoint(600,600),15.0,Color.red);
 
@@ -57,14 +57,14 @@ public class Panneau extends JPanel implements ActionListener, MouseMotionListen
 			g.drawImage(perso1.img, (int)perso1.x, (int)perso1.y,this); //affichage alien
 			perso1.gravityAction(17);
 			perso1.death();
-			
+
 		}
-	
+
 		//=================================
 		//affichage des matériaux et leurs textures en parcourant la liste
 
 		for (int i = 0; i < Terrain.listMateriaux.size(); i++) {
-			
+
 			g.drawImage(Terrain.listMateriaux.get(i).img, (int)Terrain.listMateriaux.get(i).x,(int)Terrain.listMateriaux.get(i).y, this);
 
 			//=============gravity
@@ -73,11 +73,11 @@ public class Panneau extends JPanel implements ActionListener, MouseMotionListen
 			//System.out.println((double)(this.getHeight()*(1-limite_sol)));
 			Terrain.listMateriaux.get(i).destruction();
 			//System.out.println("My position en y" + Terrain.listMateriaux.get(i).y + "Mon centre x et y " + Terrain.listMateriaux.get(i).centreX +"||"+ Terrain.listMateriaux.get(i).centreY);
-			
+
 		}
-		
+
 		//============CALCUL COLLISION===========
-		this.collisionDetect();
+		//this.collisionDetect(); // Replaced by bounce in the projectile class
 		//===============
 		Toolkit.getDefaultToolkit().sync();
 
@@ -86,7 +86,7 @@ public class Panneau extends JPanel implements ActionListener, MouseMotionListen
 
 
 	//============CALCUL COLLISION=========== (juste changement de couleur pour l'instant et disparition case)
-	public void collisionDetect() {
+	public void collisionDetect() { // Bouncer from Seb, Disabled by Tim (no offence xD)
 
 		dist = proj.getDistance(c1.centre.x, c1.centre.y);
 		//System.out.println(dist + " la distance entre les 2 cercles ");
