@@ -107,7 +107,6 @@ public class Fenêtre extends JFrame implements MouseListener, Runnable {
             while(true) {
             	//world.getProj().deplaceX(this);
             	//world.getProj().deplaceY(this);
-            	//world.gravityAction(sleepDuration);
 							world.getProj().move();// Moves the projectile
 						//	world.getProj().setPosition(100, 100);// Test to see drawing
 

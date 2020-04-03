@@ -37,7 +37,7 @@ public class Object {
   }
 
   public APoint barycenter () {
-	  APoint p = new APoint (50, 50);
+	  APoint p = new APoint (this.x+25.0, this.y+25.0);
 
 	  return p;
   }

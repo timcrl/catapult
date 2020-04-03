@@ -8,6 +8,7 @@ public class Matériaux extends Object { //incorporer les résistances dans les 
 	public static String[] refTextures= getTextures();
 	protected double resistance ;
 	protected String texture ;
+	protected APoint p ;
 	
 	public Matériaux (double x1, double y1, double resist, int refTexture) {
 		super();
@@ -15,10 +16,9 @@ public class Matériaux extends Object { //incorporer les résistances dans les 
 		this.y = y1;
 		this.resistance = resist ;
 		
-		APoint p = this.barycenter();
-		this.centreX = p.x;
-		this.centreY = p.y;
-		
+		this.centreX = this.barycenter().x;
+		this.centreY = this.barycenter().y;
+			
 		//trouve la texture correspondante
 		for (int i = 0; i < refTextures.length; i++) {
 			if(i == refTexture) {
@@ -47,7 +47,7 @@ public class Matériaux extends Object { //incorporer les résistances dans les 
 	//méthodes ajoutées par héritance à voir plus tard si utiles ou non
 	@Override
 	public APoint barycenter() {
-		APoint p = new APoint(this.x+25.0,this.y+25.0);
+		APoint p = new APoint(this.x+25.0,this.y+25.0);	
 		return p;
 	}
 	
@@ -72,7 +72,7 @@ public class Matériaux extends Object { //incorporer les résistances dans les 
 			//change of iteration, using i because we can modify the list while iterating it
 			
 			for (int i = 0; i < Terrain.getListStable().size(); i++) {
-				System.out.println(this + " it's me");
+				
 				if(this != Terrain.getListStable().get(i)) {
 					if(this.y + 50.0 < Terrain.getListStable().get(i).y) {
 						this.y += this.dy*realTime;
@@ -92,6 +92,23 @@ public class Matériaux extends Object { //incorporer les résistances dans les 
 			  } catch (InterruptedException e) {
 				e.printStackTrace();
 			  }
+		
+		}
+	}
+	
+	//calcul collision projectile et blocs
+	
+	public void destruction() {
+		double dist ;
+		 
+		dist = Panneau.getProj().getDistance(this.barycenter().x, this.barycenter().y);
+
+		if(dist <= 25.0 + Panneau.getProj().getRayon()) {
+			Terrain.listStable.remove(this);
+			Terrain.listMateriaux.remove(this);
+			
+			Panneau.getProj().couleur = Color.green ;
+			System.out.println(dist + " la distance entre le projectile et l'objet ");
 		
 		}
 	}

@@ -14,7 +14,6 @@ public class Panneau extends JPanel implements ActionListener, MouseMotionListen
 
 	private static double limite_sol=0.2;
 	private double dist ;
-	private double dist2 ;
 	private double angle = 30.0;
 	private long temps;
 
@@ -53,29 +52,32 @@ public class Panneau extends JPanel implements ActionListener, MouseMotionListen
 		proj.dessiner(g);
 		c1.dessine(g);
 
-		for (Ennemy perso1 : ter.listEnnemies) {
+		for (int i = 0; i < Terrain.listEnnemies.size(); i++) {
+			Ennemy perso1 = Terrain.listEnnemies.get(i); //local variable to avoid to much code
 			g.drawImage(perso1.img, (int)perso1.x, (int)perso1.y,this); //affichage alien
 			perso1.gravityAction(17);
-
+			perso1.death();
+			
 		}
-
+	
 		//=================================
 		//affichage des matériaux et leurs textures en parcourant la liste
 
-		for (Matériaux element : ter.listMateriaux) {
-			g.drawImage(element.img, (int)element.x,(int)element.y, this);
-
+		for (int i = 0; i < Terrain.listMateriaux.size(); i++) {
+			
+			g.drawImage(Terrain.listMateriaux.get(i).img, (int)Terrain.listMateriaux.get(i).x,(int)Terrain.listMateriaux.get(i).y, this);
 
 			//=============gravity
-			element.gravityAction(17);
-			System.out.println(element.y + " my position ");
-			System.out.println((double)(this.getHeight()*(1-limite_sol)));
-
+			Terrain.listMateriaux.get(i).gravityAction(17);
+			//System.out.println(Terrain.listMateriaux.get(i).y + " my position ");
+			//System.out.println((double)(this.getHeight()*(1-limite_sol)));
+			Terrain.listMateriaux.get(i).destruction();
+			//System.out.println("My position en y" + Terrain.listMateriaux.get(i).y + "Mon centre x et y " + Terrain.listMateriaux.get(i).centreX +"||"+ Terrain.listMateriaux.get(i).centreY);
+			
 		}
-
+		
 		//============CALCUL COLLISION===========
 		this.collisionDetect();
-
 		//===============
 		Toolkit.getDefaultToolkit().sync();
 
@@ -87,31 +89,12 @@ public class Panneau extends JPanel implements ActionListener, MouseMotionListen
 	public void collisionDetect() {
 
 		dist = proj.getDistance(c1.centre.x, c1.centre.y);
-		System.out.println(dist + " la distance entre les 2 cercles ");
+		//System.out.println(dist + " la distance entre les 2 cercles ");
 
 		//juste pour checker et s'amuser avec le drag
 		if(dist <= c1.rayon + proj.getRayon()) {
 			proj.couleur = c1.maCouleur ;
 		}
-
-		//parcourt toute la liste de matériaux et les fait disparaître à la rencontre du projectile
-		//for loop with i to modify the list
-		for (int i = 0; i < ter.listMateriaux.size(); i++) {
-			
-			dist2 = proj.getDistance(ter.listMateriaux.get(i).centreX, ter.listMateriaux.get(i).centreY);
-
-			if(dist2 <= 25.0 + proj.getRayon()) {
-				ter.listMateriaux.get(i).stable = false;
-				Terrain.listStable.remove(ter.listMateriaux.get(i));
-				ter.listMateriaux.remove(ter.listMateriaux.get(i));
-				
-				proj.couleur = Color.green ;
-				System.out.println(dist2 + " la distance entre le projectile et l'objet ");
-				//repaint(); No need to be repaint it is in the paint method 
-			}
-		}
-
-
 
 		//========Limite de la fenêtre
 		if(proj.x - proj.getRayon() <= 0 || proj.x + proj.getRayon() >= this.getWidth() ) {
@@ -120,7 +103,6 @@ public class Panneau extends JPanel implements ActionListener, MouseMotionListen
 		if(proj.y - proj.getRayon() <= 0 || proj.y + proj.getRayon() >= (this.getHeight()-Panneau.limite_sol*this.getHeight()) ) {
 			proj.dy = - proj.dy ;
 		}
-
 
 	}
 

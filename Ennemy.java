@@ -29,7 +29,7 @@ public class Ennemy extends Object {
 		this.img = Toolkit.getDefaultToolkit().getImage(this.textureAlien); //intégration directe de l'image dans le matériaux plus simple
 		
 	}
-
+	//donne une texture à chaque alien
 	private  static String[] getAlien(){
 		refAlien = new String[8];
 		
@@ -59,15 +59,21 @@ public class Ennemy extends Object {
 
 	}
 	
+	// calcul distance pour définir la mort de l'alien ou non
 	public void death() {
 		
-	
-			if( Panneau.getProj().getDistance(this.centreX, this.centreY) <= 25.0 + Panneau.getProj().getRayon()) {
-				
-				//Terrain.getListEnnemies().remove(this);
-
-			}
+		double dist ;
+			 
+		dist = Panneau.getProj().getDistance(this.barycenter().x, this.barycenter().y);
 		
+		if(dist <= 25.0 + Panneau.getProj().getRayon()) {
+
+			Terrain.listEnnemies.remove(this);
+				
+			Panneau.getProj().couleur = Color.yellow ;
+			System.out.println(dist + " la distance entre le projectile et l'objet ");
+			
+		}
 	}
 
 
