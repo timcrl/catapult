@@ -86,6 +86,7 @@ public class Panneau extends JPanel implements ActionListener, MouseMotionListen
 		//===============
 		Toolkit.getDefaultToolkit().sync();
 
+		
 		}
 
 
@@ -106,7 +107,7 @@ public class Panneau extends JPanel implements ActionListener, MouseMotionListen
 		if(proj.x - proj.getRayon() <= 0 || proj.x + proj.getRayon() >= this.getWidth() ) {
 			proj.dx = - proj.dx ;
 		}
-		if(proj.y - proj.getRayon() <= 0 || proj.y + proj.getRayon() >= (this.getHeight()-Panneau.limite_sol*this.getHeight()) ) {
+		if(proj.y - proj.getRayon() <= 0 || proj.y + proj.getRayon() >= (this.getHeight()-this.getGround()*this.getHeight()) ) {
 			proj.dy = - proj.dy ;
 		}
 
