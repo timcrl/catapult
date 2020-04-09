@@ -118,7 +118,7 @@ public class Projectile extends Object{
 		int w = 1000 ;
 
 		
-		if (this.y > h){ // Ground
+		if (this.y < h){ // Ground
 			this.dy = -(this.dy*0.8); // bounce with 80% of initial speed
 			System.out.println("collision of proj with GROUND with x="+this.x+" and y="+this.y);  //Debug print
 			System.out.println(w +" x "+h);
@@ -127,6 +127,7 @@ public class Projectile extends Object{
 				this.dx = 0.2* this.dx ;
 			}
 		}
+		/*
 		if (this.y - this.rayon < 0){ // Roof
 			this.dy = 0;
 			this.y = this.rayon;
@@ -144,7 +145,7 @@ public class Projectile extends Object{
 			this.dx = 0;
 			System.out.println("collision of proj with RIGHT EDGE with x="+this.x+" and y="+this.y);
 			System.out.println(pan.getWidth()+" x "+pan.getHeight());
-		}
+		}*/
 
 		if (this.y - this.rayon < 0){ // Roof
 			this.dy = 0;
