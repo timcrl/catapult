@@ -14,7 +14,6 @@ public class Projectile extends Object{
 	private double rayon = 15.0 ;
 
 
-
 	public Projectile (APoint p ,double dX, double dY, double angle ,Color c) {
 		super();
 		this.x= p.x; //position initiale en x

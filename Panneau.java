@@ -86,7 +86,6 @@ public class Panneau extends JPanel implements ActionListener, MouseMotionListen
 		//===============
 		Toolkit.getDefaultToolkit().sync();
 
-		
 		}
 
 

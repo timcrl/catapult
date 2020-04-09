@@ -7,7 +7,6 @@ public class Ennemy extends Object {
 
 	public static String[] refAlien = getAlien();
 	protected String textureAlien ;
-	
 	protected int life ;
 	protected boolean dead = false;
 	

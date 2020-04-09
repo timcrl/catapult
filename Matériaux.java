@@ -68,6 +68,7 @@ public class Matériaux extends Object { //incorporer les résistances dans les 
 				this.stable = true ;
 				Terrain.listStable.add(this);
 			}
+			
 			//change of iteration, using i because we can modify the list while iterating it
 			
 			for (int i = 0; i < Terrain.getListStable().size(); i++) {

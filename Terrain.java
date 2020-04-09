@@ -33,6 +33,7 @@ public class Terrain {
 	public static LinkedList<Matériaux> getListStable(){
 		return listStable;
 	}
+	
 	public LinkedList <Ennemy> getListEnnemies(){
 		return listEnnemies;
 	}
