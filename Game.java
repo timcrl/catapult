@@ -6,6 +6,7 @@ public class Game{
 
 	public static void main(String [] args){
 
+		//WelcomeWindow accueil = new WelcomeWindow() ;
 		Fenêtre jeu = new Fenêtre() ;
 		
 	}
