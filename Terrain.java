@@ -1,11 +1,10 @@
+import java.awt.Component;
 import java.util.LinkedList;
 
 public class Terrain {
 	
 	static LinkedList <Matériaux> listMateriaux = new LinkedList<Matériaux>();
 	static LinkedList <Ennemy> listEnnemies = new LinkedList<Ennemy>();
-	static LinkedList <Matériaux> listStable = new LinkedList<Matériaux>();
-	
 	
 	public Terrain() {
 		
@@ -30,10 +29,6 @@ public class Terrain {
 		listEnnemies.add(perso2);
 	}
 	
-	public static LinkedList<Matériaux> getListStable(){
-		return listStable;
-	}
-	
 	public LinkedList <Ennemy> getListEnnemies(){
 		return listEnnemies;
 	}
@@ -46,6 +41,11 @@ public class Terrain {
 		}
 	
 		return vic;
+	}
+
+	public static LinkedList<Matériaux>  getlistMateriaux() {
+	
+		return listMateriaux ;
 	}
 
 }

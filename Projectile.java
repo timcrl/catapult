@@ -124,7 +124,7 @@ public class Projectile extends Object{
 			System.out.println(w +" x "+h);
 			if(this.y > h + this.rayon) { //Avoid the projectile to go anywhere, ends its displacement
 				this.y = 680;
-				this.dx = 0.2* this.dx ;
+				this.dx = 0.2 * this.dx ;
 			}
 		}
 		/*

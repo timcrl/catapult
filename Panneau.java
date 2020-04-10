@@ -20,7 +20,7 @@ public class Panneau extends JPanel implements ActionListener, MouseMotionListen
 	public Panneau(){
 
 		proj = new Projectile(p,5.0, 5.0, 30.0 ,Color.black );
-		proj.setPosition(300, 400);
+		proj.setPosition(100, 500);
 		proj.setSpeed(10, 45);
 
 		c1 = new Cercle(new APoint(600,600),15.0,Color.red);
@@ -70,7 +70,7 @@ public class Panneau extends JPanel implements ActionListener, MouseMotionListen
 			g.drawImage(Terrain.listMateriaux.get(i).img, (int)Terrain.listMateriaux.get(i).x,(int)Terrain.listMateriaux.get(i).y, this);
 
 			//=============gravity
-			Terrain.listMateriaux.get(i).gravityAction(17);
+			Terrain.listMateriaux.get(i).gravityAction2(17);
 			//System.out.println(Terrain.listMateriaux.get(i).y + " my position ");
 			//System.out.println((double)(this.getHeight()*(1-limite_sol)));
 			Terrain.listMateriaux.get(i).destruction();

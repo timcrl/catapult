@@ -51,49 +51,37 @@ public class Matériaux extends Object { //incorporer les résistances dans les 
 	}
 
 	//start of gravity================== not finished !
-	//
-	public void gravityAction(int deltaTime){
+	
+	public void gravityAction2(int deltaTime) {
 		
 		this.time += deltaTime ;
 		int realTime = (int)(time/60);
 		
-		this.dy += this.GRAVITY * realTime ;
-		
-		if(!this.stable) {
-			if (this.y + 50.0 < Panneau.getGround()+10.0 ) {
-				this.y += this.dy*realTime ;
-			} 
-			else if(this.getDistanceY(this.y + (this.dy*realTime)) >= ((Panneau.getGround()+10.0) - (this.y + 50.0))){
-				this.y = (Panneau.getGround()+10.0)-50.0 ;
-				this.stable = true ;
-				Terrain.listStable.add(this);
-			}
-			
-			//change of iteration, using i because we can modify the list while iterating it
-			
-			for (int i = 0; i < Terrain.getListStable().size(); i++) {
+		this.dy  += this.GRAVITY * realTime ; //so as to get the right number of image per second	
+		this.y += this.dy ;
 				
-				if(this != Terrain.getListStable().get(i)) {
-					if(this.y + 50.0 < Terrain.getListStable().get(i).y) {
-						this.y += this.dy*realTime;
+			for (int i = 0;  i < Terrain.getlistMateriaux().size() ; ++i) {
+					
+					if(this != Terrain.getlistMateriaux().get(i) &&  this.x == Terrain.getlistMateriaux().get(i).x && this.getDistance(Terrain.getlistMateriaux().get(i).x,Terrain.getlistMateriaux().get(i).y) <= 50.0 ){
+						this.y = Terrain.getlistMateriaux().get(i).y-50.0;
+						this.dy = 0;
+						break;
 					}
-					if(this.getDistance(Terrain.getListStable().get(i).x,Terrain.getListStable().get(i).y) <= 50.0 ){
-						this.y = Terrain.getListStable().get(i).y-50.0;
-						this.stable = true;
-						Terrain.listStable.add(this);
-
+					if (this.y + 50.0 > Panneau.getGround() ) {
+						this.y = Panneau.getGround() - 50.0;
+						this.dy = 0;
+						break;
 					}
-				}
-			}
-		
+					
 			
-		try {
+			}
+				
+			try {
 				Thread.sleep(17);
-			  } catch (InterruptedException e) {
+			} catch (InterruptedException e) {
 				e.printStackTrace();
-			  }
-		
-		}
+			}
+			
 	}
 	
 	//Computation of the collision projectile-blocks
@@ -104,7 +92,6 @@ public class Matériaux extends Object { //incorporer les résistances dans les 
 		dist = Panneau.getProj().getDistance(this.barycenter().x, this.barycenter().y);
 
 		if(dist <= 25.0 + Panneau.getProj().getRayon()) {
-			Terrain.listStable.remove(this);
 			Terrain.listMateriaux.remove(this);
 			
 			Panneau.getProj().couleur = Color.green ;

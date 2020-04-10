@@ -3,7 +3,7 @@ import java.awt.Image;
 
 public class Object {
 
-  protected final double GRAVITY = 0.005 ;
+  protected final double GRAVITY = 0.05 ;
   protected double mass ;
   protected double x;
   protected double y;
