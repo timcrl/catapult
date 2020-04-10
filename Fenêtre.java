@@ -26,7 +26,7 @@ public class Fenêtre extends JFrame implements MouseListener, Runnable {
 		this.setSize(this.width, this.height);
 	    this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	    this.setLocationRelativeTo(null);
-	    this.setResizable(true);
+	    this.setResizable(false);
 
 
 			// Score Display

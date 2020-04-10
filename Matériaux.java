@@ -9,12 +9,14 @@ public class Matériaux extends Object { //incorporer les résistances dans les 
 	protected double resistance ;
 	protected String texture ;
 	protected APoint p ;
+	protected int mass ;
 	
-	public Matériaux (double x1, double y1, double resist, int refTexture) {
+	public Matériaux (double x1, double y1, double resist, int refTexture, int mass1) {
 		super();
 		this.x = x1 ;
 		this.y = y1;
 		this.resistance = resist ;
+		this.mass = mass1;
 		
 		this.centreX = this.barycenter().x;
 		this.centreY = this.barycenter().y;
@@ -50,15 +52,14 @@ public class Matériaux extends Object { //incorporer les résistances dans les 
 		return p;
 	}
 
-	//start of gravity================== not finished !
-	
+
 	public void gravityAction2(int deltaTime) {
 		
-		this.time += deltaTime ;
-		int realTime = (int)(time/60);
+		//this.time += deltaTime ;
+		//int realTime = (int)(time/60);
 		
-		this.dy  += this.GRAVITY * realTime ; //so as to get the right number of image per second	
-		this.y += this.dy ;
+		this.dy  +=(double)( this.GRAVITY ); //so as to get the right number of image per second	
+		this.y += (double)(this.dy*(1.0/60.0)) ;
 				
 			for (int i = 0;  i < Terrain.getlistMateriaux().size() ; ++i) {
 					
@@ -72,6 +73,17 @@ public class Matériaux extends Object { //incorporer les résistances dans les 
 						this.dy = 0;
 						break;
 					}
+					//=========above only required code for gravity
+					//=========down trying to deviate the block with respect to its x position (it should rotate but no idea for now of how to do so)
+					
+					if(this != Terrain.getlistMateriaux().get(i) &&  this.x != Terrain.getlistMateriaux().get(i).x &&  this.getDistance(Terrain.getlistMateriaux().get(i).x,Terrain.getlistMateriaux().get(i).y) <= 50.0 ){
+							if ( this.centreX >  Terrain.getlistMateriaux().get(i).centreX +15.0) {
+								this.x= Terrain.getlistMateriaux().get(i).x + 50.0 ;  
+							}
+							if (  this.centreX <  Terrain.getlistMateriaux().get(i).centreX -15.0) {
+								this.x= Terrain.getlistMateriaux().get(i).x -  50.0 ;  
+							}
+					}
 					
 			
 			}
@@ -84,6 +96,18 @@ public class Matériaux extends Object { //incorporer les résistances dans les 
 			
 	}
 	
+	  public double forceWeight () {
+		  double f ;
+		  f = this.mass *this.dy ; // F = m*a
+		  return f;
+	  }
+	  
+	  public double forceLateral () {
+		  double f ;
+		  f = this.mass *this.dx ; // F = m*a
+		  return f;
+	  }
+	
 	//Computation of the collision projectile-blocks
 	
 	public void destruction() {
@@ -93,8 +117,7 @@ public class Matériaux extends Object { //incorporer les résistances dans les 
 
 		if(dist <= 25.0 + Panneau.getProj().getRayon()) {
 			Terrain.listMateriaux.remove(this);
-			
-			Panneau.getProj().couleur = Color.green ;
+			Panneau.getProj().couleur = Color.orange ;
 			System.out.println(dist + " la distance entre le projectile et l'objet ");
 		
 		}

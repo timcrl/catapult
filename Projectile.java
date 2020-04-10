@@ -117,16 +117,16 @@ public class Projectile extends Object{
 		int h = (int)Panneau.getGround() ;
 		int w = 1000 ;
 
-		
 		if (this.y < h){ // Ground
 			this.dy = -(this.dy*0.8); // bounce with 80% of initial speed
 			System.out.println("collision of proj with GROUND with x="+this.x+" and y="+this.y);  //Debug print
 			System.out.println(w +" x "+h);
 			if(this.y > h + this.rayon) { //Avoid the projectile to go anywhere, ends its displacement
-				this.y = 680;
-				this.dx = 0.2 * this.dx ;
+				this.dy = -(this.dy*0.8); // bounce with 80% of initial speed
+				this.dx = 0.5 * this.dx ;
 			}
 		}
+		
 		/*
 		if (this.y - this.rayon < 0){ // Roof
 			this.dy = 0;
@@ -145,8 +145,8 @@ public class Projectile extends Object{
 			this.dx = 0;
 			System.out.println("collision of proj with RIGHT EDGE with x="+this.x+" and y="+this.y);
 			System.out.println(pan.getWidth()+" x "+pan.getHeight());
-		}*/
-
+		}
+		*/
 		if (this.y - this.rayon < 0){ // Roof
 			this.dy = 0;
 			this.y = this.rayon;

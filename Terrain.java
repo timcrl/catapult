@@ -10,11 +10,11 @@ public class Terrain {
 		
 		//Fill of the coordinates and parameters (x , y , resistance, textures)
 		
-		Matériaux m0 = new Matériaux(800.0,0.0,1,2);
-		Matériaux m1 = new Matériaux(800.0,300.0,1,1);
-		Matériaux m2 = new Matériaux(800.0,400.0,1,2);
-		Matériaux m3 = new Matériaux(800.0,500.0,2,3);
-		Matériaux m4 = new Matériaux(800.0,600.0,3,4);
+		Matériaux m0 = new Matériaux(825.0,0.0,1,2, 1);
+		Matériaux m1 = new Matériaux(800.0,300.0,1,1, 1);
+		Matériaux m2 = new Matériaux(780.0,400.0,1,2 , 2);
+		Matériaux m3 = new Matériaux(800.0,500.0,2,3 , 2);
+		Matériaux m4 = new Matériaux(800.0,600.0,3,4 , 2);
 		
 		listMateriaux.add(m0);
 		listMateriaux.add(m1);

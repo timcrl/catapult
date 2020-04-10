@@ -3,7 +3,7 @@ import java.awt.Image;
 
 public class Object {
 
-  protected final double GRAVITY = 0.05 ;
+  protected final double GRAVITY = 9.8 ;
   protected double mass ;
   protected double x;
   protected double y;
@@ -66,34 +66,30 @@ public class Object {
 
 		this.time += deltaTime ;
 		int realTime = (int)(time/60);
-
-		this.dy += this.GRAVITY * realTime ;
-
-		/* IDEAS =========
-		speed += acceleration * deltaTime;
-		position += speed * deltaTime;
-		or=====
-		time += timestep;
-		position += timestep * (velocity + timestep * acceleration / 2);
-		oldAcceletation = acceleration; // Store it
-		acceleration = force(time, position) / mass;
-		velocity += timestep * (acceleration + oldAcceleration) / 2;
-		*/
-		if(!this.stable) {
-			if (this.y + 50.0 < Panneau.getGround()+10.0 ) {
-				this.y += this.dy*realTime ;
+		
+		this.dy  += this.GRAVITY * realTime ; //so as to get the right number of image per second	
+		this.y += this.dy ;
+				
+			for (int i = 0;  i < Terrain.getlistMateriaux().size() ; ++i) {
+					
+					if(this != Terrain.getlistMateriaux().get(i) &&  this.x == Terrain.getlistMateriaux().get(i).x && this.getDistance(Terrain.getlistMateriaux().get(i).x,Terrain.getlistMateriaux().get(i).y) <= 50.0 ){
+						this.y = Terrain.getlistMateriaux().get(i).y-50.0;
+						this.dy = 0;
+						break;
+					}
+					if (this.y + 50.0 > Panneau.getGround() ) {
+						this.y = Panneau.getGround() - 50.0;
+						this.dy = 0;
+						break;
+					}
+			
 			}
-			else if(this.getDistanceY(this.y + (this.dy*realTime)) >= ((Panneau.getGround()+10.0) - (this.y + 50.0))){
-				this.y = 620.0 ;
-				this.stable = true ;
+				
+			try {
+				Thread.sleep(17);
+			} catch (InterruptedException e) {
+				e.printStackTrace();
 			}
-		}
-
-		try {
-			Thread.sleep(17);
-		  } catch (InterruptedException e) {
-			e.printStackTrace();
-		  }
 
 	}
 
