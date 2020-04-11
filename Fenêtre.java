@@ -16,7 +16,7 @@ public class Fenêtre extends JFrame implements MouseListener, Runnable {
 	private int height = 1000;
 	Thread thread ;
 
-	private int scoreNb ;
+	private static int scoreNb =1000 ;
 	private JLabel score ;
 	private Panneau world = new Panneau();
 
@@ -33,7 +33,7 @@ public class Fenêtre extends JFrame implements MouseListener, Runnable {
 		score =  new JLabel() ;
 		score.setText("SCORE : ");
 		score.setFont(new Font("Serif", Font.BOLD, 20));
-		score.setBounds(20, 750 , 150 , 80);
+		score.setBounds(20, 750 , 250 , 80);
 		world.add(score);
 
 		// Use of thread instead of Timer , with Runnable interface to run only one instance (one loop) for the whole game
@@ -58,6 +58,9 @@ public class Fenêtre extends JFrame implements MouseListener, Runnable {
 
 	public Panneau getPanel () {
 		return this.world ;
+	}
+	public static int getScore() {
+		return scoreNb;
 	}
 
 
