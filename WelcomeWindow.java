@@ -36,7 +36,7 @@ public class WelcomeWindow extends JFrame implements ActionListener  {
 		    welcome.setBounds(0, 0, 800, 800);
 		    welcome.setLayout(null);
 		    
-		    Image background = Toolkit.getDefaultToolkit().getImage("./images/décor_forêt.png");
+		    Image background = Toolkit.getDefaultToolkit().getImage("./images/décor_forêt2.png");
 		   JLabel myImage = new JLabel(new ImageIcon(background));
 		   myImage.setBounds(0, 0, welcome.getWidth(), welcome.getHeight());
 		   welcome. add(myImage);
