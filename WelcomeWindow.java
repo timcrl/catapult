@@ -1,10 +1,5 @@
 import java.awt.event.*;
-import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.IOException;
 import java.awt.*;
-
-import javax.imageio.ImageIO;
 import javax.swing.*;
 
 public class WelcomeWindow extends JFrame implements ActionListener  {
@@ -22,6 +17,7 @@ public class WelcomeWindow extends JFrame implements ActionListener  {
 	
 	private String userName ;
 	private int scoreRecord = 0 ;
+	private Fenêtre jeu ; //open the play window
 	
 		public WelcomeWindow() {
 			// Definition of the windows properties
@@ -88,12 +84,15 @@ public class WelcomeWindow extends JFrame implements ActionListener  {
 			
 			this.setVisible(true);
 		}
-		public void checkBestScore() {
+		public int returnBestScore() {
 			
 			if(scoreRecord <= Fenêtre.getScore()) {
 				scoreRecord = Fenêtre.getScore();
 			}
-				
+			return scoreRecord;
+		}
+		public Fenêtre returnGameWindow() {
+			return jeu;
 		}
 
 		public void paintComponent(Graphics g){
@@ -107,7 +106,7 @@ public class WelcomeWindow extends JFrame implements ActionListener  {
 					
 					if(userName != null) {
 						System.out.println("Let's start the game");
-						Fenêtre jeu = new Fenêtre() ; //open the play window
+						jeu = new Fenêtre();
 						this.setVisible(false); //close the welcomewindow
 					}
 					else {
