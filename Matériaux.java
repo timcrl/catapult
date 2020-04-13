@@ -37,11 +37,11 @@ public class Matériaux extends Object { //incorporer les résistances dans les 
 	private  static String[] getTextures(){
 		refTextures= new String[8];
 		
-		refTextures[1]="./images/bois.png";
-		refTextures[2]="./images/bois2.png";
+		refTextures[1]="./images/Blocks/bois.png";
+		refTextures[2]="./images/Blocks/bois2.png";
 		
-		refTextures[3]="./images/brique.png";
-		refTextures[4]="./images/pierre.png";
+		refTextures[3]="./images/Blocks/brique.png";
+		refTextures[4]="./images/Blocks/pierre.png";
 		
 		return refTextures;
 	}

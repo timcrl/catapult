@@ -18,6 +18,7 @@ public class WelcomeWindow extends JFrame implements ActionListener  {
 	private String userName ;
 	private int scoreRecord = 0 ;
 	private Fenêtre jeu ; //open the play window
+	private LevelsWindow selection ; //open the selection window for levels
 	
 		public WelcomeWindow() {
 			// Definition of the windows properties
@@ -42,7 +43,7 @@ public class WelcomeWindow extends JFrame implements ActionListener  {
 		    menu.setOpaque(false);
 		    menu.setLayout(null);
 		     
-		    //Configurations of the Buttons and JLables and Text
+		    //Configurations of the Buttons and JLabels and Text
 		    lTitle = new JLabel("WELCOME TO CATAPULT'S WORLD");
 		    lTitle.setBounds(15, 100, 500 , 100);
 		    lTitle.setFont(new Font("TITLE", Font.BOLD,25));
@@ -102,19 +103,21 @@ public class WelcomeWindow extends JFrame implements ActionListener  {
 		@Override
 		public void actionPerformed(ActionEvent e) {
 
-				if (e.getSource()== bPlay) {
+				 if(userName != null){
 					
-					if(userName != null) {
+					if (e.getSource()== bPlay) {
 						System.out.println("Let's start the game");
 						jeu = new Fenêtre();
 						this.setVisible(false); //close the welcomewindow
 					}
-					else {
-						lindications.setText("<html> <p> You didn't enter your pseudo <br/> (push enter on the keyboard) ! </p></html>");
+					if (e.getSource()== bLevels) {
+						System.out.println("You can choose your level"); //enable the selection of the level
+						selection = new LevelsWindow();
+						this.setVisible(false);
 					}
-				}
-				if (e.getSource()== bLevels) {
-					System.out.println("You can choose your level"); //enable the selection of the level
+				 }
+				else {
+						lindications.setText("<html> <p> You didn't enter your pseudo <br/> (push enter on the keyboard) ! </p></html>");
 				}
 				if(e.getSource()==tPseudo) {
 				    userName = (tPseudo.getText()); // recuperates the player's name

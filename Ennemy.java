@@ -32,12 +32,12 @@ public class Ennemy extends Object {
 	private  static String[] getAlien(){
 		refAlien = new String[8];
 		
-		refAlien[1]="./images/alien1.png";
-		refAlien[2]="./images/alien2.png";
-		refAlien[3]="./images/alien3.png";
-		refAlien[4]="./images/alien4.png";
-		refAlien[5]="./images/alien5.png";
-		refAlien[6]="./images/alien_boss.png";
+		refAlien[1]="./images/Aliens/alien1.png";
+		refAlien[2]="./images/Aliens/alien2.png";
+		refAlien[3]="./images/Aliens/alien3.png";
+		refAlien[4]="./images/Aliens/alien4.png";
+		refAlien[5]="./images/Aliens/alien5.png";
+		refAlien[6]="./images/Aliens/alien_boss.png";
 		
 		return refAlien;
 	}

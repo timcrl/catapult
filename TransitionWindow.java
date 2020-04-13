@@ -26,11 +26,11 @@ public class TransitionWindow extends JFrame implements ActionListener {
 	    transition.setLayout(null);
 	    
 	    Image background = Toolkit.getDefaultToolkit().getImage("./images/décor_transi.png");
-		JLabel myImage = new JLabel(new ImageIcon(background));
-		myImage.setBounds(0, 0, transition.getWidth(), transition.getHeight());
-		transition. add(myImage);
+		JLabel jBackGround = new JLabel(new ImageIcon(background));
+		jBackGround.setBounds(0, 0, transition.getWidth(), transition.getHeight());
+		transition. add(jBackGround);
 		
-	    //Configurations of the Buttons and JLables and Text
+	    //Configurations of the Buttons and JLabels and Text
 	    lTitle = new JLabel("VICTORY");
 	    lTitle.setBounds(300, 250, 200 , 100);
 	    lTitle.setFont(new Font("TITLE", Font.BOLD,40));
@@ -55,10 +55,10 @@ public class TransitionWindow extends JFrame implements ActionListener {
 	    bNextLevel.addActionListener(this);
 	    
 	    //Display of the buttons in the window
-	    myImage.add(lTitle);
-	    myImage.add(lScore);
-	    myImage.add(bNextLevel);
-	    myImage.add(bRePlay);
+	    jBackGround.add(lTitle);
+	    jBackGround.add(lScore);
+	    jBackGround.add(bNextLevel);
+	    jBackGround.add(bRePlay);
 	    
 	    this.setContentPane(transition);
 	    this.setVisible(true); //appear only for a transition so will be false

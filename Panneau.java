@@ -38,10 +38,8 @@ public class Panneau extends JPanel implements ActionListener, MouseMotionListen
 
 	public void paintComponent(Graphics g){
 
-		Image fond = Toolkit.getDefaultToolkit().getImage("./images/image_fond_nuage.png");
+		Image fond = Toolkit.getDefaultToolkit().getImage("./images/GroundWorld/image_fond_nuage.png");
 					g.drawImage(fond, 0, 0, this.getWidth(), this.getHeight(), this);
-		//Image bottom = Toolkit.getDefaultToolkit().getImage("./images/terre2.png");
-		//g.drawImage(bottom, 0, 750, this.getWidth(),this.getHeight(), this);
 
 		g.setColor(Color.green);
 		g.fillRect(0,(int)Panneau.getGround(),this.getWidth(),this.getHeight());

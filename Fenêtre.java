@@ -28,8 +28,7 @@ public class Fenêtre extends JFrame implements MouseListener, Runnable {
 	    this.setLocationRelativeTo(null);
 	    this.setResizable(false);
 
-
-			// Score Display
+		// Score Display
 		score =  new JLabel() ;
 		score.setText("SCORE : ");
 		score.setFont(new Font("Serif", Font.BOLD, 20));
