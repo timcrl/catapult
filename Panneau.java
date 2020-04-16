@@ -9,6 +9,7 @@ public class Panneau extends JPanel implements ActionListener, MouseMotionListen
 	private Terrain ter = new Terrain();
 	private final double GRAVITY = 2.0 ;
 	private static Projectile proj;
+	private Thrower slingshot;
 	private Cercle c1;
 	private APoint p = new APoint (50,50);
 	
@@ -18,13 +19,15 @@ public class Panneau extends JPanel implements ActionListener, MouseMotionListen
 
 
 	public Panneau(){
-
+		
 		proj = new Projectile(p,5.0, 5.0, 30.0 ,Color.black );
 		proj.setPosition(100, 300);
 		proj.setSpeed(0, 45);
 
 		c1 = new Cercle(new APoint(600,600),15.0,Color.red);
-
+		
+		slingshot = new Thrower(proj, 100, 600);
+		
 		this.setLayout(null);
 		addMouseMotionListener(this);
 	}
@@ -38,15 +41,17 @@ public class Panneau extends JPanel implements ActionListener, MouseMotionListen
 
 	public void paintComponent(Graphics g){
 
-		Image fond = Toolkit.getDefaultToolkit().getImage("./images/GroundWorld/image_fond_nuage.png");
-					g.drawImage(fond, 0, 0, this.getWidth(), this.getHeight(), this);
-
+	    Image background = Terrain.picGround ;
+		g.drawImage(background, 0, 0, null);
+		/*
 		g.setColor(Color.green);
 		g.fillRect(0,(int)Panneau.getGround(),this.getWidth(),this.getHeight());
-
+		 */
+					
 		/*===================== Objects Display*/
 
 		proj.dessiner(g);
+		slingshot.dessiner(g);
 		c1.dessine(g);
 
 		
@@ -132,6 +137,7 @@ public class Panneau extends JPanel implements ActionListener, MouseMotionListen
 		}
 
 	}
+	
 
 
 	}

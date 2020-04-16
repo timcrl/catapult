@@ -1,5 +1,6 @@
 import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.Toolkit;
 import java.util.*;
 import javax.swing.*;
 import javax.swing.Timer;
@@ -22,6 +23,10 @@ public class Projectile extends Object{
 		this.dy= dY; //vitesse initiale en y
 		this.a= angle;
 		this.couleur = c;
+		
+		//integration of the texture to the image
+		String texture = "./images/projectile2.png";
+		this.img = Toolkit.getDefaultToolkit().getImage(texture) ;
 
 	}
 
@@ -37,11 +42,12 @@ public class Projectile extends Object{
 	}
 
 	public void dessiner ( Graphics g) {
-
+		/*   // Pour dessiner un cercle
         g.setColor(this.couleur);
-        // Pour dessiner un cercle
         g.fillOval((int)(this.x),(int)(this.y),(int)(2*rayon),(int)(2*rayon));
+		*/
 
+		g.drawImage(this.img, (int)(this.x),(int)(this.y),null);
 	}
 
 	public double getRayon() {
@@ -180,6 +186,11 @@ public class Projectile extends Object{
 	public double force() {
 		// TODO Auto-generated method stub
 		return (Double) null;
+	}
+
+	public double getMass() {
+		// TODO Auto-generated method stub
+		return 1;
 	}
 
 

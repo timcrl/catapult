@@ -1,9 +1,7 @@
-import java.awt.Color;
 import java.awt.Graphics;
-import java.util.*;
-import javax.swing.*;
-import javax.swing.Timer;
+import java.awt.Image;
 //Don't know if all these imports will be useful
+import java.awt.Toolkit;
 
 
 public class Thrower{
@@ -14,21 +12,27 @@ public class Thrower{
   protected String imagePath=""; // Path of the image to be used, to define
   protected double angle; // angle with ground with which projectile is thrown
   protected double force; // Force that the thrower applies projectile
-
+  protected Image img ;
 
   public Thrower(Projectile proj, int posx, int posy){
     this.x = posx;
     this.y = posy;
     this.projectile = proj;
 
+    String texture = "./images/slingshot2.png";
+    this.img = Toolkit.getDefaultToolkit().getImage(texture);
   }
 
-  public void throw(){
+  public void launchProjectile(){
+	  
     double speed = Math.sqrt( 2*this.force / this.projectile.getMass()); // Obtained With Ek = 1/2 * m * v²
     this.projectile.setSpeed(speed, this.angle);
 
-
   }
+	public void dessiner ( Graphics g) {
+		
+		g.drawImage(this.img, this.x,this.y,null);
+	}
 
 
 

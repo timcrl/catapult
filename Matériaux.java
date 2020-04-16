@@ -32,7 +32,7 @@ public class Matériaux extends Object { //incorporer les résistances dans les 
 	}
 	
 	/* Give a texture to each value
-	pour info les textures c'est du 50 par 50 pixels pour vous aider avec les coordonnées !!!
+	Just to know  textures are 50 by 50 pixels
 	*/
 	private  static String[] getTextures(){
 		refTextures= new String[8];

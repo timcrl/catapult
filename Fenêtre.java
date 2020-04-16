@@ -18,7 +18,7 @@ public class Fenêtre extends JFrame implements MouseListener, Runnable {
 
 	private static int scoreNb =1000 ;
 	private JLabel score ;
-	private Panneau world = new Panneau();
+	private Panneau world ;
 
 	public Fenêtre () {
 		// Definition of the windows properties
@@ -27,7 +27,10 @@ public class Fenêtre extends JFrame implements MouseListener, Runnable {
 	    this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	    this.setLocationRelativeTo(null);
 	    this.setResizable(false);
-
+		
+	    world = new Panneau();
+		world.setPreferredSize(new Dimension(this.getWidth(),this.getHeight()));
+	    
 		// Score Display
 		score =  new JLabel() ;
 		score.setText("SCORE : ");
@@ -107,10 +110,13 @@ public class Fenêtre extends JFrame implements MouseListener, Runnable {
 	public void run() {
 
             while(true) {
+            	
+        		System.out.println(world.getBounds(null));
+
             	//world.getProj().deplaceX(this);
             	//world.getProj().deplaceY(this);
               world.getProj().bounce(world); // Detects edges of terrain
-							world.getProj().move();// Moves the projectile
+              world.getProj().move();// Moves the projectile
 
 						//	world.getProj().setPosition(100, 100);// Test to see drawing
             	world.getProj().bounce(world); // Detects edges of terrain

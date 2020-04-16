@@ -1,8 +1,11 @@
 import java.awt.Component;
+import java.awt.Image;
+import java.awt.Toolkit;
 import java.util.LinkedList;
 
 public class Terrain {
 	
+	public static Image picGround = Toolkit.getDefaultToolkit().getImage("./images/GroundWorld/ground_earth2.png");
 	static LinkedList <Matériaux> listMateriaux = new LinkedList<Matériaux>();
 	static LinkedList <Ennemy> listEnnemies = new LinkedList<Ennemy>();
 	
