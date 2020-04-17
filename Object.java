@@ -1,5 +1,6 @@
 import java.awt.Graphics;
 import java.awt.Image;
+import java.awt.Toolkit;
 
 public class Object {
 
@@ -13,13 +14,15 @@ public class Object {
   protected double centreX;
   protected double centreY;
 
-  protected int time ;
+  protected int life ;
   protected Image img ;
-  protected boolean stable;
+  protected int scoreValor;
+  protected String texture ;
+
 
   public Object(){
 
-
+	  this.img = Toolkit.getDefaultToolkit().getImage(this.texture); // direct integration of the image to the alien
   }
 
   public  void dessiner ( Graphics g) {
@@ -62,13 +65,10 @@ public class Object {
 		return yDist;
 
 	}
-	public void gravityAction(int deltaTime){
+	public void gravityAction(){
 
-		this.time += deltaTime ;
-		int realTime = (int)(time/60);
-		
-		this.dy  += this.GRAVITY * realTime ; //so as to get the right number of image per second	
-		this.y += this.dy ;
+		this.dy  +=(double)( this.GRAVITY); //so as to get the right number of image per second	
+		this.y += (double)(this.dy*(1.0/60.0)) ;
 				
 			for (int i = 0;  i < Terrain.getlistMateriaux().size() ; ++i) {
 					
@@ -82,6 +82,18 @@ public class Object {
 						this.dy = 0;
 						break;
 					}
+					//=========above only required code for gravity
+					//=========down trying to deviate the block with respect to its x position (it should rotate but no idea for now of how to do so)
+					
+					if(this != Terrain.getlistMateriaux().get(i) &&  this.x != Terrain.getlistMateriaux().get(i).x &&  this.getDistance(Terrain.getlistMateriaux().get(i).x,Terrain.getlistMateriaux().get(i).y) <= 50.0 ){
+							if ( this.centreX >  Terrain.getlistMateriaux().get(i).centreX +15.0) {
+								this.x= Terrain.getlistMateriaux().get(i).x + 50.0 ;  
+							}
+							if (  this.centreX <  Terrain.getlistMateriaux().get(i).centreX -15.0) {
+								this.x= Terrain.getlistMateriaux().get(i).x -  50.0 ;  
+							}
+					}
+					
 			
 			}
 				
@@ -90,7 +102,6 @@ public class Object {
 			} catch (InterruptedException e) {
 				e.printStackTrace();
 			}
-
 	}
 
 

@@ -16,7 +16,7 @@ public class Fenêtre extends JFrame implements MouseListener, Runnable {
 	private int height = 1000;
 	Thread thread ;
 
-	private static int scoreNb =1000 ;
+	private static int scoreNb ;
 	private JLabel score ;
 	private Panneau world ;
 
@@ -64,7 +64,6 @@ public class Fenêtre extends JFrame implements MouseListener, Runnable {
 	public static int getScore() {
 		return scoreNb;
 	}
-
 
 	// Display position of the mouse when clicking (future use to throw the projectile)
 	@Override
@@ -123,8 +122,11 @@ public class Fenêtre extends JFrame implements MouseListener, Runnable {
 				world.getProj().move();// Moves the projectile
 
 				//	world.getProj().setPosition(100, 100);// Test to see drawing
-
-            	score.setText("SCORE : " + scoreNb); //Update label score
+				
+				
+				//Update label score
+				scoreNb = Terrain.score ;
+            	score.setText("SCORE : " + scoreNb); 
 
             	repaint(); // Redraw elements
             	

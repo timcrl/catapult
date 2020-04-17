@@ -6,10 +6,7 @@ import java.awt.Toolkit;
 public class Ennemy extends Object {
 
 	public static String[] refAlien = getAlien();
-	protected String textureAlien ;
-	protected int life ;
 	protected boolean dead = false;
-	
 	
 	public Ennemy(double x1, double y1, int life, int textureAlien) {
 		super();
@@ -19,13 +16,16 @@ public class Ennemy extends Object {
 		this.centreX = this.x+25.0; 
 		this.centreY = this.y +25.0;
 		
-		//find corresponding texture for the alien
+		//Attribute ScoreValor
+		this.scoreValor = this.life*200;
+		
+		//Find corresponding texture for the alien
 		for (int i = 0; i < refAlien.length; i++) {
 			if(i == textureAlien) {
-				this.textureAlien = refAlien[i];
+				this.texture = refAlien[i];
 			}
 		}
-		this.img = Toolkit.getDefaultToolkit().getImage(this.textureAlien); // direct integration of the image to the alien
+		this.img = Toolkit.getDefaultToolkit().getImage(this.texture); // direct integration of the image to the alien
 		
 	}
 	//give a texture to each alien
@@ -41,33 +41,16 @@ public class Ennemy extends Object {
 		
 		return refAlien;
 	}
-	
-	public void gravityAction(){
-		
-		
-		if(!this.stable) {
-			if (this.y + 50.0 < Panneau.getGround()+10.0 ) {
-				this.y += this.GRAVITY ;
-			} 
-			else if(this.getDistanceY(this.y + this.GRAVITY) >= ((Panneau.getGround()+10.0) - (this.y + 50.0))){
-				this.y = 620.0 ;
-				this.stable = true ;
-			}
-		}
-
-	}
-	
 	// Distance computation to determine the death of the alien
 	public void death() {
 		
-		double dist ;
-			 
-		dist = Panneau.getProj().getDistance(this.barycenter().x, this.barycenter().y);
+		double dist = Panneau.getProj().getDistance(this.barycenter().x, this.barycenter().y);
 		
 		if(dist <= 25.0 + Panneau.getProj().getRayon()) {
 
 			Terrain.listEnnemies.remove(this);
-				
+			Terrain.computeScore(this);
+
 			Panneau.getProj().couleur = Color.yellow ;
 			System.out.println(dist + " la distance entre le projectile et l'objet ");
 			

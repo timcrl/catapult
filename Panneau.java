@@ -22,7 +22,7 @@ public class Panneau extends JPanel implements ActionListener, MouseMotionListen
 		
 		proj = new Projectile(p,5.0, 5.0, 30.0 ,Color.black );
 		proj.setPosition(100, 300);
-		proj.setSpeed(0, 45);
+		proj.setSpeed(20, 45);
 
 		c1 = new Cercle(new APoint(600,600),15.0,Color.red);
 		
@@ -43,10 +43,6 @@ public class Panneau extends JPanel implements ActionListener, MouseMotionListen
 
 	    Image background = Terrain.picGround ;
 		g.drawImage(background, 0, 0, null);
-		/*
-		g.setColor(Color.green);
-		g.fillRect(0,(int)Panneau.getGround(),this.getWidth(),this.getHeight());
-		 */
 					
 		/*===================== Objects Display*/
 
@@ -54,31 +50,23 @@ public class Panneau extends JPanel implements ActionListener, MouseMotionListen
 		slingshot.dessiner(g);
 		c1.dessine(g);
 
+		//=============Aliens Display====================
 		
 		for (int i = 0; i < Terrain.listEnnemies.size(); i++) {
-			Ennemy perso1 = Terrain.listEnnemies.get(i); //local variable to avoid to much code
-			g.drawImage(perso1.img, (int)perso1.x, (int)perso1.y,this); //affichage alien
-			perso1.gravityAction(17);
+			Ennemy perso1 = Terrain.listEnnemies.get(i); //local variable to avoid too much code
+			g.drawImage(perso1.img, (int)perso1.x, (int)perso1.y,this); 
+			perso1.gravityAction();
 			perso1.death();
 
 		}
-
-		//=================================
-		//affichage des matériaux et leurs textures en parcourant la liste
-	
 		//=============Material Blocks Display====================
 
 		for (int i = 0; i < Terrain.listMateriaux.size(); i++) {
 
 			g.drawImage(Terrain.listMateriaux.get(i).img, (int)Terrain.listMateriaux.get(i).x,(int)Terrain.listMateriaux.get(i).y, this);
 
-			//=============gravity
-			Terrain.listMateriaux.get(i).gravityAction2(17);
-			//System.out.println(Terrain.listMateriaux.get(i).y + " my position ");
-			//System.out.println((double)(this.getHeight()*(1-limite_sol)));
+			Terrain.listMateriaux.get(i).gravityAction();
 			Terrain.listMateriaux.get(i).destruction();
-			//System.out.println("My position en y" + Terrain.listMateriaux.get(i).y + "Mon centre x et y " + Terrain.listMateriaux.get(i).centreX +"||"+ Terrain.listMateriaux.get(i).centreY);
-
 		}
 
 		//============CALCUL COLLISION===========
@@ -90,8 +78,6 @@ public class Panneau extends JPanel implements ActionListener, MouseMotionListen
 		Toolkit.getDefaultToolkit().sync();
 
 		}
-
-
 
 	//============CALCUL COLLISION=========== (juste changement de couleur pour l'instant et disparition case)
 	 // Bouncer from Seb, Disabled by Tim (no offence xD)

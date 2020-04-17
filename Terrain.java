@@ -9,6 +9,8 @@ public class Terrain {
 	static LinkedList <Matériaux> listMateriaux = new LinkedList<Matériaux>();
 	static LinkedList <Ennemy> listEnnemies = new LinkedList<Ennemy>();
 	
+	protected static int score ;
+	
 	public Terrain() {
 		
 		//Fill of the coordinates and parameters (x , y , resistance, textures)
@@ -25,7 +27,7 @@ public class Terrain {
 		listMateriaux.add(m3);
 		listMateriaux.add(m4);
 		
-		Ennemy perso1 = new Ennemy (50.0,50.0,1,3);
+		Ennemy perso1 = new Ennemy (750.0,50.0,1,3);
 		Ennemy perso2 = new Ennemy (90.0,50.0,1,2);
 		
 		listEnnemies.add(perso1);
@@ -35,6 +37,10 @@ public class Terrain {
 	public LinkedList <Ennemy> getListEnnemies(){
 		return listEnnemies;
 	}
+	public static LinkedList<Matériaux>  getlistMateriaux() {
+		return listMateriaux ;
+	}
+	
 	public static boolean victory() {
 		boolean vic = false ;
 		
@@ -42,13 +48,11 @@ public class Terrain {
 			vic = true;
 			System.out.println("You have won !");
 		}
-	
 		return vic;
 	}
 
-	public static LinkedList<Matériaux>  getlistMateriaux() {
-	
-		return listMateriaux ;
+	public static void computeScore (Object destroyed) {
+		score += destroyed.scoreValor;
 	}
 
 }
