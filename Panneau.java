@@ -36,7 +36,7 @@ public class Panneau extends JPanel implements ActionListener, MouseMotionListen
 		return proj;
 	}
 	public static double getGround() {
-		return 660;
+		return 700;
 	}
 
 	public void paintComponent(Graphics g){

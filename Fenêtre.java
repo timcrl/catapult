@@ -35,7 +35,7 @@ public class Fenêtre extends JFrame implements MouseListener, Runnable {
 		score =  new JLabel() ;
 		score.setText("SCORE : ");
 		score.setFont(new Font("Serif", Font.BOLD, 20));
-		score.setBounds(20, 750 , 250 , 80);
+		score.setBounds(50, 20 , 250 , 80);
 		world.add(score);
 
 		// Use of thread instead of Timer , with Runnable interface to run only one instance (one loop) for the whole game

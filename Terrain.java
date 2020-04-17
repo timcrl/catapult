@@ -5,7 +5,7 @@ import java.util.LinkedList;
 
 public class Terrain {
 	
-	public static Image picGround = Toolkit.getDefaultToolkit().getImage("./images/GroundWorld/ground_earth2.png");
+	public static Image picGround = Toolkit.getDefaultToolkit().getImage("./images/GroundWorld/ground_earth.png");
 	static LinkedList <Matériaux> listMateriaux = new LinkedList<Matériaux>();
 	static LinkedList <Ennemy> listEnnemies = new LinkedList<Ennemy>();
 	
