@@ -25,7 +25,7 @@ public class TransitionWindow extends JFrame implements ActionListener {
 	    transition.setBounds(0, 0, 800, 800);
 	    transition.setLayout(null);
 	    
-	    Image background = Toolkit.getDefaultToolkit().getImage("./images/décor_transi.png");
+	    Image background = Toolkit.getDefaultToolkit().getImage("./images/DecorationLevel/décor_transi.png");
 		JLabel jBackGround = new JLabel(new ImageIcon(background));
 		jBackGround.setBounds(0, 0, transition.getWidth(), transition.getHeight());
 		transition. add(jBackGround);

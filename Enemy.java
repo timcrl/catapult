@@ -3,12 +3,12 @@ import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.Toolkit;
 
-public class Ennemy extends Object {
+public class Enemy extends Object {
 
 	public static String[] refAlien = getAlien();
 	protected boolean dead = false;
 	
-	public Ennemy(double x1, double y1, int life, int textureAlien) {
+	public Enemy(double x1, double y1, int life, int textureAlien) {
 		super();
 		this.life = life;
 		this.x = x1;
@@ -48,7 +48,7 @@ public class Ennemy extends Object {
 		
 		if(dist <= 25.0 + Panneau.getProj().getRayon()) {
 
-			Terrain.listEnnemies.remove(this);
+			Terrain.listEnemies.remove(this);
 			Terrain.computeScore(this);
 
 			Panneau.getProj().couleur = Color.yellow ;

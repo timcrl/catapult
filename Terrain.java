@@ -5,46 +5,60 @@ import java.util.LinkedList;
 
 public class Terrain {
 	
-	public static Image picGround = Toolkit.getDefaultToolkit().getImage("./images/GroundWorld/ground_earth.png");
-	static LinkedList <Matériaux> listMateriaux = new LinkedList<Matériaux>();
-	static LinkedList <Ennemy> listEnnemies = new LinkedList<Ennemy>();
+	public Image picGround = Toolkit.getDefaultToolkit().getImage("./images/GroundWorld/ground_earth.png");
+	static LinkedList <Matériaux> listMaterials = new LinkedList<Matériaux>();
+	static LinkedList <Enemy> listEnemies = new LinkedList<Enemy>();
+	
+	//Arrays containing the basic elements so as to declare them and reduce the code
+	protected Matériaux [] arrayOriginalMaterial ;
+	protected Enemy [] arrayOriginalEnemies;
 	
 	protected static int score ;
 	
 	public Terrain() {
 		
-		//Fill of the coordinates and parameters (x , y , resistance, textures)
+		this.arrayOriginalMaterial = new Matériaux [5];
+		this.arrayOriginalEnemies = new Enemy [2];
 		
-		Matériaux m0 = new Matériaux(825.0,0.0,1,2, 1);
-		Matériaux m1 = new Matériaux(800.0,300.0,1,1, 1);
-		Matériaux m2 = new Matériaux(780.0,400.0,1,2 , 2);
-		Matériaux m3 = new Matériaux(800.0,500.0,2,3 , 2);
-		Matériaux m4 = new Matériaux(800.0,600.0,3,4 , 2);
+		//Creation of the blocks with coordinates and parameters (x , y , resistance, textures, mass)
+				
+		arrayOriginalMaterial[0] = new Matériaux(830.0,400.0,1,1, 1);
+		arrayOriginalMaterial[1] = new Matériaux(770.0,450.0,1,1 , 2);
+		arrayOriginalMaterial[2]= new Matériaux(800.0,520.0,1,2, 1);
+		arrayOriginalMaterial[3] = new Matériaux(800.0,575.0,2,2 , 2);
+		arrayOriginalMaterial[4] = new Matériaux(800.0,600.0,3,2, 2);
 		
-		listMateriaux.add(m0);
-		listMateriaux.add(m1);
-		listMateriaux.add(m2);
-		listMateriaux.add(m3);
-		listMateriaux.add(m4);
+		//Fill the list use to display the blocks
+		for(int i=0 ; i <5 ; ++i) {
+			listMaterials.add(arrayOriginalMaterial[i]);
+			arrayOriginalMaterial[i] = null;
+		}
 		
-		Ennemy perso1 = new Ennemy (750.0,50.0,1,3);
-		Ennemy perso2 = new Ennemy (90.0,50.0,1,2);
+		// Creation of the enemies with (x, y, life, texture) 
 		
-		listEnnemies.add(perso1);
-		listEnnemies.add(perso2);
+		arrayOriginalEnemies[0] = new Enemy (850.0,300.0,1,1);
+		arrayOriginalEnemies[1] = new Enemy (800.0,300.0,1,3);
+		
+		//Fill the list use to display the enemies
+		for(int j=0 ; j <2 ; ++j) {
+			listEnemies.add(arrayOriginalEnemies[j]);
+			arrayOriginalEnemies[j] = null;
+
+		}
 	}
+
 	
-	public LinkedList <Ennemy> getListEnnemies(){
-		return listEnnemies;
+	public LinkedList <Enemy> getListEnnemies(){
+		return listEnemies;
 	}
 	public static LinkedList<Matériaux>  getlistMateriaux() {
-		return listMateriaux ;
+		return listMaterials ;
 	}
 	
 	public static boolean victory() {
 		boolean vic = false ;
 		
-		if(listEnnemies.isEmpty()) {
+		if(listEnemies.isEmpty()) {
 			vic = true;
 			System.out.println("You have won !");
 		}

@@ -17,7 +17,8 @@ public class Fenêtre extends JFrame implements MouseListener, Runnable {
 	Thread thread ;
 
 	private static int scoreNb ;
-	private JLabel score ;
+	private Terrain planete ;
+	private JLabel jScore ;
 	private Panneau world ;
 
 	public Fenêtre () {
@@ -28,15 +29,16 @@ public class Fenêtre extends JFrame implements MouseListener, Runnable {
 	    this.setLocationRelativeTo(null);
 	    this.setResizable(false);
 		
-	    world = new Panneau();
+	    this.planete = new Terrain3();
+	    world = new Panneau(this.planete);
 		world.setPreferredSize(new Dimension(this.getWidth(),this.getHeight()));
 	    
 		// Score Display
-		score =  new JLabel() ;
-		score.setText("SCORE : ");
-		score.setFont(new Font("Serif", Font.BOLD, 20));
-		score.setBounds(50, 20 , 250 , 80);
-		world.add(score);
+		jScore =  new JLabel() ;
+		jScore.setText("SCORE : ");
+		jScore.setFont(new Font("Serif", Font.BOLD, 20));
+		jScore.setBounds(50, 20 , 250 , 80);
+		world.add(jScore);
 
 		// Use of thread instead of Timer , with Runnable interface to run only one instance (one loop) for the whole game
 		thread = new Thread(this); // we use it so as to do several operations at the same time 
@@ -126,7 +128,7 @@ public class Fenêtre extends JFrame implements MouseListener, Runnable {
 				
 				//Update label score
 				scoreNb = Terrain.score ;
-            	score.setText("SCORE : " + scoreNb); 
+            	jScore.setText("SCORE : " + scoreNb); 
 
             	repaint(); // Redraw elements
             	

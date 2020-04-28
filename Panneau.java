@@ -6,7 +6,7 @@ import javax.swing.text.html.parser.Element;
 
 public class Panneau extends JPanel implements ActionListener, MouseMotionListener {
 
-	private Terrain ter = new Terrain();
+	private Terrain ter ;
 	private final double GRAVITY = 2.0 ;
 	private static Projectile proj;
 	private Thrower slingshot;
@@ -18,11 +18,12 @@ public class Panneau extends JPanel implements ActionListener, MouseMotionListen
 	private long temps;
 
 
-	public Panneau(){
+	public Panneau(Terrain planete){
 		
+		this.ter = planete; 
 		proj = new Projectile(p,5.0, 5.0, 30.0 ,Color.black );
 		proj.setPosition(100, 300);
-		proj.setSpeed(20, 45);
+		proj.setSpeed(0, 0);
 
 		c1 = new Cercle(new APoint(600,600),15.0,Color.red);
 		
@@ -41,32 +42,30 @@ public class Panneau extends JPanel implements ActionListener, MouseMotionListen
 
 	public void paintComponent(Graphics g){
 
-	    Image background = Terrain.picGround ;
+	    Image background = ter.picGround ;
 		g.drawImage(background, 0, 0, null);
 					
 		/*===================== Objects Display*/
 
 		proj.dessiner(g);
 		slingshot.dessiner(g);
-		c1.dessine(g);
+		//c1.dessine(g);
 
 		//=============Aliens Display====================
-		
-		for (int i = 0; i < Terrain.listEnnemies.size(); i++) {
-			Ennemy perso1 = Terrain.listEnnemies.get(i); //local variable to avoid too much code
+		for (int i = 0; i < Terrain.listEnemies.size(); i++) {
+			Enemy perso1 = Terrain.listEnemies.get(i); //local variable to avoid too much code
 			g.drawImage(perso1.img, (int)perso1.x, (int)perso1.y,this); 
 			perso1.gravityAction();
 			perso1.death();
-
 		}
 		//=============Material Blocks Display====================
 
-		for (int i = 0; i < Terrain.listMateriaux.size(); i++) {
+		for (int i = 0; i < Terrain.listMaterials.size(); i++) {
 
-			g.drawImage(Terrain.listMateriaux.get(i).img, (int)Terrain.listMateriaux.get(i).x,(int)Terrain.listMateriaux.get(i).y, this);
+			g.drawImage(Terrain.listMaterials.get(i).img, (int)Terrain.listMaterials.get(i).x,(int)Terrain.listMaterials.get(i).y, this);
 
-			Terrain.listMateriaux.get(i).gravityAction();
-			Terrain.listMateriaux.get(i).destruction();
+			Terrain.listMaterials.get(i).gravityAction();
+			Terrain.listMaterials.get(i).destruction();
 		}
 
 		//============CALCUL COLLISION===========

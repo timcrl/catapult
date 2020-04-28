@@ -51,13 +51,13 @@ public class Matériaux extends Object { //incorporer les résistances dans les 
 		return p;
 	}
 	
-	  public double forceWeight () {
+	  public double weightForce () {
 		  double f ;
 		  f = this.mass *this.dy ; // F = m*a
 		  return f;
 	  }
 	  
-	  public double forceLateral () {
+	  public double lateralForce () {
 		  double f ;
 		  f = this.mass *this.dx ; // F = m*a
 		  return f;
@@ -70,7 +70,7 @@ public class Matériaux extends Object { //incorporer les résistances dans les 
 		dist = Panneau.getProj().getDistance(this.barycenter().x, this.barycenter().y);
 
 		if(dist <= 25.0 + Panneau.getProj().getRayon()) {
-			Terrain.listMateriaux.remove(this);
+			Terrain.listMaterials.remove(this);
 			
 			Terrain.computeScore(this);
 			Panneau.getProj().couleur = Color.orange ;

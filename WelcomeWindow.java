@@ -7,7 +7,7 @@ public class WelcomeWindow extends JFrame implements ActionListener  {
 	private JPanel welcome ; 
 	private JPanel menu ; 
 	
-	private JLabel lTitle ;
+	private JLabel jTitle ;
 	private JLabel lbestScore ;
 	private JLabel lindications ;
 	private JTextField tPseudo ;
@@ -44,9 +44,9 @@ public class WelcomeWindow extends JFrame implements ActionListener  {
 		    menu.setLayout(null);
 		     
 		    //Configurations of the Buttons and JLabels and Text
-		    lTitle = new JLabel("WELCOME TO CATAPULT'S WORLD");
-		    lTitle.setBounds(15, 100, 500 , 100);
-		    lTitle.setFont(new Font("TITLE", Font.BOLD,25));
+		    jTitle = new JLabel("WELCOME TO CATAPULT'S WORLD");
+		    jTitle.setBounds(15, 100, 500 , 100);
+		    jTitle.setFont(new Font("TITLE", Font.BOLD,25));
 		    
 		    lbestScore = new JLabel(" Best Score : " + scoreRecord);
 		    lbestScore.setBounds(200, 200, 200, 50);
@@ -72,7 +72,7 @@ public class WelcomeWindow extends JFrame implements ActionListener  {
 		    tPseudo.addActionListener(this);
 		    
 		    //Display of the buttons in the menu
-		    menu.add(lTitle);
+		    menu.add(jTitle);
 		    menu.add(lbestScore);
 		    menu.add(lindications);
 		    menu.add(tPseudo);

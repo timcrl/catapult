@@ -67,8 +67,8 @@ public class Object {
 	}
 	public void gravityAction(){
 
-		this.dy  +=(double)( this.GRAVITY); //so as to get the right number of image per second	
-		this.y += (double)(this.dy*(1.0/60.0)) ;
+		this.dy  +=(double)( this.GRAVITY);
+		this.y += (double)(this.dy*(1.0/60.0)) ;  //so as to get the right number of image per second
 				
 			for (int i = 0;  i < Terrain.getlistMateriaux().size() ; ++i) {
 					
@@ -91,6 +91,11 @@ public class Object {
 							}
 							if (  this.centreX <  Terrain.getlistMateriaux().get(i).centreX -15.0) {
 								this.x= Terrain.getlistMateriaux().get(i).x -  50.0 ;  
+							}
+							else {
+								this.y = Terrain.getlistMateriaux().get(i).y-50.0;
+								this.dy = 0;
+								break;
 							}
 					}
 					
