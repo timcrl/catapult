@@ -83,6 +83,9 @@ public class Fenêtre extends JFrame implements MouseListener, Runnable {
 
 	}
 
+
+  // DOES NOT WORK (I don't know why)
+  // Code inside is never executed. 
   @Override
 	public void mousePressed(MouseEvent e) {
 		// TODO Auto-generated method stub
@@ -91,7 +94,6 @@ public class Fenêtre extends JFrame implements MouseListener, Runnable {
     world.getProj().isDragged(true);
 
 	}
-
 	@Override
 	public void mouseReleased(MouseEvent e) {
     System.out.println("mouse released");
