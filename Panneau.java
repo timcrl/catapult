@@ -8,32 +8,35 @@ public class Panneau extends JPanel implements ActionListener, MouseMotionListen
 
 	private Terrain ter ;
 	private static Projectile proj;
-	private Thrower slingshot;
+	private static Thrower slingshot; // static to match proj, but why?
 	private Cercle c1;
 	private APoint p = new APoint (50,50);
-	
+
 	private double dist ; //for collision here but will be useless soon
 	private double angle = 30.0;
 	private long temps;
 
 
 	public Panneau(Terrain planete){
-		
-		this.ter = planete; 
+
+		this.ter = planete;
 		proj = new Projectile(p,5.0, 5.0, 30.0 ,Color.black );
 		proj.setPosition(10, 10);
 		proj.setSpeed(0,0);
 
 		c1 = new Cercle(new APoint(600,600),15.0,Color.red);
-		
+
 		slingshot = new Thrower(proj, 100, 600);
-		
+
 		this.setLayout(null);
 		addMouseMotionListener(this);
 	}
 
 	public static Projectile getProj() {
 		return proj;
+	}
+	public static Thrower getThrower(){
+		return slingshot;
 	}
 	public static double getGround() {
 		return 700;
@@ -43,7 +46,7 @@ public class Panneau extends JPanel implements ActionListener, MouseMotionListen
 
 	    Image background = ter.picGround ;
 		g.drawImage(background, 0, 0, null);
-					
+
 		/*===================== Objects Display*/
 
 		proj.dessiner(g);
@@ -53,7 +56,7 @@ public class Panneau extends JPanel implements ActionListener, MouseMotionListen
 		//=============Aliens Display====================
 		for (int i = 0; i < Terrain.listEnemies.size(); i++) {
 			Enemy perso1 = Terrain.listEnemies.get(i); //local variable to avoid too much code
-			g.drawImage(perso1.img, (int)perso1.x, (int)perso1.y,this); 
+			g.drawImage(perso1.img, (int)perso1.x, (int)perso1.y,this);
 			perso1.gravityAction();
 			perso1.death();
 		}
@@ -69,7 +72,7 @@ public class Panneau extends JPanel implements ActionListener, MouseMotionListen
 
 		//============CALCUL COLLISION===========
 		//this.collisionDetect(); // Replaced by bounce in the projectile class
-		
+
 		//============ Collision Computation Call===========
 		//this.collisionDetect();
 		//===============
@@ -109,6 +112,7 @@ public class Panneau extends JPanel implements ActionListener, MouseMotionListen
 		// TODO Auto-generated method stub
 		c1 = new Cercle(new APoint(e.getX(),e.getY()),15,Color.red);
 
+
 	}
 
 	//Detect collision between the mouse and the projectile
@@ -116,12 +120,30 @@ public class Panneau extends JPanel implements ActionListener, MouseMotionListen
 	public void mouseMoved(MouseEvent e) {
 		// TODO Auto-generated method stub
 		if(proj.getDistance(e.getX(), e.getY()) <= 15.0) {
-			System.out.println("The mouse has collided");
+			// System.out.println("The mouse has collided");
 			proj.couleur = new Color(50, 50, 50);
 		}
+		if (slingshot.isDragging()){
+			proj.setPosition(e.getX(), e.getY());
+		}
+
 
 	}
-	
+/* // Works only with MouseListener implemented
+	@Override
+	public void mousePressed(MouseEvent e) {
+		// TODO Auto-generated method stub
+		slingshot.setDragging(true);
+
+	}
+	@Override
+	public void mouseReleased(MouseEvent e) {
+		// TODO Auto-generated method stub
+		slingshot.setDragging(false);
+		slingshot.launchProjectile();
+
+	}
+*/
 
 
 	}

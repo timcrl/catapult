@@ -7,6 +7,7 @@ import java.awt.Toolkit;
 public class Thrower{
 
   protected Projectile projectile;
+  protected boolean dragging = true; // Default : false (true for testing)
   protected int x; // x pos of the "centre" of thrower (origin of projectile)
   protected int y; // Same for y
   protected String imagePath=""; // Path of the image to be used, to define
@@ -21,16 +22,30 @@ public class Thrower{
 
     String texture = "./images/slingshot2.png";
     this.img = Toolkit.getDefaultToolkit().getImage(texture);
+
+
+  }
+
+  public void dragProgectile(){
+
+
+  }
+
+  public void setDragging(boolean d){
+    this.dragging = d;
+  }
+  public boolean isDragging(){
+    return this.dragging;
   }
 
   public void launchProjectile(){
-	  
+
     double speed = Math.sqrt( 2*this.force / this.projectile.getMass()); // Obtained With Ek = 1/2 * m * v²
     this.projectile.setSpeed(speed, this.angle);
 
   }
 	public void dessiner ( Graphics g) {
-		
+
 		g.drawImage(this.img, this.x,this.y,null);
 	}
 

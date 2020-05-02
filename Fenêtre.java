@@ -28,11 +28,11 @@ public class Fenêtre extends JFrame implements MouseListener, Runnable {
 	    this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	    this.setLocationRelativeTo(null);
 	    this.setResizable(false);
-		
+
 	    planete = level1;
 	    world = new Panneau(planete);
 		world.setPreferredSize(new Dimension(this.getWidth(),this.getHeight()));
-	    
+
 		// Score Display
 		jScore =  new JLabel() ;
 		jScore.setText("SCORE : ");
@@ -41,8 +41,8 @@ public class Fenêtre extends JFrame implements MouseListener, Runnable {
 		world.add(jScore);
 
 		// Use of thread instead of Timer , with Runnable interface to run only one instance (one loop) for the whole game
-		thread = new Thread(this); // we use it so as to do several operations at the same time 
-		thread.start(); //indicates that our loop is ready to be launched 
+		thread = new Thread(this); // we use it so as to do several operations at the same time
+		thread.start(); //indicates that our loop is ready to be launched
 		temps=0; //Initialization of time
 
 		// Addition of the panel "world" to fenêtre
@@ -50,15 +50,15 @@ public class Fenêtre extends JFrame implements MouseListener, Runnable {
 		this.setVisible(true);
 		addMouseListener(this);
 	}
-	
+
 	public static double getGravityPlanet() {
 		return planete.getGravity();
 	}
-	
+
 	public Panneau getPanel () {
 		return this.world ;
 	}
-	
+
 	public static int getScore() {
 		return scoreNb;
 	}
@@ -68,7 +68,7 @@ public class Fenêtre extends JFrame implements MouseListener, Runnable {
 	public void mouseClicked(MouseEvent e) {
 
 		String s = "| Position de la souris : " + e.getX() +" x et " + e.getY() + " y ";
-		System.out.println(s);
+		 System.out.println(s);
 		repaint();
 	}
 
@@ -83,14 +83,21 @@ public class Fenêtre extends JFrame implements MouseListener, Runnable {
 
 	}
 
-	@Override
+  @Override
 	public void mousePressed(MouseEvent e) {
 		// TODO Auto-generated method stub
+    System.out.println("mouse pressed");
+		world.getThrower().setDragging(true);
+    world.getProj().isDragged(true);
 
 	}
 
 	@Override
 	public void mouseReleased(MouseEvent e) {
+    System.out.println("mouse released");
+    world.getThrower().setDragging(false);
+    world.getProj().isDragged(false);
+    world.getThrower().launchProjectile();
 /*
 		if(e.getX()<= (int)(world.getProj().x+15) && e.getX()>= (int)(world.getProj().x-15) ) {
 			if(e.getY()<= (int)(world.getProj().y+15) && e.getY()>=(int)(world.getProj().y-15)) {
@@ -107,12 +114,12 @@ public class Fenêtre extends JFrame implements MouseListener, Runnable {
 	public void run() {
 
             while(true) {
-            	
-        		System.out.println(world.getBounds(null));
+
+        		// System.out.println(world.getBounds(null));
 
             	//world.getProj().deplaceX(this);
             	//world.getProj().deplaceY(this);
-        		
+
               world.getProj().bounce(world); // Detects edges of terrain
               world.getProj().move();// Moves the projectile
 
@@ -121,14 +128,14 @@ public class Fenêtre extends JFrame implements MouseListener, Runnable {
 				world.getProj().move();// Moves the projectile
 
 				//	world.getProj().setPosition(100, 100);// Test to see drawing
-				
-				
+
+
 				//Update label score
 				scoreNb = Terrain.score ;
-            	jScore.setText("SCORE : " + scoreNb); 
+            	jScore.setText("SCORE : " + scoreNb);
 
             	repaint(); // Redraw elements
-            	
+
             	//Stop the code when there is no more ennemy and will display a window of victory
             	if(Terrain.victory()) {
             		break;
@@ -143,9 +150,9 @@ public class Fenêtre extends JFrame implements MouseListener, Runnable {
             }
 
     }
-	
+
 	public void generateTransition () {
-		
+
 		if(Terrain.victory()) {
 			TransitionWindow transi = new TransitionWindow(this);
 			this.setVisible(false);
