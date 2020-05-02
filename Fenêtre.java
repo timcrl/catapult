@@ -21,7 +21,7 @@ public class Fenêtre extends JFrame implements MouseListener, Runnable {
 	private JLabel jScore ;
 	private Panneau world ;
 
-	public Fenêtre () {
+	public Fenêtre (Terrain  level1) {
 		// Definition of the windows properties
 		super("Catapult's World") ;
 		this.setSize(this.width, this.height);
@@ -29,7 +29,7 @@ public class Fenêtre extends JFrame implements MouseListener, Runnable {
 	    this.setLocationRelativeTo(null);
 	    this.setResizable(false);
 		
-	    planete = new Terrain();
+	    planete = level1;
 	    world = new Panneau(planete);
 		world.setPreferredSize(new Dimension(this.getWidth(),this.getHeight()));
 	    
@@ -48,7 +48,6 @@ public class Fenêtre extends JFrame implements MouseListener, Runnable {
 		// Addition of the panel "world" to fenêtre
 		this.setContentPane(world);
 		this.setVisible(true);
-
 		addMouseListener(this);
 	}
 	
@@ -132,7 +131,7 @@ public class Fenêtre extends JFrame implements MouseListener, Runnable {
             	
             	//Stop the code when there is no more ennemy and will display a window of victory
             	if(Terrain.victory()) {
-            		//break;
+            		break;
             	}
 
 				//Avoid Slow down using the game loop
@@ -143,9 +142,17 @@ public class Fenêtre extends JFrame implements MouseListener, Runnable {
             	}
             }
 
-
-
     }
+	
+	public void generateTransition () {
+		
+		if(Terrain.victory()) {
+			TransitionWindow transi = new TransitionWindow(this);
+			this.setVisible(false);
+			repaint();
+		}
+     }
+
 
 
 

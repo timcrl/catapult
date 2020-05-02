@@ -49,7 +49,7 @@ public class Projectile extends Object{
 	}
 	
 	public void move(){
-		this.dy -= (double)(Fenêtre.getGravityPlanet()*1/30);
+		this.dy -= (double)(Fenêtre.getGravityPlanet()*1/10);
 		this.x += dx;
 		this.y -= dy;
 	}

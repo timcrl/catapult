@@ -44,7 +44,8 @@ public class Terrain {
 		
 		//Fill the list use to display the enemies
 		for(int j=0 ; j <2 ; ++j) {
-			listEnemies.add(arrayOriginalEnemies[j]);
+			//listEnemies.add(arrayOriginalEnemies[j]);
+			listEnemies.add(new Enemy(25.0,600.0,1,1));
 			arrayOriginalEnemies[j] = null;
 
 		}

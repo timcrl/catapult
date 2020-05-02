@@ -12,13 +12,18 @@ public class TransitionWindow extends JFrame implements ActionListener {
 	private JButton bRePlay;
 	private JButton bNextLevel;
 	
-	public TransitionWindow() {
+	private Fenêtre game ; //host the play window
+	private Fenêtre gameAlreadyPlayed;
+	
+	public TransitionWindow(Fenêtre currentGame) {
 		// Definition of the windows properties
 		super("Catapult's World") ;
 		this.setSize(800, 800);
 	    this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	    this.setLocationRelativeTo(null);
 	    this.setResizable(false);
+	    
+	    this.gameAlreadyPlayed = currentGame;
 	    
 	    //Creation of the Background and Menu
 	    transition = new JPanel();
@@ -68,12 +73,23 @@ public class TransitionWindow extends JFrame implements ActionListener {
 	public void actionPerformed(ActionEvent e) {
 		
 		if(e.getSource() == bRePlay) {
-			Fenêtre game = new Fenêtre();
+			game = new Fenêtre(new Terrain());
 		}
 		if(e.getSource()==bNextLevel) {
 			System.out.println("You ask to play the Next Level");
+			
+			if(this.gameAlreadyPlayed== new Fenêtre(new Terrain())) {
+				game = new Fenêtre(new Terrain2());
+			}
+			else if(this.gameAlreadyPlayed== new Fenêtre(new Terrain2())) {
+				game = new Fenêtre(new Terrain3());
+			}
+			else {
+				game = new Fenêtre(new Terrain());
+			}
 		}
 		
+		//this.setVisible(false);
 	}
 
 }

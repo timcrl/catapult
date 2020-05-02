@@ -16,6 +16,8 @@ public class LevelsWindow  extends JFrame implements ActionListener {
 	private JLabel jPicture2;
 	private JLabel jPicture3;
 	
+	private Fenêtre game ;//host the world in the Play Window
+	
 	public LevelsWindow() {
 		// Definition of the windows properties
 		super("Catapult's World") ;
@@ -93,14 +95,18 @@ public class LevelsWindow  extends JFrame implements ActionListener {
 				
 		if(e.getSource() == bLevel1) {
 			System.out.println("You ask to play the Level 1 ");
-			Fenêtre game = new Fenêtre();
+			game = new Fenêtre(new Terrain());
 		}
 		if(e.getSource()==bLevel2) {
 			System.out.println("You ask to play the Level 2 ");
+			game = new Fenêtre(new Terrain2());
 		}
 		if(e.getSource()==bLevel3) {
 			System.out.println("You ask to play the Level 3 ");
+			game = new Fenêtre(new Terrain3());
 		}
+		
+		this.setVisible(false);
 		
 	}
 }

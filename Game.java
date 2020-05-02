@@ -5,14 +5,16 @@ import java.awt.event.*;
 public class Game{
 
 	public static void main(String [] args){
-
-		Fenêtre jeu = new Fenêtre() ;
 		
 		//Just to work with it :
+	   //	Fenêtre jeu = new Fenêtre(new Terrain()) ;
 		
-		//WelcomeWindow accueil = new WelcomeWindow() ;
-		//TransitionWindow transi = new TransitionWindow();
-		//LevelsWindow select = new LevelsWindow();
 		
+		//Will be the real main at the end :
+		
+		WelcomeWindow accueil = new WelcomeWindow() ;
+		
+	
+
 	}
 }

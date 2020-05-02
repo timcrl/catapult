@@ -17,7 +17,8 @@ public class WelcomeWindow extends JFrame implements ActionListener  {
 	
 	private String userName ;
 	private int scoreRecord = 0 ;
-	private Fenêtre jeu ; //open the play window
+	
+	private Fenêtre game ; //open the play window
 	private LevelsWindow selection ; //open the selection window for levels
 	
 		public WelcomeWindow() {
@@ -85,6 +86,7 @@ public class WelcomeWindow extends JFrame implements ActionListener  {
 			
 			this.setVisible(true);
 		}
+		
 		public int returnBestScore() {
 			
 			if(scoreRecord <= Fenêtre.getScore()) {
@@ -92,8 +94,9 @@ public class WelcomeWindow extends JFrame implements ActionListener  {
 			}
 			return scoreRecord;
 		}
+		
 		public Fenêtre returnGameWindow() {
-			return jeu;
+			return game;
 		}
 
 		public void paintComponent(Graphics g){
@@ -107,7 +110,7 @@ public class WelcomeWindow extends JFrame implements ActionListener  {
 					
 					if (e.getSource()== bPlay) {
 						System.out.println("Let's start the game");
-						jeu = new Fenêtre();
+						game = new Fenêtre(new Terrain());
 						this.setVisible(false); //close the welcomewindow
 					}
 					if (e.getSource()== bLevels) {
