@@ -4,7 +4,6 @@ import java.awt.Toolkit;
 
 public class Object {
 
-  protected final double GRAVITY = 9.8 ;
   protected double mass ;
   protected double x;
   protected double y;
@@ -26,7 +25,6 @@ public class Object {
   }
 
   public  void dessiner ( Graphics g) {
-
   }
 
   public void setPosition(double x, double y){
@@ -47,7 +45,7 @@ public class Object {
 
   public double force () {
 	  double f = 0.0;
-	  f = this.mass *this.GRAVITY ; // F = m*a
+	  f = this.mass *Fenêtre.getGravityPlanet() ; // F = m*a
 	  return f;
   }
 
@@ -67,8 +65,8 @@ public class Object {
 	}
 	public void gravityAction(){
 
-		this.dy  +=(double)( this.GRAVITY);
-		this.y += (double)(this.dy*(1.0/60.0)) ;  //so as to get the right number of image per second
+		this.dy  +=(double)( Fenêtre.getGravityPlanet());
+		this.y += (double)(this.dy*(1.0/30.0)) ;  //so as to get the right number of image per second
 				
 			for (int i = 0;  i < Terrain.getlistMateriaux().size() ; ++i) {
 					

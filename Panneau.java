@@ -7,7 +7,6 @@ import javax.swing.text.html.parser.Element;
 public class Panneau extends JPanel implements ActionListener, MouseMotionListener {
 
 	private Terrain ter ;
-	private final double GRAVITY = 2.0 ;
 	private static Projectile proj;
 	private Thrower slingshot;
 	private Cercle c1;
@@ -22,8 +21,8 @@ public class Panneau extends JPanel implements ActionListener, MouseMotionListen
 		
 		this.ter = planete; 
 		proj = new Projectile(p,5.0, 5.0, 30.0 ,Color.black );
-		proj.setPosition(100, 300);
-		proj.setSpeed(0, 0);
+		proj.setPosition(10, 10);
+		proj.setSpeed(10,10);
 
 		c1 = new Cercle(new APoint(600,600),15.0,Color.red);
 		

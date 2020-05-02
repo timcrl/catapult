@@ -6,6 +6,8 @@ import java.util.LinkedList;
 public class Terrain {
 	
 	public Image picGround = Toolkit.getDefaultToolkit().getImage("./images/GroundWorld/ground_earth.png");
+	protected double GRAVITY ;
+	
 	static LinkedList <Matériaux> listMaterials = new LinkedList<Matériaux>();
 	static LinkedList <Enemy> listEnemies = new LinkedList<Enemy>();
 	
@@ -17,6 +19,7 @@ public class Terrain {
 	
 	public Terrain() {
 		
+		this.GRAVITY = 9.8 ;
 		this.arrayOriginalMaterial = new Matériaux [5];
 		this.arrayOriginalEnemies = new Enemy [2];
 		
@@ -53,6 +56,9 @@ public class Terrain {
 	}
 	public static LinkedList<Matériaux>  getlistMateriaux() {
 		return listMaterials ;
+	}
+	public double getGravity() {
+		return this.GRAVITY;
 	}
 	
 	public static boolean victory() {

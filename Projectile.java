@@ -10,7 +10,6 @@ public class Projectile extends Object{
 	
 	protected Color couleur;
 	protected double angle ;
-	protected final double GRAVITY = 0.3; // original value 9.8
 	protected long t;
 	private double radius = 15.0 ;
 
@@ -42,76 +41,15 @@ public class Projectile extends Object{
 	}
 
 	public void dessiner ( Graphics g) {
-		/*   // Pour dessiner un cercle
-        g.setColor(this.couleur);
-        g.fillOval((int)(this.x),(int)(this.y),(int)(2*rayon),(int)(2*rayon));
-		*/
-
 		g.drawImage(this.img, (int)(this.x),(int)(this.y),null);
 	}
 
 	public double getRayon() {
 		return this.radius;
 	}
-
-	//Pythagorean method to compute the distance and collision
-
-	//équations horaires du déplacement du projectile
-	public void action (long temps) {
-		this.t = temps;
-
-		this.x = (double)((this.dx)*(Math.cos(angle)*t)) ;
-		/*this.y = (double)((-(this.GRAVITY/(2*(Math.pow(this.dy, 2))*(Math.pow(Math.cos(this.a),2))))
-				*(Math.pow(this.dx, 2)*(Math.tan(this.a))*this.dx)));
-		*/
-		this.y = (double)((-(GRAVITY/2)*(Math.pow(t, 2)))+(this.dx)*((Math.sin(angle))*t));
-
-	}
-
-	//==========================
-	//méthodes pour essayer de travailler avec la collision sans équations horaires
-	public void deplaceX (Fenêtre fenêtre) {
-
-		boolean backX = false;
-
-    	if (backX) {
-    		dx = -dx;
-    	}
-    	//System.out.println(deltaX);
-
-    	if(this.x > fenêtre.getWidth()) {
-			this.x = this.x+ dx ;
-			backX = true;
- 		}else if (this.x+dx <= 50 ){
- 			backX = false;
- 			this.x = this.x + dx ;
- 		}else {
- 			this.x = this.x + dx ;
- 		}
-    	//System.out.println("cercle deplace");
-	}
-	public void deplaceY (Fenêtre fenêtre) {
-
-		boolean backY = false;
-
-    	if (backY) {
-    		dy= -dy;
-    	}
-    	//System.out.println(deltaX);
-
-    	if(this.y > fenêtre.getHeight()) {
-			this.y = this.y+ dy ;
-			backY = true;
- 		}else if (this.y+dy <= 50 ){
- 			backY = false;
- 			this.y = this.y + dy ;
- 		}else {
- 			this.y = this.y+ dy ;
- 		}
-    	//System.out.println("cercle deplace");
-	}
+	
 	public void move(){
-		this.dy -= GRAVITY;
+		this.dy -= (double)(Fenêtre.getGravityPlanet()*1/30);
 		this.x += dx;
 		this.y -= dy;
 	}
@@ -119,14 +57,13 @@ public class Projectile extends Object{
 	// To stop the ball when it hits an edge and bounce on the bottom
 	public void bounce(Panneau pan){
 		
-	
-		int h = (int)Panneau.getGround() ;
+		int h = (int)Panneau.getGround() ; //700
 		int w = 1000 ;
 
 		if (this.y < h){ // Ground
 			this.dy = -(this.dy*0.8); // bounce with 80% of initial speed
 			System.out.println("collision of proj with GROUND with x="+this.x+" and y="+this.y);  //Debug print
-			System.out.println(w +" x "+h);
+			
 			if(this.y > h + this.radius) { //Avoid the projectile to go anywhere, ends its displacement
 				this.dy = -(this.dy*0.8); // bounce with 80% of initial speed
 				this.dx = 0.5 * this.dx ;
@@ -192,6 +129,65 @@ public class Projectile extends Object{
 		// TODO Auto-generated method stub
 		return 1;
 	}
+	
+	/*=================UNUSED CODE NOW
+	 
+ 	//Pythagorean method to compute the distance and collision
+	//équations horaires du déplacement du projectile UNUSED 
+	
+		public void action (long temps) {
+			this.t = temps;
+
+			this.x = (double)((this.dx)*(Math.cos(angle)*t)) ;
+			//this.y = (double)((-(this.GRAVITY/(2*(Math.pow(this.dy, 2))*(Math.pow(Math.cos(this.a),2))))*(Math.pow(this.dx, 2)*(Math.tan(this.a))*this.dx)));	
+			this.y = (double)((-(Fenêtre.getGravityPlanet()/2)*(Math.pow(t, 2)))+(this.dx)*((Math.sin(angle))*t));
+
+		}
+		
+		//méthodes pour essayer de travailler avec la collision sans équations horaires
+		public void deplaceX (Fenêtre fenêtre) {
+
+			boolean backX = false;
+
+	    	if (backX) {
+	    		dx = -dx;
+	    	}
+	    	//System.out.println(deltaX);
+
+	    	if(this.x > fenêtre.getWidth()) {
+				this.x = this.x+ dx ;
+				backX = true;
+	 		}else if (this.x+dx <= 50 ){
+	 			backX = false;
+	 			this.x = this.x + dx ;
+	 		}else {
+	 			this.x = this.x + dx ;
+	 		}
+	    	//System.out.println("cercle deplace");
+		}
+		public void deplaceY (Fenêtre fenêtre) {
+
+			boolean backY = false;
+
+	    	if (backY) {
+	    		dy= -dy;
+	    	}
+	    	//System.out.println(deltaX);
+
+	    	if(this.y > fenêtre.getHeight()) {
+				this.y = this.y+ dy ;
+				backY = true;
+	 		}else if (this.y+dy <= 50 ){
+	 			backY = false;
+	 			this.y = this.y + dy ;
+	 		}else {
+	 			this.y = this.y+ dy ;
+	 		}
+	    	//System.out.println("cercle deplace");
+		}
+		*/
+
+	
 
 
 }

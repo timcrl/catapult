@@ -17,7 +17,7 @@ public class Fenêtre extends JFrame implements MouseListener, Runnable {
 	Thread thread ;
 
 	private static int scoreNb ;
-	private Terrain planete ;
+	private static Terrain planete ;
 	private JLabel jScore ;
 	private Panneau world ;
 
@@ -29,8 +29,8 @@ public class Fenêtre extends JFrame implements MouseListener, Runnable {
 	    this.setLocationRelativeTo(null);
 	    this.setResizable(false);
 		
-	    this.planete = new Terrain3();
-	    world = new Panneau(this.planete);
+	    planete = new Terrain();
+	    world = new Panneau(planete);
 		world.setPreferredSize(new Dimension(this.getWidth(),this.getHeight()));
 	    
 		// Score Display
@@ -51,18 +51,15 @@ public class Fenêtre extends JFrame implements MouseListener, Runnable {
 
 		addMouseListener(this);
 	}
-
-	public int getWidth(){
-		return this.width;
+	
+	public static double getGravityPlanet() {
+		return planete.getGravity();
 	}
-
-	public int getHeight(){
-		return this.height;
-	}
-
+	
 	public Panneau getPanel () {
 		return this.world ;
 	}
+	
 	public static int getScore() {
 		return scoreNb;
 	}
@@ -116,6 +113,7 @@ public class Fenêtre extends JFrame implements MouseListener, Runnable {
 
             	//world.getProj().deplaceX(this);
             	//world.getProj().deplaceY(this);
+        		
               world.getProj().bounce(world); // Detects edges of terrain
               world.getProj().move();// Moves the projectile
 
