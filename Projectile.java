@@ -35,9 +35,14 @@ public class Projectile extends Object{
 		this.y = y;
 	}
 
-	public void setSpeed(double speed,double angle){
+	public void setPolarSpeed(double speed,double angle){
 		this.dx = speed*Math.cos(angle);
 		this.dy = speed*Math.sin(angle);
+
+	}
+	public void setSpeed(double speedX,double speedY){
+		this.dx = speedX;
+		this.dy = speedY;
 
 	}
 

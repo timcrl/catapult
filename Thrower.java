@@ -10,9 +10,10 @@ public class Thrower{
   protected boolean dragging = true; // Default : false (true for testing)
   protected int x; // x pos of the "centre" of thrower (origin of projectile)
   protected int y; // Same for y
+  protected double mouseX; // X coordinate of the pointer (used only when projectile launched)
+  protected double mouseY; // Same for Y
   protected String imagePath=""; // Path of the image to be used, to define
-  protected double angle; // angle with ground with which projectile is thrown
-  protected double force; // Force that the thrower applies projectile
+  protected double forceCoefficient; // Force that the thrower applies projectile per unit distance
   protected Image img ;
 
   public Thrower(Projectile proj, int posx, int posy){
@@ -26,22 +27,22 @@ public class Thrower{
 
   }
 
-  public void dragProgectile(){
-
-
+  public void setMousePosition(double x, double y){
+      this.mouseX = x;
+      this.mouseY = y;
   }
 
-  public void setDragging(boolean d){
+  public void setDragging(boolean d){ // Setter for dragging
     this.dragging = d;
   }
-  public boolean isDragging(){
+  public boolean isDragging(){ // Getter for dragging
     return this.dragging;
   }
 
   public void launchProjectile(){
 
-    double speed = Math.sqrt( 2*this.force / this.projectile.getMass()); // Obtained With Ek = 1/2 * m * v²
-    this.projectile.setSpeed(speed, this.angle);
+    double speedCoefficient = Math.sqrt( 2*this.forceCoefficient / this.projectile.getMass()); // Obtained With Ek = 1/2 * m * v²
+    this.projectile.setSpeed((this.x-this.mouseX)*speedCoefficient, (this.y-this.mouseY)*speedCoefficient);
 
   }
 	public void dessiner ( Graphics g) {

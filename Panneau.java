@@ -121,6 +121,7 @@ public class Panneau extends JPanel implements  MouseMotionListener {
 		}
 		if (slingshot.isDragging()){
 			proj.setPosition(e.getX(), e.getY());
+			slingshot.setMousePosition(e.getX(), e.getY());
 		}
 
 
