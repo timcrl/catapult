@@ -12,10 +12,12 @@ public class TransitionWindow extends JFrame implements ActionListener {
 	private JButton bRePlay;
 	private JButton bNextLevel;
 	
-	private Fenêtre game ; //host the play window
+	private Fenêtre game ; //host the next play window
 	private Fenêtre gameAlreadyPlayed;
+	private int levelGameAlrPlayed ; // will keep track of the level value
 	
 	public TransitionWindow(Fenêtre currentGame) {
+		
 		// Definition of the windows properties
 		super("Catapult's World") ;
 		this.setSize(800, 800);
@@ -23,7 +25,9 @@ public class TransitionWindow extends JFrame implements ActionListener {
 	    this.setLocationRelativeTo(null);
 	    this.setResizable(false);
 	    
+	    //we get the past game and its level
 	    this.gameAlreadyPlayed = currentGame;
+	    this.levelGameAlrPlayed = this.gameAlreadyPlayed.getWorld().getLevelNumber(); 
 	    
 	    //Creation of the Background and Menu
 	    transition = new JPanel();
@@ -66,7 +70,7 @@ public class TransitionWindow extends JFrame implements ActionListener {
 	    jBackGround.add(bRePlay);
 	    
 	    this.setContentPane(transition);
-	    this.setVisible(true); //appear only for a transition so will be false
+	    this.setVisible(true); 
 	}
 
 	@Override
@@ -75,21 +79,24 @@ public class TransitionWindow extends JFrame implements ActionListener {
 		if(e.getSource() == bRePlay) {
 			game = new Fenêtre(new Terrain());
 		}
-		if(e.getSource()==bNextLevel) {
+		if(e.getSource()== bNextLevel) {
 			System.out.println("You ask to play the Next Level");
 			
-			if(this.gameAlreadyPlayed== new Fenêtre(new Terrain())) {
+			//We check which level has been played just before
+			if(this.levelGameAlrPlayed ==1) {
 				game = new Fenêtre(new Terrain2());
 			}
-			else if(this.gameAlreadyPlayed== new Fenêtre(new Terrain2())) {
+			if(this.levelGameAlrPlayed == 2) {
 				game = new Fenêtre(new Terrain3());
 			}
-			else {
+			if(this.levelGameAlrPlayed == 3) {
 				game = new Fenêtre(new Terrain());
 			}
 		}
 		
-		//this.setVisible(false);
+		//We close the transition window
+		this.setVisible(false);
+		this.dispose();
 	}
 
 }

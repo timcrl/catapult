@@ -20,6 +20,8 @@ public class Fenêtre extends JFrame implements MouseListener, Runnable {
 	private static Terrain planete ;
 	private JLabel jScore ;
 	private Panneau world ;
+	
+	private TransitionWindow transi;
 
 	public Fenêtre (Terrain  level1) {
 		// Definition of the windows properties
@@ -55,8 +57,8 @@ public class Fenêtre extends JFrame implements MouseListener, Runnable {
 		return planete.getGravity();
 	}
 
-	public Panneau getPanel () {
-		return this.world ;
+	public Terrain getWorld () {
+		return this.planete ;
 	}
 
 	public static int getScore() {
@@ -83,23 +85,24 @@ public class Fenêtre extends JFrame implements MouseListener, Runnable {
 
 	}
 
-
   // DOES NOT WORK (I don't know why)
   // Code inside is never executed. 
   @Override
 	public void mousePressed(MouseEvent e) {
 		// TODO Auto-generated method stub
     System.out.println("mouse pressed");
-		world.getThrower().setDragging(true);
+	world.getThrower().setDragging(true);
     world.getProj().isDragged(true);
 
 	}
 	@Override
 	public void mouseReleased(MouseEvent e) {
+		
     System.out.println("mouse released");
     world.getThrower().setDragging(false);
     world.getProj().isDragged(false);
     world.getThrower().launchProjectile();
+    
 /*
 		if(e.getX()<= (int)(world.getProj().x+15) && e.getX()>= (int)(world.getProj().x-15) ) {
 			if(e.getY()<= (int)(world.getProj().y+15) && e.getY()>=(int)(world.getProj().y-15)) {
@@ -119,29 +122,25 @@ public class Fenêtre extends JFrame implements MouseListener, Runnable {
 
         		// System.out.println(world.getBounds(null));
 
-            	//world.getProj().deplaceX(this);
-            	//world.getProj().deplaceY(this);
-
               world.getProj().bounce(world); // Detects edges of terrain
               world.getProj().move();// Moves the projectile
 
-						//	world.getProj().setPosition(100, 100);// Test to see drawing
-            	world.getProj().bounce(world); // Detects edges of terrain
-				world.getProj().move();// Moves the projectile
-
 				//	world.getProj().setPosition(100, 100);// Test to see drawing
-
 
 				//Update label score
 				scoreNb = Terrain.score ;
             	jScore.setText("SCORE : " + scoreNb);
 
             	repaint(); // Redraw elements
-
-            	//Stop the code when there is no more ennemy and will display a window of victory
-            	if(Terrain.victory()) {
-            		break;
-            	}
+            	
+            	//Stops the game when the winning condition is fulfilled and closes the GameWindow to open the TransitionWindow
+        		if(Terrain.victory() && scoreNb != 0 ) {
+        			System.out.println("You have won !");
+        			transi = new TransitionWindow(this);
+        			this.setVisible(false);
+        			this.dispose();	
+        			break;
+        		}
 
 				//Avoid Slow down using the game loop
             	try {
@@ -153,14 +152,6 @@ public class Fenêtre extends JFrame implements MouseListener, Runnable {
 
     }
 
-	public void generateTransition () {
-
-		if(Terrain.victory()) {
-			TransitionWindow transi = new TransitionWindow(this);
-			this.setVisible(false);
-			repaint();
-		}
-     }
 
 
 

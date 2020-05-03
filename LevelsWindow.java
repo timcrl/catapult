@@ -106,7 +106,9 @@ public class LevelsWindow  extends JFrame implements ActionListener {
 			game = new Fenêtre(new Terrain3());
 		}
 		
+		//We close the LevelSelectionWindow
 		this.setVisible(false);
+		this.dispose();
 		
 	}
 }

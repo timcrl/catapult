@@ -11,10 +11,7 @@ public class Game{
 		
 		
 		//Will be the real main at the end :
-		
 		WelcomeWindow accueil = new WelcomeWindow() ;
-		
-	
 
 	}
 }

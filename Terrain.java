@@ -16,10 +16,17 @@ public class Terrain {
 	protected Enemy [] arrayOriginalEnemies;
 	
 	protected static int score ;
+	protected  int level ; // will tell the current level played for the other classes
 	
 	public Terrain() {
 		
 		this.GRAVITY = 9.8 ;
+		this.level = 1 ;
+		
+		//To remove all blocks from before (if a game is replayed for instance) (like emptying the cache)
+		listEnemies.clear();
+		listMaterials.clear();
+		
 		this.arrayOriginalMaterial = new Matériaux [5];
 		this.arrayOriginalEnemies = new Enemy [2];
 		
@@ -44,8 +51,7 @@ public class Terrain {
 		
 		//Fill the list use to display the enemies
 		for(int j=0 ; j <2 ; ++j) {
-			//listEnemies.add(arrayOriginalEnemies[j]);
-			listEnemies.add(new Enemy(25.0,600.0,1,1));
+			listEnemies.add(arrayOriginalEnemies[j]);
 			arrayOriginalEnemies[j] = null;
 
 		}
@@ -61,13 +67,15 @@ public class Terrain {
 	public double getGravity() {
 		return this.GRAVITY;
 	}
+	public int getLevelNumber() {
+		return this.level;
+	}
 	
 	public static boolean victory() {
 		boolean vic = false ;
 		
 		if(listEnemies.isEmpty()) {
 			vic = true;
-			System.out.println("You have won !");
 		}
 		return vic;
 	}

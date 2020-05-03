@@ -111,12 +111,16 @@ public class WelcomeWindow extends JFrame implements ActionListener  {
 					if (e.getSource()== bPlay) {
 						System.out.println("Let's start the game");
 						game = new Fenêtre(new Terrain());
-						this.setVisible(false); //close the welcomewindow
+						
+						this.setVisible(false); //We close the WelcomeWindow
+						this.dispose();
 					}
 					if (e.getSource()== bLevels) {
 						System.out.println("You can choose your level"); //enable the selection of the level
 						selection = new LevelsWindow();
-						this.setVisible(false);
+						
+						this.setVisible(false);  //We close the WelcomeWindow
+						this.dispose();
 					}
 				 }
 				else {

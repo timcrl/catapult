@@ -4,7 +4,7 @@ import java.awt.*;
 import javax.swing.*;
 import javax.swing.text.html.parser.Element;
 
-public class Panneau extends JPanel implements ActionListener, MouseMotionListener {
+public class Panneau extends JPanel implements  MouseMotionListener {
 
 	private Terrain ter ;
 	private static Projectile proj;
@@ -99,10 +99,6 @@ public class Panneau extends JPanel implements ActionListener, MouseMotionListen
 		if(proj.y - proj.getRayon() <= 0 || proj.y + proj.getRayon() >= (this.getHeight()-this.getGround()*this.getHeight()) ) {
 			proj.dy = - proj.dy ;
 		}
-
-	}
-
-	public void actionPerformed(ActionEvent e){
 
 	}
 
