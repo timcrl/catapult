@@ -4,12 +4,11 @@ import java.awt.*;
 import javax.swing.*;
 import javax.swing.text.html.parser.Element;
 
-public class Panneau extends JPanel implements  MouseMotionListener {
+public class GamePanel extends JPanel implements  MouseMotionListener {
 
 	private Terrain ter ;
 	private static Projectile proj;
-	private static Thrower slingshot; // static to match proj, but why?
-	private Cercle c1;
+	private Thrower slingshot;
 	private APoint p = new APoint (50,50);
 
 	private double dist ; //for collision here but will be useless soon
@@ -17,16 +16,14 @@ public class Panneau extends JPanel implements  MouseMotionListener {
 	private long temps;
 
 
-	public Panneau(Terrain planete){
+	public GamePanel(Terrain planete){
 
 		this.ter = planete;
 		proj = new Projectile(p,5.0, 5.0, 30.0 ,Color.black );
 		proj.setPosition(10, 10);
 		proj.setSpeed(0,0);
 
-		c1 = new Cercle(new APoint(600,600),15.0,Color.red);
-
-		slingshot = new Thrower(proj, 100, 600);
+		slingshot = new Thrower(proj, 100, 600); // set the thrower in the panel
 
 		this.setLayout(null);
 		addMouseMotionListener(this);
@@ -35,7 +32,7 @@ public class Panneau extends JPanel implements  MouseMotionListener {
 	public static Projectile getProj() {
 		return proj;
 	}
-	public static Thrower getThrower(){
+	public Thrower getThrower(){
 		return slingshot;
 	}
 	public static double getGround() {
@@ -51,8 +48,7 @@ public class Panneau extends JPanel implements  MouseMotionListener {
 
 		proj.dessiner(g);
 		slingshot.dessiner(g);
-		//c1.dessine(g);
-
+		
 		//=============Aliens Display====================
 		for (int i = 0; i < Terrain.listEnemies.size(); i++) {
 			Enemy perso1 = Terrain.listEnemies.get(i); //local variable to avoid too much code
@@ -80,8 +76,9 @@ public class Panneau extends JPanel implements  MouseMotionListener {
 
 		}
 
-	//============CALCUL COLLISION=========== (juste changement de couleur pour l'instant et disparition case)
+	//============CALCUL COLLISION=========== 
 	 // Bouncer from Seb, Disabled by Tim (no offence xD)
+	/*
 	public void collisionDetect() {
 
 		dist = proj.getDistance(c1.centre.x, c1.centre.y);
@@ -101,12 +98,13 @@ public class Panneau extends JPanel implements  MouseMotionListener {
 		}
 
 	}
+	*/
 
 	//To drag the red cercle
 	@Override
 	public void mouseDragged(MouseEvent e) {
 		// TODO Auto-generated method stub
-		c1 = new Cercle(new APoint(e.getX(),e.getY()),15,Color.red);
+	   //	c1 = new Cercle(new APoint(e.getX(),e.getY()),15,Color.red);
 
 
 	}

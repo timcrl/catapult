@@ -17,10 +17,10 @@ public class Projectile extends Object{
 
 	public Projectile (APoint p ,double dX, double dY, double angle1 ,Color c) {
 		super();
-		this.x= p.x; //position initiale en x
-		this.y= p.y; //position initiale en y
-		this.dx= dX; //vitesse initiale en x
-		this.dy= dY; //vitesse initiale en y
+		this.x= p.x; // initial position in  x
+		this.y= p.y; // initial position in  y
+		this.dx= dX;  // initial speed  in  x
+		this.dy= dY;  // initial speed  in  y
 		this.angle = angle1;
 		this.couleur = c;
 
@@ -40,6 +40,7 @@ public class Projectile extends Object{
 		this.dy = speed*Math.sin(angle);
 
 	}
+	
 	public void setSpeed(double speedX,double speedY){
 		this.dx = speedX;
 		this.dy = speedY;
@@ -60,7 +61,7 @@ public class Projectile extends Object{
 
 	public void move(){
 		if(!this.dragged){ // Does not attempt to move if dragged
-			this.dy -= (double)(Fenêtre.getGravityPlanet()*1/10);
+			this.dy -= (double)(GameWindow.getGravityPlanet()*1/10);
 			this.x += dx;
 			this.y -= dy;
 		}
@@ -68,9 +69,9 @@ public class Projectile extends Object{
 	}
 
 	// To stop the ball when it hits an edge and bounce on the bottom
-	public void bounce(Panneau pan){
+	public void bounce(GamePanel pan){
 
-		int h = (int)Panneau.getGround() ; //700
+		int h = (int)GamePanel.getGround() ; //700
 		int w = 1000 ;
 
 		if (this.y < h){ // Ground

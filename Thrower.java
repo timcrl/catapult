@@ -16,9 +16,9 @@ public class Thrower{
   protected double forceCoefficient; // Force that the thrower applies projectile per unit distance
   protected Image img ;
 
-  public Thrower(Projectile proj, int posx, int posy){
-    this.x = posx;
-    this.y = posy;
+  public Thrower(Projectile proj, int posX, int posY){
+    this.x = posX;
+    this.y = posY;
     this.projectile = proj;
 
     String texture = "./images/slingshot2.png";

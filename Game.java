@@ -7,7 +7,7 @@ public class Game{
 	public static void main(String [] args){
 		
 		//Just to work with it :
-	   //	Fenêtre jeu = new Fenêtre(new Terrain()) ;
+	   	GameWindow  jeu = new GameWindow(new Terrain()) ;
 		
 		
 		//Will be the real main at the end :

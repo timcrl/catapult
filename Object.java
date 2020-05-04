@@ -4,18 +4,19 @@ import java.awt.Toolkit;
 
 public class Object {
 
-  protected double mass ;
-  protected double x;
+  protected double x; // x and y position of the objects
   protected double y;
-  protected double dx ;
+  protected double dx ; // x and y velocity of the objects
   protected double dy ;
 
   protected double centreX;
   protected double centreY;
 
+  protected double mass ;
   protected int life ;
+  
   protected Image img ;
-  protected int scoreValor;
+  protected int scoreValor; // value to credit the score when the object is destroyed
   protected String texture ;
 
 
@@ -45,7 +46,7 @@ public class Object {
 
   public double force () {
 	  double f = 0.0;
-	  f = this.mass *Fenêtre.getGravityPlanet() ; // F = m*a
+	  f = this.mass *GameWindow.getGravityPlanet() ; // F = m*a
 	  return f;
   }
 
@@ -54,29 +55,29 @@ public class Object {
 		double yDist = y1-this.y;
 
 		return Math.sqrt((Math.pow(xDist, 2)+Math.pow(yDist, 2)));
-
 	}
+	
 	public double getDistanceY (double y1) {
 
 		double yDist = y1 - this.y;
 
 		return yDist;
-
 	}
+	
 	public void gravityAction(){
 
-		this.dy  +=(double)( Fenêtre.getGravityPlanet());
-		this.y += (double)(this.dy*(1.0/30.0)) ;  //so as to get the right number of image per second
+		this.dy  +=(double)( GameWindow.getGravityPlanet());
+		this.y += (double)(this.dy*(1.0/30.0)) ;  //so as to get the right number of image per second (should be *1/60)
 				
 			for (int i = 0;  i < Terrain.getlistMateriaux().size() ; ++i) {
 					
 					if(this != Terrain.getlistMateriaux().get(i) &&  this.x == Terrain.getlistMateriaux().get(i).x && this.getDistance(Terrain.getlistMateriaux().get(i).x,Terrain.getlistMateriaux().get(i).y) <= 50.0 ){
-						this.y = Terrain.getlistMateriaux().get(i).y-50.0;
+						this.y = Terrain.getlistMateriaux().get(i).y-50.0; // position the block above another block
 						this.dy = 0;
 						break;
 					}
-					if (this.y + 50.0 > Panneau.getGround() ) {
-						this.y = Panneau.getGround() - 50.0;
+					if (this.y + 50.0 > GamePanel.getGround() ) {
+						this.y = GamePanel.getGround() - 50.0; //position the block above the ground
 						this.dy = 0;
 						break;
 					}
@@ -85,18 +86,17 @@ public class Object {
 					
 					if(this != Terrain.getlistMateriaux().get(i) &&  this.x != Terrain.getlistMateriaux().get(i).x &&  this.getDistance(Terrain.getlistMateriaux().get(i).x,Terrain.getlistMateriaux().get(i).y) <= 50.0 ){
 							if ( this.centreX >  Terrain.getlistMateriaux().get(i).centreX +15.0) {
-								this.x= Terrain.getlistMateriaux().get(i).x + 50.0 ;  
+								this.x= Terrain.getlistMateriaux().get(i).x + 50.0 ;  // moves to the right the block if it is on the right edge
 							}
 							if (  this.centreX <  Terrain.getlistMateriaux().get(i).centreX -15.0) {
-								this.x= Terrain.getlistMateriaux().get(i).x -  50.0 ;  
+								this.x= Terrain.getlistMateriaux().get(i).x -  50.0 ;  //moves to the left the block if it is on the left edge
 							}
 							else {
-								this.y = Terrain.getlistMateriaux().get(i).y-50.0;
+								this.y = Terrain.getlistMateriaux().get(i).y-50.0;  //only fix the block above if its center of mass is stable
 								this.dy = 0;
 								break;
 							}
 					}
-					
 			
 			}
 				

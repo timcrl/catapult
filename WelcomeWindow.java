@@ -18,7 +18,7 @@ public class WelcomeWindow extends JFrame implements ActionListener  {
 	private String userName ;
 	private int scoreRecord = 0 ;
 	
-	private Fenêtre game ; //open the play window
+	private GameWindow game ; //open the window containing the game
 	private LevelsWindow selection ; //open the selection window for levels
 	
 		public WelcomeWindow() {
@@ -44,7 +44,7 @@ public class WelcomeWindow extends JFrame implements ActionListener  {
 		    menu.setOpaque(false);
 		    menu.setLayout(null);
 		     
-		    //Configurations of the Buttons and JLabels and Text
+		    //Configurations of the  JLabels and Text
 		    jTitle = new JLabel("WELCOME TO CATAPULT'S WORLD");
 		    jTitle.setBounds(15, 100, 500 , 100);
 		    jTitle.setFont(new Font("TITLE", Font.BOLD,25));
@@ -58,6 +58,7 @@ public class WelcomeWindow extends JFrame implements ActionListener  {
 		    tPseudo = new JTextField();
 		    tPseudo.setBounds(150, 330, 200, 50);
 		    
+		    //Configurations of the Buttons 
 			bPlay = new JButton("PLAY");
 		    bPlay.setBounds(300, 450, 125, 50);
 		    bPlay.setBackground(new Color(190, 0, 0));
@@ -83,19 +84,18 @@ public class WelcomeWindow extends JFrame implements ActionListener  {
 			// Addition of the panel "welcome" and "menu"  to WelcomeWindow	  
 			this.setContentPane(welcome);
 			myImage.add(menu);
-			
 			this.setVisible(true);
 		}
 		
 		public int returnBestScore() {
 			
-			if(scoreRecord <= Fenêtre.getScore()) {
-				scoreRecord = Fenêtre.getScore();
+			if(scoreRecord <= GameWindow.getScore()) {
+				scoreRecord = GameWindow.getScore();
 			}
 			return scoreRecord;
 		}
 		
-		public Fenêtre returnGameWindow() {
+		public GameWindow returnGameWindow() {
 			return game;
 		}
 
@@ -110,7 +110,7 @@ public class WelcomeWindow extends JFrame implements ActionListener  {
 					
 					if (e.getSource()== bPlay) {
 						System.out.println("Let's start the game");
-						game = new Fenêtre(new Terrain());
+						game = new GameWindow(new Terrain());
 						
 						this.setVisible(false); //We close the WelcomeWindow
 						this.dispose();
@@ -119,8 +119,9 @@ public class WelcomeWindow extends JFrame implements ActionListener  {
 						System.out.println("You can choose your level"); //enable the selection of the level
 						selection = new LevelsWindow();
 						
-						this.setVisible(false);  //We close the WelcomeWindow
-						this.dispose();
+						//We close the WelcomeWindow
+						this.setVisible(false);  
+						this.dispose(); 
 					}
 				 }
 				else {

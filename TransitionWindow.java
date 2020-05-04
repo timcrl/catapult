@@ -12,11 +12,11 @@ public class TransitionWindow extends JFrame implements ActionListener {
 	private JButton bRePlay;
 	private JButton bNextLevel;
 	
-	private Fenêtre game ; //host the next play window
-	private Fenêtre gameAlreadyPlayed;
+	private GameWindow game ; //host the next play window
+	private GameWindow gameAlreadyPlayed;
 	private int levelGameAlrPlayed ; // will keep track of the level value
 	
-	public TransitionWindow(Fenêtre currentGame) {
+	public TransitionWindow(GameWindow currentGame) {
 		
 		// Definition of the windows properties
 		super("Catapult's World") ;
@@ -44,7 +44,7 @@ public class TransitionWindow extends JFrame implements ActionListener {
 	    lTitle.setBounds(300, 250, 200 , 100);
 	    lTitle.setFont(new Font("TITLE", Font.BOLD,40));
 	    
-	    lScore = new JLabel(" Your Score : " + Fenêtre.getScore());
+	    lScore = new JLabel(" Your Score : " + GameWindow.getScore());
 	    lScore.setBounds(290, 375, 300, 100);
 	    lScore.setBackground(new Color(190, 0, 0));
 	    lScore.setFont(new Font("TITLE", Font.BOLD,20));
@@ -77,20 +77,20 @@ public class TransitionWindow extends JFrame implements ActionListener {
 	public void actionPerformed(ActionEvent e) {
 		
 		if(e.getSource() == bRePlay) {
-			game = new Fenêtre(new Terrain());
+			game = new GameWindow(new Terrain());
 		}
 		if(e.getSource()== bNextLevel) {
 			System.out.println("You ask to play the Next Level");
 			
 			//We check which level has been played just before
 			if(this.levelGameAlrPlayed ==1) {
-				game = new Fenêtre(new Terrain2());
+				game = new GameWindow(new Terrain2());
 			}
 			if(this.levelGameAlrPlayed == 2) {
-				game = new Fenêtre(new Terrain3());
+				game = new GameWindow(new Terrain3());
 			}
 			if(this.levelGameAlrPlayed == 3) {
-				game = new Fenêtre(new Terrain());
+				game = new GameWindow(new Terrain());
 			}
 		}
 		

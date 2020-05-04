@@ -3,19 +3,18 @@ import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.Toolkit;
 
-public class Matériaux extends Object { //incorporer les résistances dans les matériaux etc...
+public class Material extends Object {
 	
 	public static String[] refTextures= getTextures();
 	protected APoint p ;
-	protected int mass ;
 	
-	public Matériaux (double x1, double y1, int  resistance, int refTexture, int mass1) {
+	public Material (double x1, double y1, int  resistance, int refTexture, double mass1) {
 		super();
 		this.x = x1 ;
 		this.y = y1;
 		this.life = resistance ;
 		this.mass = mass1;
-		this.scoreValor = this.life*50;  //Attribute ScoreValor
+		this.scoreValor = this.life*50;  //Attribute ScoreValor to credit the score when the block is destroyed
 
 		this.centreX = this.barycenter().x;
 		this.centreY = this.barycenter().y;
@@ -47,7 +46,7 @@ public class Matériaux extends Object { //incorporer les résistances dans les 
 	
 	@Override
 	public APoint barycenter() {
-		APoint p = new APoint(this.x+25.0,this.y+25.0);	
+		APoint p = new APoint(this.x+25.0,this.y+25.0); //our blocks are 50x50 pixels	
 		return p;
 	}
 	
@@ -67,13 +66,13 @@ public class Matériaux extends Object { //incorporer les résistances dans les 
 	public void destruction() {
 		double dist ;
 		 
-		dist = Panneau.getProj().getDistance(this.barycenter().x, this.barycenter().y);
+		dist = GamePanel.getProj().getDistance(this.barycenter().x, this.barycenter().y);
 
-		if(dist <= 25.0 + Panneau.getProj().getRayon()) {
+		if(dist <= 25.0 + GamePanel.getProj().getRayon()) {
 			Terrain.listMaterials.remove(this);
 			
 			Terrain.computeScore(this);
-			Panneau.getProj().couleur = Color.orange ;
+			GamePanel.getProj().couleur = Color.orange ;
 			System.out.println(dist + " la distance entre le projectile et l'objet ");
 		
 		}

@@ -2,7 +2,7 @@ import java.awt.event.*;
 import java.awt.*;
 import javax.swing.*;
 
-public class Fenêtre extends JFrame implements MouseListener, Runnable {
+public class GameWindow extends JFrame implements MouseListener, Runnable {
 
 
     /*double interpolation = 0;
@@ -19,11 +19,11 @@ public class Fenêtre extends JFrame implements MouseListener, Runnable {
 	private static int scoreNb ;
 	private static Terrain planete ;
 	private JLabel jScore ;
-	private Panneau world ;
+	private GamePanel world ;
 	
 	private TransitionWindow transi;
 
-	public Fenêtre (Terrain  level1) {
+	public GameWindow (Terrain  level1) {
 		// Definition of the windows properties
 		super("Catapult's World") ;
 		this.setSize(this.width, this.height);
@@ -32,7 +32,7 @@ public class Fenêtre extends JFrame implements MouseListener, Runnable {
 	    this.setResizable(false);
 
 	    planete = level1;
-	    world = new Panneau(planete);
+	    world = new GamePanel(planete);
 		world.setPreferredSize(new Dimension(this.getWidth(),this.getHeight()));
 
 		// Score Display

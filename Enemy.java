@@ -6,17 +6,16 @@ import java.awt.Toolkit;
 public class Enemy extends Object {
 
 	public static String[] refAlien = getAlien();
-	protected boolean dead = false;
-	
+		
 	public Enemy(double x1, double y1, int life, int textureAlien) {
 		super();
 		this.life = life;
 		this.x = x1;
 		this.y = y1 ;
-		this.centreX = this.x+25.0; 
+		this.centreX = this.x+25.0;  // to remember aliens images are 50x50 pixels
 		this.centreY = this.y +25.0;
 		
-		//Attribute ScoreValor
+		//Attribute ScoreValor, to raise the score by this value when the enemy dies
 		this.scoreValor = this.life*200;
 		
 		//Find corresponding texture for the alien
@@ -28,7 +27,7 @@ public class Enemy extends Object {
 		this.img = Toolkit.getDefaultToolkit().getImage(this.texture); // direct integration of the image to the alien
 		
 	}
-	//give a texture to each alien
+	//give a texture to each alien (50x50 pixels)
 	private  static String[] getAlien(){
 		refAlien = new String[8];
 		
@@ -41,17 +40,16 @@ public class Enemy extends Object {
 		
 		return refAlien;
 	}
-	// Distance computation to determine the death of the alien
+	// Distance computation to determine the death of the alien caused by the projectile
 	public void death() {
 		
-		double dist = Panneau.getProj().getDistance(this.barycenter().x, this.barycenter().y);
+		double dist = GamePanel.getProj().getDistance(this.barycenter().x, this.barycenter().y); // Pythagorean method to compute distance
 		
-		if(dist <= 25.0 + Panneau.getProj().getRayon()) {
+		if(dist <= 25.0 + GamePanel.getProj().getRayon()) {
 
-			Terrain.listEnemies.remove(this);
-			Terrain.computeScore(this);
+			Terrain.listEnemies.remove(this);  // the block is no more displayed
+			Terrain.computeScore(this); // incrementation of the score
 
-			Panneau.getProj().couleur = Color.yellow ;
 			System.out.println(dist + " la distance entre le projectile et l'objet ");
 			
 		}
