@@ -4,7 +4,7 @@ import java.awt.*;
 import javax.swing.*;
 import javax.swing.text.html.parser.Element;
 
-public class GamePanel extends JPanel implements  MouseMotionListener {
+public class GamePanel extends JPanel implements  MouseListener, MouseMotionListener {
 
 	private Terrain ter ;
 	private static Projectile proj;
@@ -124,21 +124,55 @@ public class GamePanel extends JPanel implements  MouseMotionListener {
 
 
 	}
-/* // Works only with MouseListener implemented
+	
+ //========== Works only with MouseListener implemented
 	@Override
 	public void mousePressed(MouseEvent e) {
 		// TODO Auto-generated method stub
+		System.out.println("mouse pressed");
 		slingshot.setDragging(true);
+		proj.isDragged(true);
 
 	}
 	@Override
 	public void mouseReleased(MouseEvent e) {
 		// TODO Auto-generated method stub
-		slingshot.setDragging(false);
-		slingshot.launchProjectile();
+	    System.out.println("mouse released");
+	    slingshot.setDragging(false);
+	    proj.isDragged(false);
+	    slingshot.launchProjectile();
+	    
+	/*
+			if(e.getX()<= (int)(proj.x+15) && e.getX()>= (int)(proj.x-15) ) {
+				if(e.getY()<= (int)(proj.y+15) && e.getY()>=(int)(proj.y-15)) {
+					proj.deplaceX(this);
+				}
+			}
+			System.out.println(proj.x + "position en x  |"+ proj.dy + "position en y");
+			repaint();
+	*/
 
 	}
-*/
+
+	@Override
+	public void mouseClicked(MouseEvent e) {
+		// TODO Auto-generated method stub
+		String s = "| Position de la souris : " + e.getX() +" x et " + e.getY() + " y ";
+		System.out.println(s);
+		repaint();
+	}
+
+	@Override
+	public void mouseEntered(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mouseExited(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
 
 
 	}

@@ -84,5 +84,8 @@ public class Terrain {
 	public static void computeScore (Object destroyed) {
 		score += destroyed.scoreValor;
 	}
+	public static void resetScore() {
+		score = 0 ;
+	}
 
 }

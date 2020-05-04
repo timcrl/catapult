@@ -2,7 +2,7 @@ import java.awt.event.*;
 import java.awt.*;
 import javax.swing.*;
 
-public class GameWindow extends JFrame implements MouseListener, Runnable {
+public class GameWindow extends JFrame implements  Runnable {
 
 
     /*double interpolation = 0;
@@ -50,7 +50,6 @@ public class GameWindow extends JFrame implements MouseListener, Runnable {
 		// Addition of the panel "world" to fenêtre
 		this.setContentPane(world);
 		this.setVisible(true);
-		addMouseListener(this);
 	}
 
 	public static double getGravityPlanet() {
@@ -64,56 +63,7 @@ public class GameWindow extends JFrame implements MouseListener, Runnable {
 	public static int getScore() {
 		return scoreNb;
 	}
-
-	// Display position of the mouse when clicking (future use to throw the projectile)
-	@Override
-	public void mouseClicked(MouseEvent e) {
-
-		String s = "| Position de la souris : " + e.getX() +" x et " + e.getY() + " y ";
-		 System.out.println(s);
-		repaint();
-	}
-
-	@Override
-	public void mouseEntered(MouseEvent e) {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public void mouseExited(MouseEvent e) {
-
-	}
-
-  // DOES NOT WORK (I don't know why)
-  // Code inside is never executed. 
-  @Override
-	public void mousePressed(MouseEvent e) {
-		// TODO Auto-generated method stub
-    System.out.println("mouse pressed");
-	world.getThrower().setDragging(true);
-    world.getProj().isDragged(true);
-
-	}
-	@Override
-	public void mouseReleased(MouseEvent e) {
-		
-    System.out.println("mouse released");
-    world.getThrower().setDragging(false);
-    world.getProj().isDragged(false);
-    world.getThrower().launchProjectile();
-    
-/*
-		if(e.getX()<= (int)(world.getProj().x+15) && e.getX()>= (int)(world.getProj().x-15) ) {
-			if(e.getY()<= (int)(world.getProj().y+15) && e.getY()>=(int)(world.getProj().y-15)) {
-				world.getProj().deplaceX(this);
-			}
-		}
-		System.out.println(world.getProj().x + "position en x  |"+ world.getProj().dy + "position en y");
-		repaint();
-*/
-	}
-
+	
 	// Main loop
 	@Override
 	public void run() {
@@ -125,7 +75,7 @@ public class GameWindow extends JFrame implements MouseListener, Runnable {
               world.getProj().bounce(world); // Detects edges of terrain
               world.getProj().move();// Moves the projectile
 
-				//	world.getProj().setPosition(100, 100);// Test to see drawing
+				//world.getProj().setPosition(100, 100);// Test to see drawing
 
 				//Update label score
 				scoreNb = Terrain.score ;
@@ -135,8 +85,11 @@ public class GameWindow extends JFrame implements MouseListener, Runnable {
             	
             	//Stops the game when the winning condition is fulfilled and closes the GameWindow to open the TransitionWindow
         		if(Terrain.victory() && scoreNb != 0 ) {
+        			
         			System.out.println("You have won !");
         			transi = new TransitionWindow(this);
+        			Terrain.resetScore();
+        			
         			this.setVisible(false);
         			this.dispose();	
         			break;
