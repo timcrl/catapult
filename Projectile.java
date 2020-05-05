@@ -25,7 +25,7 @@ public class Projectile extends Object{
 		this.couleur = c;
 
 		//integration of the texture to the image
-		String texture = "./images/projectile2.png";
+		String texture = "./images/Thrower/projectile2.png";
 		this.img = Toolkit.getDefaultToolkit().getImage(texture) ;
 
 	}

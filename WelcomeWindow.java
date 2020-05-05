@@ -34,7 +34,7 @@ public class WelcomeWindow extends JFrame implements ActionListener  {
 		    welcome.setBounds(0, 0, 800, 800);
 		    welcome.setLayout(null);
 		    
-		    Image background = Toolkit.getDefaultToolkit().getImage("./images/décor_forêt2.png");
+		    Image background = Toolkit.getDefaultToolkit().getImage("./images/DecorationLevel/décor_forêt2.png");
 		   JLabel myImage = new JLabel(new ImageIcon(background));
 		   myImage.setBounds(0, 0, welcome.getWidth(), welcome.getHeight());
 		   welcome. add(myImage);
@@ -49,7 +49,7 @@ public class WelcomeWindow extends JFrame implements ActionListener  {
 		    jTitle.setBounds(15, 100, 500 , 100);
 		    jTitle.setFont(new Font("TITLE", Font.BOLD,25));
 		    
-		    lbestScore = new JLabel(" Best Score : " + scoreRecord);
+		    lbestScore = new JLabel(" Best Score : " + this.returnBestScore());
 		    lbestScore.setBounds(200, 200, 200, 50);
 		    lbestScore.setBackground(new Color(190, 0, 0));
 		    

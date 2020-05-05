@@ -12,8 +12,8 @@ public class GameWindow extends JFrame implements  Runnable {
     final int FRAMERATE = 60;
  	private int sleepDuration = 17; // originally 17 (it's 1/60 = 17 ms )
  	private int temps;
-	private int width = 1000;
-	private int height = 1000;
+	private final int WIDTH = 1000;
+	private final int HEIGHT = 1000;
 	Thread thread ;
 
 	private static int scoreNb ;
@@ -26,7 +26,7 @@ public class GameWindow extends JFrame implements  Runnable {
 	public GameWindow (Terrain  level1) {
 		// Definition of the windows properties
 		super("Catapult's World") ;
-		this.setSize(this.width, this.height);
+		this.setSize(this.WIDTH, this.HEIGHT);
 	    this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	    this.setLocationRelativeTo(null);
 	    this.setResizable(false);

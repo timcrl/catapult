@@ -9,24 +9,23 @@ public class GamePanel extends JPanel implements  MouseListener, MouseMotionList
 	private Terrain ter ;
 	private static Projectile proj;
 	private Thrower slingshot;
-	private APoint p = new APoint (50,50);
+	private final APoint projPosition = new APoint (100, 610);
 
 	private double dist ; //for collision here but will be useless soon
 	private double angle = 30.0;
 	private long temps;
 
-
 	public GamePanel(Terrain planete){
 
 		this.ter = planete;
-		proj = new Projectile(p,5.0, 5.0, 30.0 ,Color.black );
-		proj.setPosition(10, 10);
+		proj = new Projectile(projPosition,5.0, 5.0, 30.0 ,Color.black );
 		proj.setSpeed(0,0);
 
 		slingshot = new Thrower(proj, 100, 600); // set the thrower in the panel
 
 		this.setLayout(null);
 		addMouseMotionListener(this);
+		addMouseListener(this);
 	}
 
 	public static Projectile getProj() {
@@ -46,8 +45,8 @@ public class GamePanel extends JPanel implements  MouseListener, MouseMotionList
 
 		/*===================== Objects Display*/
 
+		slingshot.dessiner(g);	//keep this order to have the slingshot behind the projectile
 		proj.dessiner(g);
-		slingshot.dessiner(g);
 		
 		//=============Aliens Display====================
 		for (int i = 0; i < Terrain.listEnemies.size(); i++) {
@@ -65,54 +64,28 @@ public class GamePanel extends JPanel implements  MouseListener, MouseMotionList
 			Terrain.listMaterials.get(i).gravityAction();
 			Terrain.listMaterials.get(i).destruction();
 		}
-
-		//============CALCUL COLLISION===========
-		//this.collisionDetect(); // Replaced by bounce in the projectile class
-
-		//============ Collision Computation Call===========
-		//this.collisionDetect();
-		//===============
 		Toolkit.getDefaultToolkit().sync();
 
 		}
 
-	//============CALCUL COLLISION=========== 
-	 // Bouncer from Seb, Disabled by Tim (no offence xD)
-	/*
-	public void collisionDetect() {
-
-		dist = proj.getDistance(c1.centre.x, c1.centre.y);
-		//System.out.println(dist + " la distance entre les 2 cercles ");
-
-		//juste pour checker et s'amuser avec le drag
-		if(dist <= c1.rayon + proj.getRayon()) {
-			proj.couleur = c1.maCouleur ;
-		}
-
-		//========Limite de la fenêtre
-		if(proj.x - proj.getRayon() <= 0 || proj.x + proj.getRayon() >= this.getWidth() ) {
-			proj.dx = - proj.dx ;
-		}
-		if(proj.y - proj.getRayon() <= 0 || proj.y + proj.getRayon() >= (this.getHeight()-this.getGround()*this.getHeight()) ) {
-			proj.dy = - proj.dy ;
-		}
-
-	}
-	*/
-
-	//To drag the red cercle
+	//To drag the projectile
 	@Override
 	public void mouseDragged(MouseEvent e) {
-		// TODO Auto-generated method stub
-	   //	c1 = new Cercle(new APoint(e.getX(),e.getY()),15,Color.red);
-
-
+		
+		// set an area of throwing of 100 px around the slingshot and the mouse must be at 30 px to grab it 
+		if(proj.getDistance(e.getX(), e.getY()) <= 30.0 && this.projPosition.getDistance(e.getX(), e.getY()) <= 100 ) {
+			proj.setPosition(e.getX(), e.getY());
+		}
+		else {
+			// if the condition is not respected and the mouse exits the area of throwing, the projectile is set to its initial position
+			proj.setPosition(this.projPosition.x, this.projPosition.y); 
+		}
 	}
 
 	//Detect collision between the mouse and the projectile
 	@Override
 	public void mouseMoved(MouseEvent e) {
-		// TODO Auto-generated method stub
+		/*
 		if(proj.getDistance(e.getX(), e.getY()) <= 15.0) {
 			// System.out.println("The mouse has collided");
 			proj.couleur = new Color(50, 50, 50);
@@ -121,14 +94,13 @@ public class GamePanel extends JPanel implements  MouseListener, MouseMotionList
 			proj.setPosition(e.getX(), e.getY());
 			slingshot.setMousePosition(e.getX(), e.getY());
 		}
-
+		*/
 
 	}
 	
  //========== Works only with MouseListener implemented
 	@Override
 	public void mousePressed(MouseEvent e) {
-		// TODO Auto-generated method stub
 		System.out.println("mouse pressed");
 		slingshot.setDragging(true);
 		proj.isDragged(true);
@@ -136,7 +108,6 @@ public class GamePanel extends JPanel implements  MouseListener, MouseMotionList
 	}
 	@Override
 	public void mouseReleased(MouseEvent e) {
-		// TODO Auto-generated method stub
 	    System.out.println("mouse released");
 	    slingshot.setDragging(false);
 	    proj.isDragged(false);
@@ -156,7 +127,6 @@ public class GamePanel extends JPanel implements  MouseListener, MouseMotionList
 
 	@Override
 	public void mouseClicked(MouseEvent e) {
-		// TODO Auto-generated method stub
 		String s = "| Position de la souris : " + e.getX() +" x et " + e.getY() + " y ";
 		System.out.println(s);
 		repaint();
@@ -164,13 +134,11 @@ public class GamePanel extends JPanel implements  MouseListener, MouseMotionList
 
 	@Override
 	public void mouseEntered(MouseEvent e) {
-		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
 	public void mouseExited(MouseEvent e) {
-		// TODO Auto-generated method stub
 		
 	}
 

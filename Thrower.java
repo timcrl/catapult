@@ -21,7 +21,7 @@ public class Thrower{
     this.y = posY;
     this.projectile = proj;
 
-    String texture = "./images/slingshot2.png";
+    String texture = "./images/Thrower/slingshot2.png";
     this.img = Toolkit.getDefaultToolkit().getImage(texture);
 
 
