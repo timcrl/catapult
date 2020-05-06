@@ -1,6 +1,20 @@
 import java.awt.event.*;
 import java.awt.*;
+import java.io.*;
+import javax.sound.sampled.*;
 import javax.swing.*;
+
+import java.awt.Color;
+import java.awt.Container;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.io.File;
+import javax.sound.sampled.AudioInputStream;
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JPanel;
 
 public class WelcomeWindow extends JFrame implements ActionListener  {
 	
@@ -14,6 +28,10 @@ public class WelcomeWindow extends JFrame implements ActionListener  {
 	
 	private JButton bPlay;
 	private JButton bLevels;
+
+	private String clickSound;
+	private SoundEffect soundEffect = new SoundEffect();
+	private ButtonHandler bHandler = new ButtonHandler();
 	
 	private String userName ;
 	private int scoreRecord = 0 ;
@@ -72,7 +90,13 @@ public class WelcomeWindow extends JFrame implements ActionListener  {
 		    bPlay.addActionListener(this);
 		    bLevels.addActionListener(this);
 		    tPseudo.addActionListener(this);
-		    
+
+		    //Implementation of sound effects on button click
+		    bPlay.addActionListener(bHandler);
+		    bLevels.addActionListener(bHandler);
+		    tPseudo.addActionListener(bHandler);
+		    clickSound = "./sounds/clickSound.wav";
+
 		    //Display of the buttons in the menu
 		    menu.add(jTitle);
 		    menu.add(lbestScore);
@@ -106,36 +130,61 @@ public class WelcomeWindow extends JFrame implements ActionListener  {
 		@Override
 		public void actionPerformed(ActionEvent e) {
 
-				 if(userName != null){
+			 if(userName != null){
+				
+				if (e.getSource()== bPlay) {
+					System.out.println("Let's start the game");
+					game = new GameWindow(new Terrain());
 					
-					if (e.getSource()== bPlay) {
-						System.out.println("Let's start the game");
-						game = new GameWindow(new Terrain());
-						
-						this.setVisible(false); //We close the WelcomeWindow
-						this.dispose();
-					}
-					if (e.getSource()== bLevels) {
-						System.out.println("You can choose your level"); //enable the selection of the level
-						selection = new LevelsWindow();
-						
-						//We close the WelcomeWindow
-						this.setVisible(false);  
-						this.dispose(); 
-					}
-				 }
-				else {
-						lindications.setText("<html> <p> You didn't enter your pseudo <br/> (push enter on the keyboard) ! </p></html>");
+					this.setVisible(false); //We close the WelcomeWindow
+					this.dispose();
 				}
-				if(e.getSource()==tPseudo) {
-				    userName = (tPseudo.getText()); // recuperates the player's name
-					System.out.println(" Alright your name is : " + userName);
-					lindications.setText("<html> <p> Now, General " + userName + "<br/> you can push the play button </p></html>"); //use of html/ so as to get a LineWrap
+				if (e.getSource()== bLevels) {
+					System.out.println("You can choose your level"); //enable the selection of the level
+					selection = new LevelsWindow();
+					
+					//We close the WelcomeWindow
+					this.setVisible(false);  
+					this.dispose(); 
 				}
+			 }
+			else {
+					lindications.setText("<html> <p> You didn't enter your pseudo <br/> (push enter on the keyboard) ! </p></html>");
+			}
+			if(e.getSource()==tPseudo) {
+			    userName = (tPseudo.getText()); // recuperates the player's name
+				System.out.println(" Alright your name is : " + userName);
+				lindications.setText("<html> <p> Now, General " + userName + "<br/> you can push the play button </p></html>"); //use of html/ so as to get a LineWrap
+			}
 			
 		}
 		
-		
-		
-		
+public class SoundEffect{
+
+	Clip clip;
+	public void setFile(String soundFileName){
+		try{
+			File file = new File(soundFileName);
+			AudioInputStream sound = AudioSystem.getAudioInputStream(file);
+			clip = AudioSystem.getClip();
+			clip.open(sound);
+		}
+		catch(Exception e){
+			//left blank intentionally
+		}
+	}
+
+	public void play(){
+		clip.setFramePosition(0);
+		clip.start();
+	}
+}
+
+    public class ButtonHandler implements ActionListener{
+    	public void actionPerformed(ActionEvent event){
+    		soundEffect.setFile(clickSound);
+    		soundEffect.play();
+    	}
+    }
+	
 }
