@@ -20,3 +20,9 @@
 /GameWindow.class
 /Material.class
 /GamePanel.class
+/WelcomeWindow$ButtonHandler.class
+/WelcomeWindow$Music.class
+/WelcomeWindow$SoundEffect.class
+/ButtonHandler.class
+/SoundEffect.class
+/Music.class

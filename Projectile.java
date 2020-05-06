@@ -10,7 +10,7 @@ public class Projectile extends Object{
 
 	protected Color couleur;
 	protected double angle ;
-	protected long t;
+	protected long t; 
 	private double radius = 15.0 ;
 	protected boolean dragged = true; // Default : false (true for testing)
 

@@ -165,36 +165,6 @@ public class WelcomeWindow extends JFrame implements ActionListener  {
 			}
 			
 		}
-
-public class Music{
-
-	Clip clip;
-	public void setFile(String soundFileName){
-		try{
-			File file = new File(soundFileName);
-			AudioInputStream sound = AudioSystem.getAudioInputStream(file);
-			clip = AudioSystem.getClip();
-			clip.open(sound);
-		}
-		catch(Exception e){
-			//left blank intentionally
-		}
-	}
-
-	public void play(){
-		clip.setFramePosition(0);
-		clip.start();
-	}
-
-	public void loop(){
-		clip.loop(Clip.LOOP_CONTINUOUSLY);
-	}
-
-	public void stop(){
-		clip.stop();
-		clip.close();
-	}
-}
 		
 public class SoundEffect{
 
