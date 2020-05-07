@@ -7,7 +7,7 @@ import java.awt.Toolkit;
 public class Thrower{
 
   protected Projectile projectile;
-  protected boolean dragging = true; // Default : false (true for testing)
+  protected boolean dragging = false; // Default : false (true for testing)
   protected int x; // x pos of the "centre" of thrower (origin of projectile)
   protected int y; // Same for y
   protected double mouseX; // X coordinate of the pointer (used only when projectile launched)
@@ -17,6 +17,7 @@ public class Thrower{
   protected Image img ;
 
   public Thrower(Projectile proj, int posX, int posY){
+    // initializing attributes
     this.x = posX;
     this.y = posY;
     this.projectile = proj;
@@ -42,7 +43,7 @@ public class Thrower{
   public void launchProjectile(){
 
     double speedCoefficient = Math.sqrt( 2*this.forceCoefficient / this.projectile.getMass()); // Obtained With Ek = 1/2 * m * v²
-    this.projectile.setSpeed((this.x-this.mouseX)*speedCoefficient, (this.y-this.mouseY)*speedCoefficient);
+    this.projectile.setSpeed((this.x-this.mouseX)*speedCoefficient, (this.y-this.mouseY)*speedCoefficient); // Sets the speed
 
   }
 	public void dessiner ( Graphics g) {

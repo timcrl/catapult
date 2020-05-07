@@ -10,9 +10,9 @@ public class Projectile extends Object{
 
 	protected Color couleur;
 	protected double angle ;
-	protected long t; 
+	protected long t;
 	private double radius = 15.0 ;
-	protected boolean dragged = true; // Default : false (true for testing)
+	protected boolean dragged = false; // Default : false (true for testing)
 
 
 	public Projectile (APoint p ,double dX, double dY, double angle1 ,Color c) {
@@ -40,7 +40,7 @@ public class Projectile extends Object{
 		this.dy = speed*Math.sin(angle);
 
 	}
-	
+
 	public void setSpeed(double speedX,double speedY){
 		this.dx = speedX;
 		this.dy = speedY;
