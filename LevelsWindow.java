@@ -16,6 +16,8 @@ public class LevelsWindow  extends JFrame implements ActionListener {
 	private JLabel jPicture2;
 	private JLabel jPicture3;
 	
+	private ButtonHandler bHandler = new ButtonHandler(); // use the classes for the sound effects
+	
 	private GameWindow game ;//host the world in the Play Window
 	
 	public LevelsWindow() {
@@ -31,7 +33,7 @@ public class LevelsWindow  extends JFrame implements ActionListener {
 	    selectionLevels.setBounds(0, 0, 800, 800);
 	    selectionLevels.setLayout(null);
 	    
-	    Image background = Toolkit.getDefaultToolkit().getImage("./images/décor_forêt2.png");
+	    Image background = Toolkit.getDefaultToolkit().getImage("./images/DecorationLevel/décor_forêt2.png");
 		jBackGround = new JLabel(new ImageIcon(background));
 		jBackGround.setBounds(0, 0, selectionLevels.getWidth(), selectionLevels.getHeight());
 		selectionLevels. add(jBackGround);
@@ -75,6 +77,16 @@ public class LevelsWindow  extends JFrame implements ActionListener {
 	    bLevel1.addActionListener(this);
 	    bLevel2.addActionListener(this);
 	    bLevel3.addActionListener(this);
+	    
+	    //Implementation of sound effects on button click
+	    bLevel1.addActionListener(bHandler);
+	    bLevel2.addActionListener(bHandler);
+	    bLevel3.addActionListener(bHandler);
+	    
+	    //Differentiate between buttons clicked
+	    bLevel1.setActionCommand("musicB");
+	    bLevel2.setActionCommand("musicB");
+	    bLevel3.setActionCommand("musicB");
 	    
 	    //Display of the buttons and labels in the window
 	    jBackGround.add(lTitle);

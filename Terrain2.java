@@ -5,7 +5,7 @@ public class Terrain2  extends Terrain{
 	public Terrain2() {
 		super();
 		
-		this.GRAVITY = 20.0 ;
+		this.GRAVITY = (double)(this.GRAVITY*0.166) ;
 		this.level = 2;
 		
 		this.picGround = Toolkit.getDefaultToolkit().getImage("./images/GroundWorld/ground_moon.png");

@@ -67,7 +67,7 @@ public class Object {
 	public void gravityAction(){
 
 		this.dy  +=(double)( GameWindow.getGravityPlanet());
-		this.y += (double)(this.dy*(1.0/30.0)) ;  //so as to get the right number of image per second (should be *1/60)
+		this.y += (double)(this.dy);
 				
 			for (int i = 0;  i < Terrain.getlistMateriaux().size() ; ++i) {
 					

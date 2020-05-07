@@ -5,7 +5,7 @@ public class Terrain3  extends Terrain{
 	public Terrain3() {
 		super();
 		
-		this.GRAVITY = 80.0 ;
+		this.GRAVITY = (double)(this.GRAVITY*0.38) ;
 		this.level = 3;
 		
 		this.picGround = Toolkit.getDefaultToolkit().getImage("./images/GroundWorld/ground_mars.png");
