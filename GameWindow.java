@@ -5,12 +5,12 @@ import javax.swing.*;
 public class GameWindow extends JFrame implements  Runnable {
 
 
-    /*double interpolation = 0;
+    /*
     final int TICKS_PER_SECOND = 25;
     final int SKIP_TICKS = 1000 / TICKS_PER_SECOND;
     final int MAX_FRAMESKIP = 5;*/
     final int FRAMERATE = 60;
- 	private int sleepDuration = 17; // originally 17 (it's 1/60 = 17 ms )
+ 	private int sleepDuration = 17; // originally (it's 1/60 so around 17 ms )
  	private int temps;
 	private final int WIDTH = 1000;
 	private final int HEIGHT = 1000;

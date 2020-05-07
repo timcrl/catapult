@@ -29,10 +29,7 @@ public class WelcomeWindow extends JFrame implements ActionListener  {
 	private JButton bPlay;
 	private JButton bLevels;
 
-	private String clickSound, backgroundMusic;
-	private SoundEffect soundEffect = new SoundEffect();
-	private Music bMusic = new Music();
-	private ButtonHandler bHandler = new ButtonHandler();
+	private ButtonHandler bHandler = new ButtonHandler(); // uses the classes for the sound effects
 	
 	private String userName ;
 	private int scoreRecord = 0 ;
@@ -96,8 +93,6 @@ public class WelcomeWindow extends JFrame implements ActionListener  {
 		    bPlay.addActionListener(bHandler);
 		    bLevels.addActionListener(bHandler);
 		    tPseudo.addActionListener(bHandler);
-		    clickSound = "./sounds/clickSound.wav";
-		    backgroundMusic = "./sounds/backgroundMusic.wav";
 
 		    //Differentiate between buttons clicked
 		    tPseudo.setActionCommand("soundB");
@@ -166,43 +161,4 @@ public class WelcomeWindow extends JFrame implements ActionListener  {
 			
 		}
 		
-public class SoundEffect{
-
-	Clip clip;
-	public void setFile(String soundFileName){
-		try{
-			File file = new File(soundFileName);
-			AudioInputStream sound = AudioSystem.getAudioInputStream(file);
-			clip = AudioSystem.getClip();
-			clip.open(sound);
-		}
-		catch(Exception e){
-			//left blank intentionally
-		}
-	}
-
-	public void play(){
-		clip.setFramePosition(0);
-		clip.start();
-	}
-}
-	//PLay the sounds on button press
-    public class ButtonHandler implements ActionListener{
-    	public void actionPerformed(ActionEvent event){
-
-    		String clickedButton = event.getActionCommand();
-    		switch(clickedButton){
-    			case "soundB":
-    			soundEffect.setFile(clickSound);
-    			soundEffect.play();
-    			break;
-
-    			case "musicB":
-    			soundEffect.setFile(clickSound);
-    			soundEffect.play();
-    			bMusic.setFile(backgroundMusic);
-    			bMusic.play();
-    		}
-    	}
-    }
 }
