@@ -82,7 +82,7 @@ public class GamePanel extends JPanel implements  MouseListener, MouseMotionList
 		} */
 		if (slingshot.isDragging()){
 			proj.setPosition(e.getX(), e.getY());
-			System.out.println("new position set by dragg");
+			//System.out.println("new position set by dragg");
 			slingshot.setMousePosition(e.getX(), e.getY());
 		}
 	}
@@ -108,14 +108,14 @@ public class GamePanel extends JPanel implements  MouseListener, MouseMotionList
  //========== Works only with MouseListener implemented
 	@Override
 	public void mousePressed(MouseEvent e) {
-		System.out.println("mouse pressed");
+		//System.out.println("mouse pressed");
 		slingshot.setDragging(true);
 		proj.isDragged(true);
 
 	}
 	@Override
 	public void mouseReleased(MouseEvent e) {
-	    System.out.println("mouse released");
+	    //System.out.println("mouse released");
 	    slingshot.setDragging(false);
 	    proj.isDragged(false);
 	    slingshot.launchProjectile();
@@ -135,7 +135,7 @@ public class GamePanel extends JPanel implements  MouseListener, MouseMotionList
 	@Override
 	public void mouseClicked(MouseEvent e) {
 		String s = "| Position de la souris : " + e.getX() +" x et " + e.getY() + " y ";
-		System.out.println(s);
+		//System.out.println(s);
 		repaint();
 	}
 

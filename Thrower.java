@@ -13,7 +13,7 @@ public class Thrower{
   protected double mouseX; // X coordinate of the pointer (used only when projectile launched)
   protected double mouseY; // Same for Y
   protected String imagePath=""; // Path of the image to be used, to define
-  protected double forceCoefficient; // Force that the thrower applies projectile per unit distance
+  protected double forceCoefficient = 0.1; // Force that the thrower applies projectile per unit distance
   protected Image img ;
 
   public Thrower(Projectile proj, int posX, int posY){
@@ -44,6 +44,7 @@ public class Thrower{
 
     double speedCoefficient = Math.sqrt( 2*this.forceCoefficient / this.projectile.getMass()); // Obtained With Ek = 1/2 * m * v²
     this.projectile.setSpeed((this.x-this.mouseX)*speedCoefficient, (this.y-this.mouseY)*speedCoefficient); // Sets the speed
+    System.out.println("projectile launched");
 
   }
 	public void dessiner ( Graphics g) {
