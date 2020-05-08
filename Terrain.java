@@ -2,10 +2,15 @@ import java.awt.Component;
 import java.awt.Image;
 import java.awt.Toolkit;
 import java.util.LinkedList;
-
+/**
+ * Class containing the world where the game is played, filled with the background image and the elements aliens and blocks
+ * @author sebastien
+ *
+ */
 public class Terrain {
 	
-	public Image picGround = Toolkit.getDefaultToolkit().getImage("./images/GroundWorld/ground_earth.png");
+	//Declaration of the attributes 
+	public Image picGround ;
 	protected double GRAVITY ;
 	
 	//Lists used for the display of the elements (often called, addition or destruction of blocks)
@@ -19,9 +24,14 @@ public class Terrain {
 	protected static int score ;
 	protected  int level ; // will tell the current level played for the other classes
 	
+	/**
+	 * Constructor creates the blocks and enemies and affects them in the linkedlists to be displayed
+	 * Give a value for the gravity also as well as an image for the background 
+	 */
 	public Terrain() {
 		
-		this.GRAVITY = 9.8 ;
+		this.picGround =  Toolkit.getDefaultToolkit().getImage("./images/GroundWorld/ground_earth.png"); //sets the background
+		this.GRAVITY = 9.8 ; //Earth's Gravity
 		this.level = 1 ;
 		
 		//To remove all blocks from before (if a game is replayed for instance) (like emptying the cache)
@@ -46,7 +56,6 @@ public class Terrain {
 		}
 		
 		// Creation of the enemies with (x, y, life, texture) 
-		
 		arrayOriginalEnemies[0] = new Enemy (850.0,300.0,1,1);
 		arrayOriginalEnemies[1] = new Enemy (800.0,300.0,1,3);
 		

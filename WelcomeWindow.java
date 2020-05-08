@@ -16,8 +16,14 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
+/**
+ * it's the welcoming window as indicated, where you enter the name and can choose to play directly or go to the selection window
+ * @author sebastien
+ *
+ */
 public class WelcomeWindow extends JFrame implements ActionListener  {
 	
+	//Declaration of the components
 	private JPanel welcome ; 
 	private JPanel menu ; 
 	
@@ -37,6 +43,9 @@ public class WelcomeWindow extends JFrame implements ActionListener  {
 	private GameWindow game ; //open the window containing the game
 	private LevelsWindow selection ; //open the selection window for levels
 	
+	/**
+	 * Constructor of this class, where every positions is set (JPanels/Labels/Buttons/text) and images, sounds
+	 */
 		public WelcomeWindow() {
 			// Definition of the windows properties
 			super("Catapult's World") ;
@@ -113,6 +122,10 @@ public class WelcomeWindow extends JFrame implements ActionListener  {
 			this.setVisible(true);
 		}
 		
+		/**
+		 * Returns the Best Score obtained between the different games
+		 * @return  scoreRecord
+		 */
 		public int returnBestScore() {
 			
 			if(scoreRecord <= GameWindow.getScore()) {
@@ -120,15 +133,17 @@ public class WelcomeWindow extends JFrame implements ActionListener  {
 			}
 			return scoreRecord;
 		}
-		
+		/**
+		 * Getter returning the current GameWindow 
+		 * @return game
+		 */
 		public GameWindow returnGameWindow() {
 			return game;
 		}
-
-		public void paintComponent(Graphics g){
-
-		}
-		
+		/**
+		 * Method giving orders for what will happen if a button is clicked : "Play", "Levels" and if the player did not enter his name
+		 * @param e
+		 */
 		@Override
 		public void actionPerformed(ActionEvent e) {
 
@@ -138,11 +153,12 @@ public class WelcomeWindow extends JFrame implements ActionListener  {
 					System.out.println("Let's start the game");
 					game = new GameWindow(new Terrain());
 					
-					this.setVisible(false); //We close the WelcomeWindow
+					//We close the WelcomeWindow
+					this.setVisible(false); 
 					this.dispose();
 				}
 				if (e.getSource()== bLevels) {
-					System.out.println("You can choose your level"); //enable the selection of the level
+					System.out.println("You can choose your level"); //enables the selection of the level
 					selection = new LevelsWindow();
 					
 					//We close the WelcomeWindow
@@ -154,8 +170,8 @@ public class WelcomeWindow extends JFrame implements ActionListener  {
 					lindications.setText("<html> <p> You didn't enter your pseudo <br/> (push enter on the keyboard) ! </p></html>");
 			}
 			if(e.getSource()==tPseudo) {
-			    userName = (tPseudo.getText()); // recuperates the player's name
-				System.out.println(" Alright your name is : " + userName);
+			    userName = (tPseudo.getText()); // gets the player's name
+				System.out.println(" Alright your name is : " + userName); //
 				lindications.setText("<html> <p> Now, General " + userName + "<br/> you can push the play button </p></html>"); //use of html/ so as to get a LineWrap
 			}
 			

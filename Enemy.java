@@ -2,11 +2,22 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.Toolkit;
-
+/**
+ * Creation of the aliens in this class, with their texture and conditions on their death
+ * @author sebastien
+ *
+ */
 public class Enemy extends Object {
 
 	public static String[] refAlien = getAlien();
-		
+	/**
+	 * Constructor of the class, using the first parameters for the position necessary to the display
+	 * And texture parameter for the GUI, as well as life (would have been use to know how many hit it can bear)
+	 * @param x1
+	 * @param y1
+	 * @param life
+	 * @param textureAlien
+	 */
 	public Enemy(double x1, double y1, int life, int textureAlien) {
 		super();
 		this.life = life;
@@ -27,10 +38,13 @@ public class Enemy extends Object {
 		this.img = Toolkit.getDefaultToolkit().getImage(this.texture); // direct integration of the image to the alien
 		
 	}
-	//give a texture to each alien (50x50 pixels)
+	/**
+	 * Simple method creating an array of string containing every Alien textures
+	 * @return refAlien
+	 */
 	private  static String[] getAlien(){
 		refAlien = new String[8];
-		
+		//give a texture to each alien (50x50 pixels)
 		refAlien[1]="./images/Aliens/alien1.png";
 		refAlien[2]="./images/Aliens/alien2.png";
 		refAlien[3]="./images/Aliens/alien3.png";
@@ -40,7 +54,10 @@ public class Enemy extends Object {
 		
 		return refAlien;
 	}
-	// Distance computation to determine the death of the alien caused by the projectile
+	
+	/**
+	 * Distance computation to determine the death of the alien caused by the projectile
+	 */
 	public void death() {
 		
 		double dist = GamePanel.getProj().getDistance(this.barycenter().x, this.barycenter().y); // Pythagorean method to compute distance
@@ -50,7 +67,7 @@ public class Enemy extends Object {
 			Terrain.listEnemies.remove(this);  // the block is no more displayed
 			Terrain.computeScore(this); // incrementation of the score
 
-			System.out.println(dist + " la distance entre le projectile et l'objet ");
+			System.out.println(dist + " la distance entre le projectile et l'objet "); //monitoring of the code
 			
 		}
 	}

@@ -19,7 +19,7 @@ public class GamePanel extends JPanel implements  MouseListener, MouseMotionList
 
 		this.ter = planete;
 		proj = new Projectile(projPosition,5.0, 5.0, 30.0 ,Color.black );
-		proj.setSpeed(20,20);
+		proj.setSpeed(0,0);
 
 		slingshot = new Thrower(proj, 100, 600); // set the thrower in the panel
 
@@ -76,10 +76,7 @@ public class GamePanel extends JPanel implements  MouseListener, MouseMotionList
 		if(proj.getDistance(e.getX(), e.getY()) <= 30.0 && this.projPosition.getDistance(e.getX(), e.getY()) <= 100 ) {
 			proj.setPosition(e.getX(), e.getY());
 		}
-		else {
-			// if the condition is not respected and the mouse exits the area of throwing, the projectile is set to its initial position
-			proj.setPosition(this.projPosition.x, this.projPosition.y); 
-		}
+
 	}
 
 	//Detect collision between the mouse and the projectile

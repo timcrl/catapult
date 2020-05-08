@@ -1,9 +1,14 @@
 import java.awt.event.*;
 import java.awt.*;
 import javax.swing.*;
-
+/**
+ * Selection Level Window, basic display to select between 3 levels
+ * @author sebastien
+ *
+ */
 public class LevelsWindow  extends JFrame implements ActionListener {
 	
+	//Declaration of the components
 	private JPanel selectionLevels; 
 	private JLabel jBackGround;
 	private JLabel lTitle ;
@@ -17,9 +22,11 @@ public class LevelsWindow  extends JFrame implements ActionListener {
 	private JLabel jPicture3;
 	
 	private ButtonHandler bHandler = new ButtonHandler(); // use the classes for the sound effects
-	
 	private GameWindow game ;//host the world in the Play Window
 	
+	/**
+	 * Constructor, setting the position of every components and incorporates the sounds and images
+	 */
 	public LevelsWindow() {
 		// Definition of the windows properties
 		super("Catapult's World") ;
@@ -39,7 +46,6 @@ public class LevelsWindow  extends JFrame implements ActionListener {
 		selectionLevels. add(jBackGround);
 	    
 	    //Configurations of the Buttons
-		
 	    lTitle = new JLabel("SELECT YOUR LEVEL : ");
 	    lTitle.setBounds(250, 50, 400 , 100);
 	    lTitle.setFont(new Font("TITLE", Font.BOLD,20));
@@ -59,8 +65,7 @@ public class LevelsWindow  extends JFrame implements ActionListener {
 	    bLevel3.setBackground(new Color(190, 0, 0));
 	    bLevel3.setFont(new Font("play", Font.BOLD, 18));
 	    
-	    //Configurations of the JLabels 
-	    
+	    //Configurations of the JLabels    
 	    Image pic1 = Toolkit.getDefaultToolkit().getImage("./images/DecorationLevel/décor_forêt_level.png");
 	    jPicture1 = new JLabel(new ImageIcon(pic1));
 	    jPicture1.setBounds(400, 150, 150,150);
@@ -101,8 +106,10 @@ public class LevelsWindow  extends JFrame implements ActionListener {
 	    this.setVisible(true); //appear only after pushing levels in Welcome Window
 }
 
-	//Todo : when created add link to the other levels
-	@Override
+	/**
+	 * Method saying what to do when a button is pushed (e.g. : launch Level 1 for bLevel1)
+	 * @param  e
+	 */
 	public void actionPerformed(ActionEvent e) {
 				
 		if(e.getSource() == bLevel1) {
