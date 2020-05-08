@@ -1,11 +1,19 @@
 import java.awt.Toolkit;
-
+/**
+ * Inherit from the first class Terrain to create the world and changes some parameters
+ * Such as gravity, aliens, blocks etc.
+ * @author sebastien
+ *
+ */
 public class Terrain2  extends Terrain{
-
+	
+	/**
+	 * Constructor of the second world (Moon)
+	 */
 	public Terrain2() {
 		super();
 		
-		this.GRAVITY = (double)(this.GRAVITY*0.166) ;
+		this.gravity = (double)(this.gravity*0.166) ; // gravity on the moon is 16.6% of the Earth one
 		this.level = 2;
 		
 		this.picGround = Toolkit.getDefaultToolkit().getImage("./images/GroundWorld/ground_moon.png");
@@ -17,7 +25,6 @@ public class Terrain2  extends Terrain{
 		listMaterials.clear();
 		
 		//Creation of the blocks with coordinates and parameters (x , y , resistance, textures, mass)
-
 		arrayOriginalMaterial[0] = new Material(750.0,650.0,1,1, 1);
 		arrayOriginalMaterial[1] = new Material(750.0,600.0,1,1, 1);
 		arrayOriginalMaterial[2]= new Material(700.0,500.0,2,3 ,2);
@@ -33,7 +40,6 @@ public class Terrain2  extends Terrain{
 		}
 		
 		// Creation of the enemies with (x, y, life, texture) 
-		
 		arrayOriginalEnemies[0] = new Enemy (850.0,500.0,1,1);
 		arrayOriginalEnemies[1] = new Enemy (950.0,500.0,1,1);
 		arrayOriginalEnemies[2] = new Enemy (750.0,500.0,1,5);

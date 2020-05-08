@@ -5,70 +5,104 @@ import java.util.*;
 import javax.swing.*;
 import javax.swing.Timer;
 
-
+/**
+ * Method computing every characteristic of the projectile (Speed, Position, Display)
+ * @author Timothee
+ *
+ */
 public class Projectile extends Object{
 
-	protected Color couleur;
+	//Declaration of the attributes
 	protected double angle ;
 	protected long t;
 	private double radius = 15.0 ;
 	protected boolean dragged = false; // Default : false (true for testing)
 
-
-	public Projectile (APoint p ,double dX, double dY, double angle1 ,Color c) {
+	/**
+	 * Constructor for the Projectile, giving a position, speed, angle, texture
+	 * @param p
+	 * @param dX
+	 * @param dY
+	 * @param angle1
+	 */
+	public Projectile (APoint p ,double dX, double dY, double angle1) {
 		super();
 		this.x= p.x; // initial position in  x
 		this.y= p.y; // initial position in  y
 		this.dx= dX;  // initial speed  in  x
 		this.dy= dY;  // initial speed  in  y
 		this.angle = angle1;
-		this.couleur = c;
 
 		//integration of the texture to the image
 		String texture = "./images/Thrower/projectile2.png";
 		this.img = Toolkit.getDefaultToolkit().getImage(texture) ;
 
 	}
-
+	/**
+	 * Setter of its position
+	 */
 	public void setPosition(double x, double y){
 		this.x = x;
 		this.y = y;
 	}
-
+	/**
+	 * Setter of its speed by polar computations
+	 * @param speed
+	 * @param angle
+	 */
 	public void setPolarSpeed(double speed,double angle){
 		this.dx = speed*Math.cos(angle);
 		this.dy = speed*Math.sin(angle);
 
 	}
-
+	/**
+	 * Setter of its speed
+	 */
 	public void setSpeed(double speedX,double speedY){
 		this.dx = speedX;
 		this.dy = speedY;
 
 	}
-
-	public void isDragged(boolean d){ // Setter for dragged
+	/**
+	 * Setter for the boolean dragged
+	 * @param d
+	 */
+	public void isDragged(boolean d){ 
 		this.dragged = d;
+		System.out.println("Dragging set to " + this.dragged);
 	}
-
+	/**
+	 * Draw the projectile in GamePanel
+	 */
 	public void dessiner ( Graphics g) {
 		g.drawImage(this.img, (int)(this.x),(int)(this.y),null);
 	}
-
-	public double getRayon() {
+	/**
+	 * Getter of its radius
+	 * @return radius
+	 */
+	public double getRadius() {
 		return this.radius;
 	}
-
+	/**
+	 * Basic method to displace the projectile
+	 */
 	public void move(){
 		if(!this.dragged){ // Does not attempt to move if dragged
 			this.dy -= (double)(GameWindow.getGravityPlanet()*1/10);
 			this.x += dx;
 			this.y -= dy;
+		} else {
+			this.dx = 0;
+			this.dy = 0;
 		}
 
 	}
 
-	// To stop the ball when it hits an edge and bounce on the bottom
+	/**
+	 * To stop the ball when it hits an edge and bounce on the bottom
+	 * @param pan
+	 */
 	public void bounce(GamePanel pan){
 
 		int h = (int)GamePanel.getGround() ; //700
@@ -83,27 +117,6 @@ public class Projectile extends Object{
 				this.dx = 0.5 * this.dx ;
 			}
 		}
-
-		/*
-		if (this.y - this.rayon < 0){ // Roof
-			this.dy = 0;
-			this.y = this.rayon;
-			System.out.println("collision of proj with ROOF with x="+this.x+" and y="+this.y);
-			System.out.println(pan.getWidth()+" x "+pan.getHeight());
-		}
-		if (this.x - this.rayon < 0){
-				this.x = this.rayon;
-				this.dx = 0;
-				System.out.println("collision of proj with LEFT EDGE with x="+this.x+" and y="+this.y);
-				System.out.println(pan.getWidth()+" x "+pan.getHeight());
-		}
-		if (this.x + this.rayon > pan.getWidth()) {
-			this.x = pan.getHeight() - this.rayon;
-			this.dx = 0;
-			System.out.println("collision of proj with RIGHT EDGE with x="+this.x+" and y="+this.y);
-			System.out.println(pan.getWidth()+" x "+pan.getHeight());
-		}
-		*/
 		if (this.y - this.radius < 0){ // Roof
 			this.dy = 0;
 			this.y = this.radius;
@@ -123,7 +136,6 @@ public class Projectile extends Object{
 			//System.out.println("collision of proj with RIGHT EDGE with x="+this.x+" and y="+this.y);
 			//System.out.println(w +" x "+h);
 		}
-
 	}
 	//===========================
 
@@ -143,63 +155,6 @@ public class Projectile extends Object{
 		// TODO Auto-generated method stub
 		return 1;
 	}
-
-	/*=================UNUSED CODE NOW
-
- 	//Pythagorean method to compute the distance and collision
-	//équations horaires du déplacement du projectile UNUSED
-
-		public void action (long temps) {
-			this.t = temps;
-
-			this.x = (double)((this.dx)*(Math.cos(angle)*t)) ;
-			//this.y = (double)((-(this.GRAVITY/(2*(Math.pow(this.dy, 2))*(Math.pow(Math.cos(this.a),2))))*(Math.pow(this.dx, 2)*(Math.tan(this.a))*this.dx)));
-			this.y = (double)((-(Fenêtre.getGravityPlanet()/2)*(Math.pow(t, 2)))+(this.dx)*((Math.sin(angle))*t));
-
-		}
-
-		//méthodes pour essayer de travailler avec la collision sans équations horaires
-		public void deplaceX (Fenêtre fenêtre) {
-
-			boolean backX = false;
-
-	    	if (backX) {
-	    		dx = -dx;
-	    	}
-	    	//System.out.println(deltaX);
-
-	    	if(this.x > fenêtre.getWidth()) {
-				this.x = this.x+ dx ;
-				backX = true;
-	 		}else if (this.x+dx <= 50 ){
-	 			backX = false;
-	 			this.x = this.x + dx ;
-	 		}else {
-	 			this.x = this.x + dx ;
-	 		}
-	    	//System.out.println("cercle deplace");
-		}
-		public void deplaceY (Fenêtre fenêtre) {
-
-			boolean backY = false;
-
-	    	if (backY) {
-	    		dy= -dy;
-	    	}
-	    	//System.out.println(deltaX);
-
-	    	if(this.y > fenêtre.getHeight()) {
-				this.y = this.y+ dy ;
-				backY = true;
-	 		}else if (this.y+dy <= 50 ){
-	 			backY = false;
-	 			this.y = this.y + dy ;
-	 		}else {
-	 			this.y = this.y+ dy ;
-	 		}
-	    	//System.out.println("cercle deplace");
-		}
-		*/
 
 
 

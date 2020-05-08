@@ -7,7 +7,10 @@ import java.awt.event.*;
  *
  */
 public class Game{
-
+	/**
+	 * Main method calling the code
+	 * @param args
+	 */
 	public static void main(String [] args){
 		
 		//Just to work with it :

@@ -57,12 +57,13 @@ public class Enemy extends Object {
 	
 	/**
 	 * Distance computation to determine the death of the alien caused by the projectile
+	 * And if it is, removes the alien from listEnemies
 	 */
 	public void death() {
 		
 		double dist = GamePanel.getProj().getDistance(this.barycenter().x, this.barycenter().y); // Pythagorean method to compute distance
 		
-		if(dist <= 25.0 + GamePanel.getProj().getRayon()) {
+		if(dist <= 25.0 + GamePanel.getProj().getRadius()) {
 
 			Terrain.listEnemies.remove(this);  // the block is no more displayed
 			Terrain.computeScore(this); // incrementation of the score

@@ -1,11 +1,19 @@
 import java.awt.Toolkit;
-
+/**
+ * Inherit from the first class Terrain to create the world and changes some parameters
+ * Such as gravity, aliens, blocks etc.
+ * @author sebastien
+ *
+ */
 public class Terrain3  extends Terrain{
 	
+	/**
+	 * Constructor of the second world (Mars)
+	 */
 	public Terrain3() {
 		super();
 		
-		this.GRAVITY = (double)(this.GRAVITY*0.38) ;
+		this.gravity = (double)(this.gravity*0.38) ; // the gravity of Mars is 38% of the Earth one
 		this.level = 3;
 		
 		this.picGround = Toolkit.getDefaultToolkit().getImage("./images/GroundWorld/ground_mars.png");
@@ -17,7 +25,6 @@ public class Terrain3  extends Terrain{
 		listMaterials.clear();
 		
 		//Creation of the blocks with coordinates and parameters (x , y , resistance, textures, mass)
-		
 		arrayOriginalMaterial[0] = new Material(640.0,400.0,1,3, 3);
 		arrayOriginalMaterial[1] = new Material(650.0,300.0,1,3, 3);
 		arrayOriginalMaterial[2] = new Material(760.0,400.0,1,3 , 3);
@@ -41,7 +48,6 @@ public class Terrain3  extends Terrain{
 		}
 		
 		// Creation of the enemies with (x, y, life, texture) 
-		
 		arrayOriginalEnemies[0] = new Enemy (650.0,300.0,1,4);
 		arrayOriginalEnemies[1] = new Enemy (650.0,600.0,1,4);
 		arrayOriginalEnemies[2] = new Enemy (750.0,600.0,1,4);
