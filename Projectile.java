@@ -47,9 +47,10 @@ public class Projectile extends Object{
 
 	public void move(){
 		if(!this.dragged){ // Does not attempt to move if dragged
-			this.dy -= (double)(GameWindow.getGravityPlanet()*1/3);
+			this.dy = this.dy - (double)(GameWindow.getGravityPlanet()/10); // coeff originally 1/10
 			this.x += dx;
 			this.y -= dy;
+			System.out.println(this.dy);
 		} else {
 			this.dx = 0;
 			this.dy = 0;
@@ -63,7 +64,7 @@ public class Projectile extends Object{
 		int h = (int)GamePanel.getGround() ; //700
 		int w = 1000 ;
 
-		if (this.y < h){ // Ground
+		if (this.y > h){ // Ground
 			this.dy = -(this.dy*0.8); // bounce with 80% of initial speed
 			//System.out.println("collision of proj with GROUND with x="+this.x+" and y="+this.y);  //Debug print
 
@@ -96,6 +97,7 @@ public class Projectile extends Object{
 		if (this.y - this.radius < 0){ // Roof
 			this.dy = 0;
 			this.y = this.radius;
+			System.out.println("Hit the roof");
 			//System.out.println("collision of proj with ROOF with x="+this.x+" and y="+this.y);
 			//System.out.println(w +" x "+h);
 		}

@@ -19,7 +19,6 @@ public class GamePanel extends JPanel implements  MouseListener, MouseMotionList
 
 		this.ter = planete;
 		proj = new Projectile(projPosition,5.0, 5.0, 30.0 ,Color.black );
-		proj.setSpeed(20,20);
 
 		slingshot = new Thrower(proj, 100, 600); // set the thrower in the panel
 

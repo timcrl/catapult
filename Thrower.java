@@ -44,7 +44,7 @@ public class Thrower{
 
     double speedCoefficient = Math.sqrt( 2*this.forceCoefficient / this.projectile.getMass()); // Obtained With Ek = 1/2 * m * v²
     double vx = (this.x-this.mouseX)*speedCoefficient;
-    double vy = (this.y-this.mouseY)*speedCoefficient;
+    double vy = -(this.y-this.mouseY)*speedCoefficient;
 
     this.projectile.setSpeed(vx, vy); // Sets the speed
     System.out.println("projectile launched at speed vx=" + vx + " and vy =" + vy);
