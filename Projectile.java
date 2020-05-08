@@ -30,22 +30,7 @@ public class Projectile extends Object{
 
 	}
 
-	public void setPosition(double x, double y){
-		this.x = x;
-		this.y = y;
-	}
 
-	public void setPolarSpeed(double speed,double angle){
-		this.dx = speed*Math.cos(angle);
-		this.dy = speed*Math.sin(angle);
-
-	}
-
-	public void setSpeed(double speedX,double speedY){
-		this.dx = speedX;
-		this.dy = speedY;
-
-	}
 
 	public void isDragged(boolean d){ // Setter for dragged
 		this.dragged = d;
@@ -62,7 +47,7 @@ public class Projectile extends Object{
 
 	public void move(){
 		if(!this.dragged){ // Does not attempt to move if dragged
-			this.dy -= (double)(GameWindow.getGravityPlanet()*1/10);
+			this.dy -= (double)(GameWindow.getGravityPlanet()*1/3);
 			this.x += dx;
 			this.y -= dy;
 		} else {

@@ -14,7 +14,7 @@ public class Object {
 
   protected double mass ;
   protected int life ;
-  
+
   protected Image img ;
   protected int scoreValor; // value to credit the score when the object is destroyed
   protected String texture ;
@@ -32,8 +32,13 @@ public class Object {
     this.x = x;
     this.y = y;
   }
+  public void setSpeed(double speedX,double speedY){
+    this.dx = speedX;
+    this.dy = speedY;
 
-  public void setSpeed(double speed, double angle){
+  }
+
+  public void setPolarSpeed(double speed, double angle){
     this.dx = speed * Math.cos(angle);
     this.dy = speed * Math.sin(angle);
   }
@@ -56,21 +61,21 @@ public class Object {
 
 		return Math.sqrt((Math.pow(xDist, 2)+Math.pow(yDist, 2)));
 	}
-	
+
 	public double getDistanceY (double y1) {
 
 		double yDist = y1 - this.y;
 
 		return yDist;
 	}
-	
+
 	public void gravityAction(){
 
 		this.dy  +=(double)( GameWindow.getGravityPlanet());
 		this.y += (double)(this.dy);
-				
+
 			for (int i = 0;  i < Terrain.getlistMateriaux().size() ; ++i) {
-					
+
 					if(this != Terrain.getlistMateriaux().get(i) &&  this.x == Terrain.getlistMateriaux().get(i).x && this.getDistance(Terrain.getlistMateriaux().get(i).x,Terrain.getlistMateriaux().get(i).y) <= 50.0 ){
 						this.y = Terrain.getlistMateriaux().get(i).y-50.0; // position the block above another block
 						this.dy = 0;
@@ -83,7 +88,7 @@ public class Object {
 					}
 					//=========above only required code for gravity
 					//=========down trying to deviate the block with respect to its x position (it should rotate but no idea for now of how to do so)
-					
+
 					if(this != Terrain.getlistMateriaux().get(i) &&  this.x != Terrain.getlistMateriaux().get(i).x &&  this.getDistance(Terrain.getlistMateriaux().get(i).x,Terrain.getlistMateriaux().get(i).y) <= 50.0 ){
 							if ( this.centreX >  Terrain.getlistMateriaux().get(i).centreX +15.0) {
 								this.x= Terrain.getlistMateriaux().get(i).x + 50.0 ;  // moves to the right the block if it is on the right edge
@@ -97,9 +102,9 @@ public class Object {
 								break;
 							}
 					}
-			
+
 			}
-				
+
 			try {
 				Thread.sleep(17);
 			} catch (InterruptedException e) {

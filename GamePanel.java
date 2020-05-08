@@ -71,15 +71,15 @@ public class GamePanel extends JPanel implements  MouseListener, MouseMotionList
 	//To drag the projectile
 	@Override
 	public void mouseDragged(MouseEvent e) {
-		/*
+
 		// set an area of throwing of 100 px around the slingshot and the mouse must be at 30 px to grab it
 		if(proj.getDistance(e.getX(), e.getY()) <= 30.0 && this.projPosition.getDistance(e.getX(), e.getY()) <= 100 ) {
 			proj.setPosition(e.getX(), e.getY());
 		}
 		else {
 			// if the condition is not respected and the mouse exits the area of throwing, the projectile is set to its initial position
-			proj.setPosition(this.projPosition.x, this.projPosition.y);
-		} */
+			//proj.setPosition(this.projPosition.x, this.projPosition.y);
+		}
 		if (slingshot.isDragging()){
 			proj.setPosition(e.getX(), e.getY());
 			//System.out.println("new position set by dragg");
