@@ -49,6 +49,7 @@ public class Projectile extends Object{
 
 	public void isDragged(boolean d){ // Setter for dragged
 		this.dragged = d;
+		System.out.println("Dragging set to " + this.dragged);
 	}
 
 	public void dessiner ( Graphics g) {
@@ -64,6 +65,9 @@ public class Projectile extends Object{
 			this.dy -= (double)(GameWindow.getGravityPlanet()*1/10);
 			this.x += dx;
 			this.y -= dy;
+		} else {
+			this.dx = 0;
+			this.dy = 0;
 		}
 
 	}

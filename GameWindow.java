@@ -20,7 +20,7 @@ public class GameWindow extends JFrame implements  Runnable {
 	private static Terrain planete ;
 	private JLabel jScore ;
 	private GamePanel world ;
-	
+
 	private TransitionWindow transi;
 
 	public GameWindow (Terrain  level1) {
@@ -63,7 +63,7 @@ public class GameWindow extends JFrame implements  Runnable {
 	public static int getScore() {
 		return scoreNb;
 	}
-	
+
 	// Main loop
 	@Override
 	public void run() {
@@ -82,16 +82,16 @@ public class GameWindow extends JFrame implements  Runnable {
             	jScore.setText("SCORE : " + scoreNb);
 
             	repaint(); // Redraw elements
-            	
+
             	//Stops the game when the winning condition is fulfilled and closes the GameWindow to open the TransitionWindow
         		if(Terrain.victory() && scoreNb != 0 ) {
-        			
+
         			System.out.println("You have won !");
         			transi = new TransitionWindow(this);
         			Terrain.resetScore();
-        			
+
         			this.setVisible(false);
-        			this.dispose();	
+        			this.dispose();
         			break;
         		}
 
