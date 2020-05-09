@@ -38,43 +38,9 @@ public class Projectile extends Object{
 		this.img = Toolkit.getDefaultToolkit().getImage(texture) ;
 
 	}
-<<<<<<< HEAD
-
-
 
 	public void isDragged(boolean d){ // Setter for dragged
-=======
-	/**
-	 * Setter of its position
-	 */
-	public void setPosition(double x, double y){
-		this.x = x;
-		this.y = y;
-	}
-	/**
-	 * Setter of its speed by polar computations
-	 * @param speed
-	 * @param angle
-	 */
-	public void setPolarSpeed(double speed,double angle){
-		this.dx = speed*Math.cos(angle);
-		this.dy = speed*Math.sin(angle);
 
-	}
-	/**
-	 * Setter of its speed
-	 */
-	public void setSpeed(double speedX,double speedY){
-		this.dx = speedX;
-		this.dy = speedY;
-
-	}
-	/**
-	 * Setter for the boolean dragged
-	 * @param d
-	 */
-	public void isDragged(boolean d){ 
->>>>>>> 10b24d635878516b5638fc262976a2dcffa204e3
 		this.dragged = d;
 		System.out.println("Dragging set to " + this.dragged);
 	}
