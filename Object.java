@@ -5,7 +5,6 @@ import java.awt.Toolkit;
  * Mother class of Materials, Aliens and Projectile
  * Most of attributes are declared here and contains the code for the gravityAction and Collision Detection
  * @author sebastien
- *
  */
 public class Object {
 

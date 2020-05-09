@@ -20,7 +20,6 @@ public class TransitionWindow extends JFrame implements ActionListener {
 	private GameWindow game ; //host the next play window
 	private GameWindow gameAlreadyPlayed;
 	
-	private ButtonHandler bHandler = new ButtonHandler(); // uses the classes for the sound effects
 	private int levelGameAlrPlayed ; // will keep track of the level value
 	
 	/**
@@ -74,15 +73,7 @@ public class TransitionWindow extends JFrame implements ActionListener {
 	    //Implementation of the ActionListener
 	    bRePlay.addActionListener(this);
 	    bNextLevel.addActionListener(this);
-	    
-	    //Implementation of sound effects on button click
-	    bRePlay.addActionListener(bHandler);
-	    bNextLevel.addActionListener(bHandler);
-
-	    //Differentiate between buttons clicked
-	    bNextLevel.setActionCommand("musicB");
-	    bRePlay.setActionCommand("musicB");
-	    
+	  	    
 	    //Display of the buttons in the window
 	    jBackGround.add(lTitle);
 	    jBackGround.add(lScore);
@@ -106,7 +97,7 @@ public class TransitionWindow extends JFrame implements ActionListener {
 		if(e.getSource()== bNextLevel) {
 			System.out.println("You ask to play the Next Level");
 			
-			//We check which level has been played just before
+			//We check which level has been played just before to launch the following level
 			if(this.levelGameAlrPlayed ==1) {
 				game = new GameWindow(new Terrain2());
 			}

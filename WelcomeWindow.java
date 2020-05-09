@@ -19,7 +19,6 @@ import javax.swing.JPanel;
 /**
  * it's the welcoming window as indicated, where you enter the name and can choose to play directly or go to the selection window
  * @author sebastien
- *
  */
 public class WelcomeWindow extends JFrame implements ActionListener  {
 	

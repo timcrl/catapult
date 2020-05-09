@@ -6,11 +6,10 @@ import java.awt.Toolkit;
  * Creation of the blocks in this class, with their texture and conditions on their destruction
  * As well as future method for force computations
  * @author sebastien
- *
  */
 public class Material extends Object {
 	
-	public static String[] refTextures= getTextures();
+	private static String[] refTextures= getTextures();
 	protected APoint p ;
 	
 	/**
@@ -87,7 +86,7 @@ public class Material extends Object {
 			Terrain.listMaterials.remove(this);
 			
 			Terrain.computeScore(this);
-			System.out.println(dist + " la distance entre le projectile et l'objet ");
+			System.out.println(dist + " la distance entre le projectile et l'objet "); //monitoring the code
 		
 		}
 	}

@@ -1,7 +1,7 @@
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 /**
- * Classe enabling to play the sounds on button press
+ * Class enabling to play the sounds on button press
  * @author Chetanveer
  */
 public class ButtonHandler implements ActionListener{
@@ -16,6 +16,7 @@ public class ButtonHandler implements ActionListener{
     	public ButtonHandler() {
     			   this. clickSound = "./sounds/clickSound.wav"; //import the click sound from a file
     			   this.backgroundMusic = "./sounds/backgroundMusic.wav"; //import the background music from a file
+    			   
     	}
 	    /**
 	     * Method which get the button which has been pushed and check its name
@@ -36,7 +37,7 @@ public class ButtonHandler implements ActionListener{
     			soundEffect.setFile(clickSound); 
     			soundEffect.play();
     			bMusic.setFile(backgroundMusic);
-    			bMusic.play(); 
+    			bMusic.play();
     		}
     	}
     }

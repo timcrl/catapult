@@ -6,7 +6,6 @@ import java.awt.Toolkit;
 /**
  * Class of the slingshot containing its computation methods and display
  * @author Timothee
- *
  */
 public class Thrower{
 

@@ -3,7 +3,6 @@ import java.awt.Toolkit;
  * Inherit from the first class Terrain to create the world and changes some parameters
  * Such as gravity, aliens, blocks etc.
  * @author sebastien
- *
  */
 public class Terrain3  extends Terrain{
 	

@@ -5,12 +5,11 @@ import java.util.LinkedList;
 /**
  * Class containing the world where the game is played, filled with the background image and the elements aliens and blocks
  * @author sebastien
- *
  */
 public class Terrain {
 
 	//Declaration of the attributes 
-	public Image picGround ;
+	protected Image picGround ;
 	protected double gravity ;
 
 	//Lists used for the display of the elements (often called, addition or destruction of blocks)

@@ -71,7 +71,7 @@ public class GameWindow extends JFrame implements  Runnable {
 	}
 	/**
 	 * Getters of the world in which the game is played
-	 * @return
+	 * @return planete
 	 */
 	public Terrain getWorld () {
 		return this.planete ;
@@ -116,7 +116,7 @@ public class GameWindow extends JFrame implements  Runnable {
         			break;
         		}
 
-				//Avoid Slow down using the game loop
+				//Avoid Slow down using the game loop and interpolation
             	try {
             		Thread.sleep(sleepDuration);
             	} catch (InterruptedException e) {

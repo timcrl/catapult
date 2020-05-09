@@ -9,7 +9,7 @@ import java.awt.Toolkit;
  */
 public class Enemy extends Object {
 
-	public static String[] refAlien = getAlien();
+	private static String[] refAlien = getAlien();
 	/**
 	 * Constructor of the class, using the first parameters for the position necessary to the display
 	 * And texture parameter for the GUI, as well as life (would have been use to know how many hit it can bear)
@@ -66,7 +66,7 @@ public class Enemy extends Object {
 		if(dist <= 25.0 + GamePanel.getProj().getRadius()) {
 
 			Terrain.listEnemies.remove(this);  // the block is no more displayed
-			Terrain.computeScore(this); // incrementation of the score
+			Terrain.computeScore(this); // increments the score
 
 			System.out.println(dist + " la distance entre le projectile et l'objet "); //monitoring of the code
 			

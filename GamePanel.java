@@ -60,6 +60,7 @@ public class GamePanel extends JPanel implements  MouseListener, MouseMotionList
 
 	/**
 	 * Display all the elements background, objects, etc
+	 * @param Graphics g
 	 */
 	public void paintComponent(Graphics g){
 
@@ -93,6 +94,7 @@ public class GamePanel extends JPanel implements  MouseListener, MouseMotionList
 
 	/**
 	 * To drag the projectile (when the mouse is kept pressed)
+	 * @param mouseEvent e
 	 */
 	public void mouseDragged(MouseEvent e) {
 
@@ -113,6 +115,7 @@ public class GamePanel extends JPanel implements  MouseListener, MouseMotionList
 
 	/**
 	 * Detect collision between the mouse and the projectile
+	 * @param mouseEvent e
 	 */
 	public void mouseMoved(MouseEvent e) { // To remove, replaced by mouseDragged
 		/*
@@ -133,6 +136,7 @@ public class GamePanel extends JPanel implements  MouseListener, MouseMotionList
  //========== Works only with MouseListener implemented
 	/**
 	 * Changes the values of the drag attributes when the mouse is pressed
+	 * @param mouseEvent e
 	 */
 	public void mousePressed(MouseEvent e) {
 		//System.out.println("mouse pressed");
@@ -143,6 +147,7 @@ public class GamePanel extends JPanel implements  MouseListener, MouseMotionList
 	/**
 	 * Changes the values of the drag attributes when the mouse is released
 	 * and launch the projectile
+	 * @param mouseEvent e
 	 */
 	public void mouseReleased(MouseEvent e) {
 	    //System.out.println("mouse released");
@@ -164,6 +169,7 @@ public class GamePanel extends JPanel implements  MouseListener, MouseMotionList
 
 		/**
 		 * Give the position of the mouse when it is clicked
+		 * @param mouseEvent e
 		 */
 		public void mouseClicked(MouseEvent e) {
 			String s = "| Position de la souris : " + e.getX() +" x et " + e.getY() + " y ";

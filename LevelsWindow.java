@@ -4,7 +4,6 @@ import javax.swing.*;
 /**
  * Selection Level Window, basic display to select between 3 levels
  * @author sebastien
- *
  */
 public class LevelsWindow  extends JFrame implements ActionListener {
 	

@@ -6,11 +6,10 @@ import javax.sound.sampled.Clip;
  * Music class creating all the necessary stuff such as the AudioInput, File
  * And enables the play, loop, stop actions for the music
  * @author Chetanveer
- *
  */
 public class Music{
 
-	Clip clip;
+	private Clip clip;
 	/**
 	 * Create the file containing the soundtrack
 	 * @param soundFileName

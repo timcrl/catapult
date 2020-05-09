@@ -7,11 +7,10 @@ import javax.sound.sampled.Clip;
  * Class creating the Sound effects such as click ones
  * Using the same principle as Music
  * @author Chetanveer
- *
  */
 public class SoundEffect{
 
-	Clip clip;
+	private Clip clip;
 	/**
 	 * Set the file with the audio
 	 * @param soundFileName

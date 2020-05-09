@@ -8,7 +8,6 @@ import javax.swing.Timer;
 /**
  * Method computing every characteristic of the projectile (Speed, Position, Display)
  * @author Timothee
- *
  */
 public class Projectile extends Object{
 
@@ -46,6 +45,7 @@ public class Projectile extends Object{
 	}
 	/**
 	 * Draw the projectile in GamePanel
+	 * @param Graphics g
 	 */
 	public void dessiner ( Graphics g) {
 		g.drawImage(this.img, (int)(this.x),(int)(this.y),null);
