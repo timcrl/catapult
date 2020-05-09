@@ -10,7 +10,7 @@ import javax.swing.text.html.parser.Element;
  *
  */
 public class GamePanel extends JPanel implements  MouseListener, MouseMotionListener {
-	
+
 	//Declaration of the attributes and components
 	private Terrain ter ;
 	private static Projectile proj;
@@ -27,12 +27,8 @@ public class GamePanel extends JPanel implements  MouseListener, MouseMotionList
 	public GamePanel(Terrain planete){
 
 		this.ter = planete;
-<<<<<<< HEAD
-		proj = new Projectile(projPosition,5.0, 5.0, 30.0 ,Color.black );
-=======
 		proj = new Projectile(projPosition,5.0, 5.0, 30.0 );
 		proj.setSpeed(0,0);
->>>>>>> 10b24d635878516b5638fc262976a2dcffa204e3
 
 		slingshot = new Thrower(proj, 100, 600); // set the thrower in the panel
 
@@ -61,7 +57,7 @@ public class GamePanel extends JPanel implements  MouseListener, MouseMotionList
 	public static double getGround() {
 		return 700;
 	}
-	
+
 	/**
 	 * Display all the elements background, objects, etc
 	 */
@@ -165,7 +161,7 @@ public class GamePanel extends JPanel implements  MouseListener, MouseMotionList
 	*/
 
 	}
-	
+
 		/**
 		 * Give the position of the mouse when it is clicked
 		 */
@@ -177,12 +173,12 @@ public class GamePanel extends JPanel implements  MouseListener, MouseMotionList
 
 		@Override
 		public void mouseEntered(MouseEvent e) {
-	
+
 		}
-	
+
 		@Override
 		public void mouseExited(MouseEvent e) {
-	
+
 		}
 
 
