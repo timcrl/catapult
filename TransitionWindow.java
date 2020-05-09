@@ -1,9 +1,14 @@
 import java.awt.event.*;
 import java.awt.*;
 import javax.swing.*;
-
+/**
+ * Window appearing when the player won the game, gives the possibility to replay or continue to the next level
+ * @author sebastien
+ *
+ */
 public class TransitionWindow extends JFrame implements ActionListener {
 
+	//Declaration of the components
 	private JPanel transition; 
 	
 	private JLabel lTitle ;
@@ -16,9 +21,12 @@ public class TransitionWindow extends JFrame implements ActionListener {
 	private GameWindow gameAlreadyPlayed;
 	
 	private ButtonHandler bHandler = new ButtonHandler(); // uses the classes for the sound effects
-
 	private int levelGameAlrPlayed ; // will keep track of the level value
 	
+	/**
+	 * Constructor of this class, positioning every components and getting the past played game.
+	 * @param currentGame
+	 */
 	public TransitionWindow(GameWindow currentGame) {
 		
 		// Definition of the windows properties
@@ -42,7 +50,7 @@ public class TransitionWindow extends JFrame implements ActionListener {
 		jBackGround.setBounds(0, 0, transition.getWidth(), transition.getHeight());
 		transition. add(jBackGround);
 		
-	    //Configurations of the Buttons and JLabels and Text
+	    //Configurations of the JLabels and Text
 	    lTitle = new JLabel("VICTORY");
 	    lTitle.setBounds(300, 250, 200 , 100);
 	    lTitle.setFont(new Font("TITLE", Font.BOLD,40));
@@ -52,6 +60,7 @@ public class TransitionWindow extends JFrame implements ActionListener {
 	    lScore.setBackground(new Color(190, 0, 0));
 	    lScore.setFont(new Font("TITLE", Font.BOLD,20));
 	    
+	    //Configurations of the Buttons
 		bRePlay = new JButton("REPLAY");
 	    bRePlay.setBounds(150, 500, 175, 50);
 	    bRePlay.setBackground(new Color(190, 0, 0));
@@ -84,9 +93,13 @@ public class TransitionWindow extends JFrame implements ActionListener {
 	    this.setVisible(true); 
 	}
 
+	/**
+	 * Method to tell the program which action to do after a button has been pushed
+	 * @param  e
+	 */
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		
+		//Says what to do when the player clicks one button
 		if(e.getSource() == bRePlay) {
 			game = new GameWindow(new Terrain());
 		}

@@ -2,11 +2,16 @@ import java.awt.Component;
 import java.awt.Image;
 import java.awt.Toolkit;
 import java.util.LinkedList;
-
+/**
+ * Class containing the world where the game is played, filled with the background image and the elements aliens and blocks
+ * @author sebastien
+ *
+ */
 public class Terrain {
 
-	public Image picGround = Toolkit.getDefaultToolkit().getImage("./images/GroundWorld/ground_earth.png");
-	protected double GRAVITY ;
+	//Declaration of the attributes 
+	public Image picGround ;
+	protected double gravity ;
 
 	//Lists used for the display of the elements (often called, addition or destruction of blocks)
 	static LinkedList <Material> listMaterials = new LinkedList<Material>();
@@ -19,9 +24,14 @@ public class Terrain {
 	protected static int score ;
 	protected  int level ; // will tell the current level played for the other classes
 
+	/**
+	 * Constructor creates the blocks and enemies and affects them in the linkedlists to be displayed
+	 * Give a value for the gravity also as well as an image for the background 
+	 */
 	public Terrain() {
-
-		this.GRAVITY = 9.8 ;
+		
+		this.picGround =  Toolkit.getDefaultToolkit().getImage("./images/GroundWorld/ground_earth.png"); //sets the background
+		this.gravity = 9.8 ; //Earth's Gravity
 		this.level = 1 ;
 
 		//To remove all blocks from before (if a game is replayed for instance) (like emptying the cache)
@@ -32,7 +42,6 @@ public class Terrain {
 		this.arrayOriginalEnemies = new Enemy [2];
 
 		//Creation of the blocks with coordinates and parameters (x , y , resistance, textures, mass)
-
 		arrayOriginalMaterial[0] = new Material(830.0,400.0,1,1, 1.0);
 		arrayOriginalMaterial[1] = new Material(770.0,450.0,1,1 , 2.0);
 		arrayOriginalMaterial[2]= new Material(800.0,520.0,1,2, 1.0);
@@ -44,9 +53,8 @@ public class Terrain {
 			listMaterials.add(arrayOriginalMaterial[i]);
 			arrayOriginalMaterial[i] = null;
 		}
-
+		
 		// Creation of the enemies with (x, y, life, texture)
-
 		arrayOriginalEnemies[0] = new Enemy (850.0,300.0,1,1);
 		arrayOriginalEnemies[1] = new Enemy (800.0,300.0,1,3);
 
@@ -54,24 +62,40 @@ public class Terrain {
 		for(int j=0 ; j <2 ; ++j) {
 			listEnemies.add(arrayOriginalEnemies[j]);
 			arrayOriginalEnemies[j] = null;
-
 		}
 	}
-
-
+	/**
+	 * Getter of the listEnemies
+	 * @return listEnemies
+	 */
 	public LinkedList <Enemy> getListEnnemies(){
 		return listEnemies;
 	}
-	public static LinkedList<Material>  getlistMateriaux() {
+	/**
+	 * Getter of the listMaterial
+	 * @return listMaterials
+	 */
+	public static LinkedList<Material>  getlistMaterials() {
 		return listMaterials ;
 	}
+	/**
+	 * Getter of the world's gravity
+	 * @return GRAVITY
+	 */
 	public double getGravity() {
-		return this.GRAVITY;
+		return this.gravity;
 	}
+	/**
+	 * Getter of the world's level
+	 * @return level
+	 */
 	public int getLevelNumber() {
 		return this.level;
 	}
-
+	/**
+	 * Compute if whether or not the game is won by the player and return the boolean
+	 * @return boolean victory
+	 */
 	public static boolean victory() {
 		boolean vic = false ;
 
@@ -80,10 +104,16 @@ public class Terrain {
 		}
 		return vic;
 	}
-
+	/**
+	 * Compute the score by getting the value of the destroyed Object
+	 * @param destroyed
+	 */
 	public static void computeScore (Object destroyed) {
 		score += destroyed.scoreValor;
 	}
+	/**
+	 * Reset the score for another game
+	 */
 	public static void resetScore() {
 		score = 0 ;
 	}

@@ -1,7 +1,12 @@
 import java.awt.event.*;
 import java.awt.*;
 import javax.swing.*;
-
+/**
+ * Main Window containing all the games
+ * It contains GamePanel and the Game Loop
+ * @author sebastien
+ *
+ */
 public class GameWindow extends JFrame implements  Runnable {
 
 
@@ -12,17 +17,23 @@ public class GameWindow extends JFrame implements  Runnable {
     final int FRAMERATE = 60;
  	private int sleepDuration = 17; // originally (it's 1/60 so around 17 ms )
  	private int temps;
+	Thread thread ; // Principal element of our Game Loop
+ 	
+	//Declaration of Components and Attributes
 	private final int WIDTH = 1000;
 	private final int HEIGHT = 1000;
-	Thread thread ;
 
 	private static int scoreNb ;
 	private static Terrain planete ;
 	private JLabel jScore ;
 	private GamePanel world ;
 
-	private TransitionWindow transi;
+	private TransitionWindow transi; // window of victory, called if conditions gathered
 
+	/**
+	 * Constructor setting the position of JLabel and GamePanel
+	 * @param level1
+	 */
 	public GameWindow (Terrain  level1) {
 		// Definition of the windows properties
 		super("Catapult's World") ;
@@ -51,31 +62,40 @@ public class GameWindow extends JFrame implements  Runnable {
 		this.setContentPane(world);
 		this.setVisible(true);
 	}
-
+	/**
+	 * Getters of the world's gravity
+	 * @return gravity
+	 */
 	public static double getGravityPlanet() {
 		return planete.getGravity();
 	}
-
+	/**
+	 * Getters of the world in which the game is played
+	 * @return
+	 */
 	public Terrain getWorld () {
 		return this.planete ;
 	}
-
+	/**
+	 * Getter of the current Score
+	 * @return scoreNb
+	 */
 	public static int getScore() {
 		return scoreNb;
 	}
 
-	// Main loop
 	@Override
+	/**
+	 * Method containing our Game Loop and making the code run
+	 * Implement the interpolation to avoid slow down
+	 * Update Score and Display, and check winning conditions
+	 */
 	public void run() {
 
             while(true) {
-
-        		// System.out.println(world.getBounds(null));
-
-              world.getProj().bounce(world); // Detects edges of terrain
-              world.getProj().move();// Moves the projectile
-
-				//world.getProj().setPosition(100, 100);// Test to see drawing
+	
+	              world.getProj().bounce(world); // Detects edges of terrain
+	              world.getProj().move();// Moves the projectile
 
 				//Update label score
 				scoreNb = Terrain.score ;
@@ -87,9 +107,10 @@ public class GameWindow extends JFrame implements  Runnable {
         		if(Terrain.victory() && scoreNb != 0 ) {
 
         			System.out.println("You have won !");
-        			transi = new TransitionWindow(this);
+        			transi = new TransitionWindow(this); //open the victory window
         			Terrain.resetScore();
-
+        			
+        			//Stops the code and close the window
         			this.setVisible(false);
         			this.dispose();
         			break;

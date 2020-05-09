@@ -1,18 +1,27 @@
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
-//PLay the sounds on button press
-    public class ButtonHandler implements ActionListener{
+/**
+ * Classe enabling to play the sounds on button press
+ * @author Chetanveer
+ */
+public class ButtonHandler implements ActionListener{
     	
     	private String clickSound, backgroundMusic;
-    	private SoundEffect soundEffect = new SoundEffect();
-    	private Music bMusic = new Music();
+    	private SoundEffect soundEffect = new SoundEffect(); 
+    	private Music bMusic = new Music(); 
     	
+    	/**
+    	 * Constructor affecting the music path to their respective strings
+    	 */
     	public ButtonHandler() {
     			   this. clickSound = "./sounds/clickSound.wav"; //import the click sound from a file
     			   this.backgroundMusic = "./sounds/backgroundMusic.wav"; //import the background music from a file
     	}
-	    
+	    /**
+	     * Method which get the button which has been pushed and check its name
+	     * And with a switcher decides what to play 
+	     * @param event
+	     */
     	public void actionPerformed(ActionEvent event){
 
     		String clickedButton = event.getActionCommand(); //to get the sound name from the button

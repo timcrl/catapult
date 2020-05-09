@@ -1,9 +1,15 @@
 import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.Toolkit;
-
+/**
+ * Mother class of Materials, Aliens and Projectile
+ * Most of attributes are declared here and contains the code for the gravityAction and Collision Detection
+ * @author sebastien
+ *
+ */
 public class Object {
 
+//Declaration of the attributes 
   protected double x; // x and y position of the objects
   protected double y;
   protected double dx ; // x and y velocity of the objects
@@ -19,19 +25,29 @@ public class Object {
   protected int scoreValor; // value to credit the score when the object is destroyed
   protected String texture ;
 
-
+/**
+ * Constructor setting the image for each object
+ */
   public Object(){
 
 	  this.img = Toolkit.getDefaultToolkit().getImage(this.texture); // direct integration of the image to the alien
   }
-
+  /**
+   * 
+   * @param g
+   */
   public  void dessiner ( Graphics g) {
   }
-
+  /**
+   * Set the position of the object
+   * @param x
+   * @param y
+   */
   public void setPosition(double x, double y){
     this.x = x;
     this.y = y;
   }
+<<<<<<< HEAD
   public void setSpeed(double speedX,double speedY){
     this.dx = speedX;
     this.dy = speedY;
@@ -39,45 +55,87 @@ public class Object {
   }
 
   public void setPolarSpeed(double speed, double angle){
+=======
+  /**
+   * Set the speed of the object
+   * @param speed
+   * @param angle
+   */
+  public void setSpeed(double speed, double angle){
+>>>>>>> 10b24d635878516b5638fc262976a2dcffa204e3
     this.dx = speed * Math.cos(angle);
     this.dy = speed * Math.sin(angle);
   }
-
+  /**
+   * Set the barycenter of the object
+   * @return APoint p
+   */
   public APoint barycenter () {
 	  APoint p = new APoint (this.x+25.0, this.y+25.0);
 
 	  return p;
   }
-
+  /**
+   * Future method to compute the weight of a block
+   * @return weight force
+   */
   public double force () {
 	  double f = 0.0;
 	  f = this.mass *GameWindow.getGravityPlanet() ; // F = m*a
 	  return f;
   }
-
+  /**
+   * Pythagorean Method (use of square triangle) to compute the distance between objects
+   * Used for Collision Detection
+   * @param x1
+   * @param y1
+   * @return distance
+   */
 	public double getDistance (double x1, double y1) {
 		double xDist = x1-this.x;
 		double yDist = y1-this.y;
 
 		return Math.sqrt((Math.pow(xDist, 2)+Math.pow(yDist, 2)));
 	}
+<<<<<<< HEAD
 
+=======
+	/**
+	 * Simple method to compute the y distance
+	 * Was used to position some blocks sometimes
+	 * @param y1
+	 * @return yDistance
+	 */
+>>>>>>> 10b24d635878516b5638fc262976a2dcffa204e3
 	public double getDistanceY (double y1) {
-
+		
 		double yDist = y1 - this.y;
-
 		return yDist;
 	}
+<<<<<<< HEAD
 
+=======
+	/**
+	 * Main method to implement gravity and stabilize blocks and aliens
+	 */
+>>>>>>> 10b24d635878516b5638fc262976a2dcffa204e3
 	public void gravityAction(){
 
 		this.dy  +=(double)( GameWindow.getGravityPlanet());
 		this.y += (double)(this.dy);
+<<<<<<< HEAD
 
 			for (int i = 0;  i < Terrain.getlistMateriaux().size() ; ++i) {
 
 					if(this != Terrain.getlistMateriaux().get(i) &&  this.x == Terrain.getlistMateriaux().get(i).x && this.getDistance(Terrain.getlistMateriaux().get(i).x,Terrain.getlistMateriaux().get(i).y) <= 50.0 ){
 						this.y = Terrain.getlistMateriaux().get(i).y-50.0; // position the block above another block
+=======
+				
+			for (int i = 0;  i < Terrain.getlistMaterials().size() ; ++i) {
+					
+					if(this != Terrain.getlistMaterials().get(i) &&  this.x == Terrain.getlistMaterials().get(i).x && this.getDistance(Terrain.getlistMaterials().get(i).x,Terrain.getlistMaterials().get(i).y) <= 50.0 ){
+						this.y = Terrain.getlistMaterials().get(i).y-50.0; // position the block above another block
+>>>>>>> 10b24d635878516b5638fc262976a2dcffa204e3
 						this.dy = 0;
 						break;
 					}
@@ -88,23 +146,34 @@ public class Object {
 					}
 					//=========above only required code for gravity
 					//=========down trying to deviate the block with respect to its x position (it should rotate but no idea for now of how to do so)
+<<<<<<< HEAD
 
 					if(this != Terrain.getlistMateriaux().get(i) &&  this.x != Terrain.getlistMateriaux().get(i).x &&  this.getDistance(Terrain.getlistMateriaux().get(i).x,Terrain.getlistMateriaux().get(i).y) <= 50.0 ){
 							if ( this.centreX >  Terrain.getlistMateriaux().get(i).centreX +15.0) {
 								this.x= Terrain.getlistMateriaux().get(i).x + 50.0 ;  // moves to the right the block if it is on the right edge
+=======
+					
+					if(this != Terrain.getlistMaterials().get(i) &&  this.x != Terrain.getlistMaterials().get(i).x &&  this.getDistance(Terrain.getlistMaterials().get(i).x,Terrain.getlistMaterials().get(i).y) <= 50.0 ){
+							if ( this.centreX >  Terrain.getlistMaterials().get(i).centreX +15.0) {
+								this.x= Terrain.getlistMaterials().get(i).x + 50.0 ;  // moves to the right the block if it is on the right edge
+>>>>>>> 10b24d635878516b5638fc262976a2dcffa204e3
 							}
-							if (  this.centreX <  Terrain.getlistMateriaux().get(i).centreX -15.0) {
-								this.x= Terrain.getlistMateriaux().get(i).x -  50.0 ;  //moves to the left the block if it is on the left edge
+							if (  this.centreX <  Terrain.getlistMaterials().get(i).centreX -15.0) {
+								this.x= Terrain.getlistMaterials().get(i).x -  50.0 ;  //moves to the left the block if it is on the left edge
 							}
 							else {
-								this.y = Terrain.getlistMateriaux().get(i).y-50.0;  //only fix the block above if its center of mass is stable
+								this.y = Terrain.getlistMaterials().get(i).y-50.0;  //only fix the block above if its center of mass is stable
 								this.dy = 0;
 								break;
 							}
 					}
 
 			}
+<<<<<<< HEAD
 
+=======
+			//to avoid slow down the display and the movements of the blocks
+>>>>>>> 10b24d635878516b5638fc262976a2dcffa204e3
 			try {
 				Thread.sleep(17);
 			} catch (InterruptedException e) {
