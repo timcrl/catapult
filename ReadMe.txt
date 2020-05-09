@@ -8,18 +8,19 @@ MEMBERS : GOBIN Chetanveer , CAREl Timothée , GAUTIER Juliette, VIMONT Sébasti
 
 CONTENT : This zip file contains every classes and multimedia objects (images, etc) used for the creation of a GUI. All of them are within a folder untitled "catapult" which was our GIT repository for each of us.
 
-The file containing the multimedia stuff is untitled : "images" and is subdivided in different sections "Aliens", "Blocks", "Thrower", "GroundWorld", etc
+The files containing the multimedia stuff are untitled : "images" and is subdivided in different sections "Aliens", "Blocks", "Thrower", "GroundWorld", etc
+And "sounds" next to images which contains a sound effect and a music (MUSIC CREDIT: The Imperial March - John Williams).
+Next to these two files we have "doc" containing our JAVADOC documentation and "uml" containing our diagram in PNG and UCLS.
 
 Concerning the classes they all are next to the folder "images".
 
 
-Then our main folder "Catapult's World" also contains the UML diagram of our project, the PDF report, a Javadoc.
+Then our main folder "Catapult's World" also contains the PDF report, next to catapult.
 
-
-I also include here, in case you prefer a direct access our online GitHub repository :
+I also include here, in case you prefer a direct access to our online GitHub repository :
 https://github.com/timwinner/catapult.git 
 
 
-WRITTEN : 5/05/2020
+WRITTEN : 9/05/2020
 
 
